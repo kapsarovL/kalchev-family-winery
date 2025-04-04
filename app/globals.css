@@ -27,7 +27,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -53,14 +53,254 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
-@layer base {
-  * {
-    @apply border-border;
+
+@layer utilities {
+  /*Typography*/
+
+  .text-balance {
+    text-wrap: balance;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*Typography*/
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*Typography*/
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-img-overlay {
+    @apply absolute inset-0 bg-[rgb(44,24,16)] bg-opacity-70;
+  }
+
+  .bg-fixed {
+    background-attachment: fixed;
+  }
+
+  .section-underline {
+    @apply block w-20 h-1 bg-accent mb-6;
+  }
+
+  .section-centered {
+    @apply text-center max-w-3xl mx-auto mb-16;
+  }
+
+  .bg-img-overlay {
+    @apply absolute inset-0 bg-[rgba(0,0,0,0.65)] bg-opacity-90; /* Updated opacity to 90 */
+  }
+
+  .bg-fixed {
+    background-attachment: fixed;
+  }
+
+  .vineyard-bg {
+    background-image: url("@assets/");
+  }
+
+  .winery-bg {
+    background-image: url("@assets/"); /* Updated to remove the specific image */
+  }
+
+  .barrels-bg {
+    background-image: url("@assets/"); /* Updated to remove the specific image */
+    /* Added a fallback background color */
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.5
+    ); /* Fallback color for barrels background */
+  }
+
+  /* Product 360 viewer styles */
+  .product-360-viewer {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    cursor: grab;
+  }
+
+  .product-360-viewer:active {
+    cursor: grabbing;
+  }
+
+  /* Wine showcase styles */
+  .wine-showcase-container {
+    position: relative;
+  }
+
+  .wine-showcase-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("@assets/481988925_1706029077011886_5314315098658897435_n.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    z-index: -1;
+  }
+
+  /* Animation for wine bottle rotation */
+  @keyframes rotateBottle {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .auto-rotating {
+    animation: rotateBottle 15s infinite linear;
+    transform-style: preserve-3d;
+  }
+
+  .wine-indicator-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .wine-indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .wine-indicator-dot.active {
+    background-color: var(--wine-red);
+  }
+
+  .wine-indicator-dot.inactive {
+    background-color: rgba(var(--wine-red), 0.3);
+  }
+
+  .wine-indicator-dot.active {
+    background-color: var(--wine-red);
+  }
+
+  /* Wine-themed color utility classes */
+  .bg-wine-red {
+    background-color: rgb(var(--wine-red));
+  }
+
+  .bg-wine-red-15 {
+    background-color: rgba(var(--wine-red), 0.15);
+  }
+
+  .text-wine-red {
+    color: rgb(var(--wine-red));
+  }
+
+  .border-wine-red {
+    border-color: rgb(var(--wine-red));
+  }
+
+  .bg-cream {
+    background-color: rgb(var(--cream));
+  }
+
+  .bg-cream-15 {
+    background-color: rgba(var(--cream), 0.15);
+  }
+
+  .text-cream {
+    color: rgb(var(--cream));
+  }
+
+  .border-cream {
+    border-color: rgb(var(--cream));
+  }
+
+  .bg-gold {
+    background-color: rgb(var(--gold));
+  }
+
+  .bg-gold-15 {
+    background-color: rgba(var(--gold), 0.15);
+  }
+
+  .text-gold {
+    color: rgb(var(--gold));
+  }
+
+  .border-gold {
+    border-color: rgb(var(--gold));
+  }
+
+  .bg-deep-brown {
+    background-color: rgb(var(--deep-brown));
+  }
+
+  .bg-deep-brown-15 {
+    background-color: rgba(var(--deep-brown), 0.15);
+  }
+
+  .text-deep-brown {
+    color: rgb(var(--deep-brown));
+  }
+
+  .border-deep-brown {
+    border-color: rgb(var(--deep-brown));
+  }
+
+  /* Status badges with new colors */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .status-badge-success {
+    background-color: rgba(var(--wine-red), 0.15);
+    color: rgb(var(--wine-red));
+  }
+
+  .status-badge-warning {
+    background-color: rgba(var(--gold), 0.15);
+    color: rgb(var(--gold));
+  }
+
+  .status-badge-info {
+    background-color: rgba(var(--deep-brown), 0.15);
+    color: rgb(var(--deep-brown));
+  }
+
+  /* Wine Club Membership section styles */
+  .section-underline {
+    height: 2px;
+    width: 60px;
+    background: linear-gradient(
+      to right,
+      rgb(var(--gold)),
+      rgb(var(--wine-red))
+    );
+    margin-bottom: 16px;
   }
 }
