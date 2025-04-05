@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import WineShowcase from "@/components/products/WineShowcase"; // Assuming you have a WineShowcase component
-import { wines } from "../../data/wines"; // Assuming you have a wines data file
+import WineShowcase from "@/components/products/WineShowcase";
+import { wines } from "../../data/wines";
 
 const FeaturedWineShowcase = () => {
   const [currentWineIndex, setCurrentWineIndex] = useState(0);
@@ -20,9 +20,22 @@ const FeaturedWineShowcase = () => {
     );
   };
 
-  const getWineStatus = (index) => {};
+  const _getWineStatus = (
+    index: number
+  ): "in-stock" | "limited" | "pre-order" => {
+    if (!wines[index]) return "in-stock";
+    return wines[index].id % 2 === 0 ? "in-stock" : "limited";
+  };
 
-  const getWineAward = (index) => {};
+  const _getWineAward = (
+    index: number
+  ): "gold" | "silver" | "bronze" | undefined => {
+    if (!wines[index]) return undefined;
+    if (wines[index].id === 1) return "gold";
+    if (wines[index].id === 3) return "silver";
+    if (wines[index].id === 6) return "bronze";
+    return undefined;
+  };
 
   return (
     <section className="py-16 bg-white-100">
@@ -40,11 +53,13 @@ const FeaturedWineShowcase = () => {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          <WineShowcase
-            wine={wines[currentWineIndex]}
-            stockStatus={getWineStatus(currentWineIndex)}
-            awardLevel={getWineAward(currentWineIndex)}
-          />
+          {wines[currentWineIndex] && (
+            <WineShowcase
+              wine={wines[currentWineIndex]}
+              stockStatus={_getWineStatus(currentWineIndex)}
+              awardLevel={_getWineAward(currentWineIndex)}
+            />
+          )}
 
           <div className="flex justify-center mt-8 space-x-2">
             <Button

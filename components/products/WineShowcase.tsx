@@ -26,6 +26,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
   awardLevel,
 }) => {
   const [quantity, setQuantity] = useState(1);
+  const [_currentAngle, _setCurrentAngle] = useState(0);
 
   // Generate an array of images representing different angles of the wine bottle
   // For demonstration purposes - in a real implementation, these would be actual
@@ -102,7 +103,14 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
       className={`grid grid-cols-1 md:grid-cols-2 gap-8 bg-cream-100/30 rounded-xl p-6 shadow-sm border border-cream/80 ${className}`}
     >
       <div className="product-viewer-container bg-cream-100 rounded-lg shadow-sm p-4 h-[400px] flex items-center justify-center">
-        <Image src={generateBottleAngles(wine.bottleImage)} alt={wine.name} />
+        {/* Fix: Use the direct wine.bottleImage instead of generateBottleAngles function */}
+        <Image
+          src={wine.bottleImage || "/images/default-wine.jpg"}
+          alt={wine.name}
+          width={200}
+          height={400}
+          style={{ objectFit: "contain" }}
+        />
       </div>
 
       <div className="product-details flex flex-col justify-center">
