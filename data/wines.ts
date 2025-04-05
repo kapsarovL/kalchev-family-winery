@@ -1,3 +1,8 @@
+import wineImage1 from "@/public/images/redwine.jpg";
+import wineImage2 from "@/public/images/temjanika.jpg";
+import wineImage3 from "@/public/images/rozewine.jpg";
+import wineImage4 from "@/public/images/redwine.jpg";
+
 export type Wine = {
   id: number;
   name: string;
@@ -17,7 +22,7 @@ export const wines: Wine[] = [
     type: "red",
     year: "2018",
     description:
-      "Our premium Mavrud showcases Bulgaria's signature grape variety with rich flavors of blackberry, black cherry, and spice, complemented by fine tannins and a long, elegant finish.",
+      "Our premium Mavrud showcases Macedonia's signature grape variety with rich flavors of blackberry, black cherry, and spice, complemented by fine tannins and a long, elegant finish.",
     price: "€32.00",
     image: wineImage1,
     bottleImage: wineImage1,
@@ -39,7 +44,7 @@ export const wines: Wine[] = [
     type: "red",
     year: "2019",
     description:
-      "A smooth, medium-bodied Merlot with ripe plum and chocolate notes, showcasing the warm character of our Thracian Valley vineyards with subtle oak influence.",
+      "A smooth, medium-bodied Merlot with ripe plum and chocolate notes, showcasing the warm character of our Bogdanci Valley vineyards with subtle oak influence.",
     price: "€24.00",
     image: wineImage3,
     bottleImage: wineImage3,

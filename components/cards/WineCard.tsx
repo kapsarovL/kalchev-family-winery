@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Wine } from "../data/wines";
+import Image from "next/image";
+import { Wine } from "../../data/wines";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import WineDetailDialog from "./WineDetailDialog";
@@ -18,13 +19,13 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
   const getBadgeColor = (type: string) => {
     switch (type) {
       case "red":
-        return "bg-wine-red text-white";
+        return "bg-wineRed-100 text-white-100";
       case "white":
-        return "bg-gold text-white";
+        return "bg-gold-100 text-white-100";
       case "rosé":
-        return "bg-wine-red/70 text-white";
+        return "bg-wineRed-100/70 text-white-100";
       default:
-        return "bg-deep-brown text-white";
+        return "bg-deepBrown-100 text-white-100";
     }
   };
 
@@ -36,9 +37,10 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
         transition={{ type: "spring", stiffness: 300 }}
       >
         <div className="relative h-[250px] overflow-hidden">
-          <img
+          <Image
             src={wine.image}
             alt={wine.name}
+            fill={true}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <Badge
@@ -53,21 +55,21 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
 
         <div className="p-4">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-serif font-bold text-deep-brown">
+            <h3 className="text-xl font-serif font-bold text-deepBrown-100">
               {wine.name}
             </h3>
-            <span className="text-lg font-medium text-wine-red">
+            <span className="text-lg font-medium text-wineRed-100">
               {wine.price}
             </span>
           </div>
 
           <div className="mb-3">
-            <span className="text-sm text-deep-brown/60">
+            <span className="text-sm text-deepBrown-100/60">
               Vintage {wine.year}
             </span>
           </div>
 
-          <p className="text-deep-brown/80 mb-4 line-clamp-3">
+          <p className="text-deepBrown-100/80 mb-4 line-clamp-3">
             {wine.description}
           </p>
 
@@ -75,7 +77,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
             <Button
               variant="default"
               size="sm"
-              className="bg-wine-red text-white hover:bg-gold transition-colors w-full"
+              className="bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors w-full"
               onClick={() => setIsDialogOpen(true)}
             >
               View Details

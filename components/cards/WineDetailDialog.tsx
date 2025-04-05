@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -26,27 +27,27 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
   onClose,
 }) => {
   // Get the appropriate badge color based on wine type
-  const getBadgeColor = (type: string) => {
+  const _getBadgeColor = (type: string) => {
     switch (type) {
       case "red":
-        return "bg-wine-red text-white";
+        return "bg-wineRed-100 text-white-100";
       case "white":
-        return "bg-gold text-white";
+        return "bg-gold-100 text-white-100";
       case "rosé":
-        return "bg-wine-red/70 text-white";
+        return "bg-wineRed-100/70 text-white-100";
       default:
-        return "bg-deep-brown text-white";
+        return "bg-deepBrown-100 text-white-100";
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[800px] p-0 overflow-hidden bg-white rounded-lg">
-        <DialogClose className="absolute top-4 right-4 z-10">
+      <DialogContent className="sm:max-w-[800px] p-0 overflow-hidden bg-cream-200 rounded-lg">
+        <DialogClose asChild className="absolute top-4 right-4 z-10">
           <Button
             variant="ghost"
             size="icon"
-            className="text-white bg-deep-brown/80 hover:bg-deep-brown rounded-full"
+            className="text-white bg-deepBrown-100/80 hover:bg-deepBrown-100 rounded-full"
           >
             <X className="h-4 w-4" />
           </Button>
@@ -55,14 +56,17 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Wine Image */}
           <div className="relative h-[300px] md:h-auto overflow-hidden">
-            <img
+            <Image
               src={wine.image}
               alt={wine.name}
-              className="w-full h-full object-cover md:h-[500px]"
+              fill={true}
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
             />
             <Badge
               variant="secondary"
-              className={`absolute top-4 left-4 ${getBadgeColor(
+              className={`absolute top-4 left-4 ${_getBadgeColor(
                 wine.type
               )} font-medium`}
             >
@@ -73,27 +77,27 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
           {/* Wine Details */}
           <div className="p-6 flex flex-col">
             <DialogHeader className="mb-4">
-              <DialogTitle className="text-2xl font-serif font-bold text-deep-brown">
+              <DialogTitle className="text-2xl font-serif font-bold text-deepBrown-100">
                 {wine.name}
               </DialogTitle>
-              <DialogDescription className="text-deep-brown/60">
+              <DialogDescription className="text-deepBrown-100/60">
                 Vintage {wine.year}
               </DialogDescription>
             </DialogHeader>
 
             <div className="flex-grow">
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-deep-brown mb-2">
+                <h4 className="text-lg font-medium text-deepBrown-100 mb-2">
                   Tasting Notes
                 </h4>
-                <p className="text-deep-brown/80">{wine.description}</p>
+                <p className="text-deepBrown-100/80">{wine.description}</p>
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-deep-brown mb-2">
+                <h4 className="text-lg font-medium text-deepBrown-100 mb-2">
                   Perfect Pairings
                 </h4>
-                <p className="text-deep-brown/80">
+                <p className="text-deepBrown-100/80">
                   {wine.type === "red"
                     ? "Pairs beautifully with rich meats, aged cheeses, and hearty stews."
                     : wine.type === "white"
@@ -103,10 +107,10 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-deep-brown mb-2">
+                <h4 className="text-lg font-medium text-deepBrown-100 mb-2">
                   Winemaking
                 </h4>
-                <p className="text-deep-brown/80">
+                <p className="text-deepBrown-100/80">
                   Handcrafted in small batches with traditional methods passed
                   down through generations. Carefully aged to develop complex
                   flavors and perfect balance.
@@ -119,16 +123,16 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
                 <span className="text-2xl font-bold text-wine-red">
                   {wine.price}
                 </span>
-                <span className="text-deep-brown/60">In Stock</span>
+                <span className="text-deepBrown-100/60">In Stock</span>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <Button className="bg-wine-red text-white hover:bg-gold transition-colors">
+                <Button className="bg-wineRed-100 text-white hover:bg-gold-100 transition-colors">
                   Add to Cart
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-wine-red text-wine-red hover:bg-cream hover:text-deep-brown transition-colors"
+                  className="border-wineRed-100 text-wineRed-100 hover:bg-cream hover:text-deepBrown-100 transition-colors"
                 >
                   Add to Wishlist
                 </Button>

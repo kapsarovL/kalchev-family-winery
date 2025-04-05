@@ -19,7 +19,7 @@ const WinePhilosophy = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-[#F4E8D5] p-6 rounded-lg text-center transition-transform hover:scale-105">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-4">
               <Leaf className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
@@ -32,7 +32,7 @@ const WinePhilosophy = () => {
           </div>
 
           <div className="bg-[#F4E8D5] p-6 rounded-lg text-center transition-transform hover:scale-105">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-4">
               <Droplets className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
@@ -45,7 +45,7 @@ const WinePhilosophy = () => {
           </div>
 
           <div className="bg-[#F4E8D5] p-6 rounded-lg text-center transition-transform hover:scale-105">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-4">
               <Sun className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
@@ -59,7 +59,7 @@ const WinePhilosophy = () => {
           </div>
 
           <div className="bg-[#F4E8D5] p-6 rounded-lg text-center transition-transform hover:scale-105">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-4">
               <Sparkles className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">

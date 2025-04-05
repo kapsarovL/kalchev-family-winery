@@ -7,6 +7,8 @@ import Hero from "@/components/hero/Hero";
 import About from "@/components/about";
 import WinePhilosophy from "@/components/wine-philosophy";
 import WineGallery from "@/components/products";
+import FeaturedWineShowcase from "@/components/features/FeaturedWineShowcase";
+import WineryExperience from "@/components/experience/WineryExperience";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SectionTransition from "@/components/shared/SectionTransition";
 import PageTransition from "@/components/shared/PageTransition";
@@ -31,6 +33,12 @@ export default function Home() {
         </SectionTransition>
         <SectionTransition>
           <WineGallery />
+        </SectionTransition>
+        <SectionTransition>
+          <FeaturedWineShowcase />
+        </SectionTransition>
+        <SectionTransition>
+          <WineryExperience />
         </SectionTransition>
       </motion.div>
     </PageTransition>
