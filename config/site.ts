@@ -1,12 +1,15 @@
 export const metaData = {
   name: "Your Portfolio",
-  description:
-    "Personal portfolio showcasing my work and experience in web development",
-  url: "https://your-portfolio.com",
-  ogImage: "https://your-portfolio.com/og.png",
+  name: "Kalchev Family Winery",
+  description: "Premium wines from the heart of Macedonia",
+  // Add the missing title property
+  title: "Kalchev Family Winery | Premium Macedonian Wines",
+  url: "https://kalchevwinery.com",
+  ogImage: "https://kalchevwinery.com/og-image.jpg",
   links: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    twitter: "https://twitter.com/yourusername",
+    facebook: "https://facebook.com/kalchevwinery",
+    instagram: "https://instagram.com/kalchevwinery",
+    linkedin: "https://linkedin.com/company/kalchevwinery",
+    twitter: "https://twitter.com/kalchevwinery",
   },
 };
