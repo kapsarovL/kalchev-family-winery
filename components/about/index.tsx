@@ -14,9 +14,9 @@ const AboutPage = () => {
               <Image
                 src={AboutImage}
                 alt="The Kalchev Family Winery vineyard"
-                fit="true"
+                fill={true}
                 sizes="(max-width: 568px) 100vw, 40vw"
-                className="object-content object-center"
+                className="object-cover object-center"
                 priority
               />
               <div className="absolute -bottom-4 -right-4 sm:-bottom-5 sm:-right-5 md:-bottom-6 md:-right-6 bg-cream-300 p-2 sm:p-3 md:p-4 rounded shadow-lg block">

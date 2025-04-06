@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import wineImage1 from "@/public/images/redwine.jpg";
 import wineImage2 from "@/public/images/temjanika.jpg";
 import wineImage3 from "@/public/images/rozewine.jpg";
@@ -10,8 +11,8 @@ export type Wine = {
   year: string;
   description: string;
   price: string;
-  image: string;
-  bottleImage: string;
+  image: string | StaticImageData;
+  bottleImage: string | StaticImageData;
   label?: string;
 };
 

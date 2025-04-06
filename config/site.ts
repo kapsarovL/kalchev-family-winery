@@ -1,8 +1,6 @@
 export const metaData = {
-  name: "Your Portfolio",
-  name: "Kalchev Family Winery",
+  name: "Kalchev Family Winery", // Removed duplicate name property
   description: "Premium wines from the heart of Macedonia",
-  // Add the missing title property
   title: "Kalchev Family Winery | Premium Macedonian Wines",
   url: "https://kalchevwinery.com",
   ogImage: "https://kalchevwinery.com/og-image.jpg",

@@ -10,13 +10,13 @@ import {
   Wine as WineIcon,
 } from "lucide-react";
 import Image from "next/image";
-import { Wine } from "@/types/wine"; // Adjust the import path as necessary
+import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine"; // Adjust the import path as necessary
 
 interface WineShowcaseProps {
   wine: Wine;
   className?: string;
-  stockStatus?: "in-stock" | "limited" | "pre-order";
-  awardLevel?: "gold" | "silver" | "bronze";
+  stockStatus: WineStockStatus;
+  awardLevel?: WineAwardLevel;
 }
 
 const WineShowcase: React.FC<WineShowcaseProps> = ({

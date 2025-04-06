@@ -6,25 +6,25 @@ import WineCard from "@/components/cards/WineCard";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
-type FilterType = "all" | "wineRed" | "white-100" | "rosé";
+type FilterType = "all" | "red" | "white" | "rosé" | "white-100" | "wineRed";
 
 const WineGallery = () => {
-  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [_activeFilter, setActiveFilter] = useState<FilterType>("all");
+  const [_searchTerm, setSearchTerm] = useState("");
 
   const handleFilterClick = (filter: FilterType) => {
     setActiveFilter(filter);
   };
 
   // Filter wines based on active filter and search term
-  const filteredWines = wines.filter((wine) => {
+  const _filteredWines = wines.filter((wine) => {
     // Apply type filter
-    const matchesType = activeFilter === "all" || wine.type === activeFilter;
+    const matchesType = _activeFilter === "all" || wine.type === _activeFilter;
 
     // Apply search term
     const matchesSearch =
-      wine.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      wine.description.toLowerCase().includes(searchTerm.toLowerCase());
+      wine.name.toLowerCase().includes(_searchTerm.toLowerCase()) ||
+      wine.description.toLowerCase().includes(_searchTerm.toLowerCase());
 
     return matchesType && matchesSearch;
   });
@@ -49,9 +49,9 @@ const WineGallery = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <div className="flex gap-2 flex-wrap justify-center">
             <Button
-              variant={activeFilter === "all" ? "default" : "outline"}
+              variant={_activeFilter === "all" ? "default" : "outline"}
               className={
-                activeFilter === "all"
+                _activeFilter === "all"
                   ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
                   : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
@@ -60,9 +60,9 @@ const WineGallery = () => {
               All Wines
             </Button>
             <Button
-              variant={activeFilter === "wineRed" ? "default" : "outline"}
+              variant={_activeFilter === "wineRed" ? "default" : "outline"}
               className={
-                activeFilter === "wineRed"
+                _activeFilter === "wineRed"
                   ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
                   : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
@@ -71,20 +71,20 @@ const WineGallery = () => {
               Red Wines
             </Button>
             <Button
-              variant={activeFilter === "white-100" ? "default" : "outline"}
+              variant={_activeFilter === "white-100" ? "default" : "outline"}
               className={
-                activeFilter === "white"
+                _activeFilter === "white-100"
                   ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
                   : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
-              onClick={() => handleFilterClick("white")}
+              onClick={() => handleFilterClick("white-100")}
             >
               White Wines
             </Button>
             <Button
-              variant={activeFilter === "rosé" ? "default" : "outline"}
+              variant={_activeFilter === "rosé" ? "default" : "outline"}
               className={
-                activeFilter === "rosé"
+                _activeFilter === "rosé"
                   ? "bg-wineRed-200 text-white-100 hover:bg-gold-100 transition-colors"
                   : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
@@ -103,7 +103,7 @@ const WineGallery = () => {
               type="text"
               placeholder="Search wines..."
               className="w-full px-10 py-2 border border-cream rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-              value={searchTerm}
+              value={_searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
@@ -111,13 +111,13 @@ const WineGallery = () => {
 
         {/* Wine Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredWines.map((wine) => (
+          {_filteredWines.map((wine) => (
             <WineCard key={wine.id} wine={wine} />
           ))}
         </div>
 
         {/* Empty State */}
-        {filteredWines.length === 0 && (
+        {_filteredWines.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-xl font-medium text-deep-brown mb-2">
               No wines found

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: metaData.description,
     siteName: metaData.name,
   },
-  icon: "/favicon.ico",
+  icons: "/favicon.ico",
 };
 
 import { ClientLayout } from "./client-layout";

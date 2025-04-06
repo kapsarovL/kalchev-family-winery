@@ -54,7 +54,10 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
       }, 600); // Slightly longer than the animation duration to ensure completion
     }
 
-    setPreviousPath(pathname);
+    // Add null check before setting the previous path
+    if (pathname !== null) {
+      setPreviousPath(pathname);
+    }
   }, [
     pathname,
     previousPath,

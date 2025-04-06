@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import WineShowcase from "@/components/products/WineShowcase";
-import { wines } from "../../data/wines";
+import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine";
+import { wines } from "@/data/wines";
+
+// Interface removed as it's now imported from types/wine.ts
 
 const FeaturedWineShowcase = () => {
-  const [currentWineIndex, setCurrentWineIndex] = useState(0);
+  const [_currentWineIndex, setCurrentWineIndex] = useState(0);
 
   const prevWine = () => {
     setCurrentWineIndex((prevIndex) =>
@@ -20,16 +23,12 @@ const FeaturedWineShowcase = () => {
     );
   };
 
-  const _getWineStatus = (
-    index: number
-  ): "in-stock" | "limited" | "pre-order" => {
+  const _getWineStatus = (index: number): WineStockStatus => {
     if (!wines[index]) return "in-stock";
     return wines[index].id % 2 === 0 ? "in-stock" : "limited";
   };
 
-  const _getWineAward = (
-    index: number
-  ): "gold" | "silver" | "bronze" | undefined => {
+  const _getWineAward = (index: number): WineAwardLevel => {
     if (!wines[index]) return undefined;
     if (wines[index].id === 1) return "gold";
     if (wines[index].id === 3) return "silver";
@@ -53,11 +52,11 @@ const FeaturedWineShowcase = () => {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          {wines[currentWineIndex] && (
+          {wines[_currentWineIndex] && (
             <WineShowcase
-              wine={wines[currentWineIndex]}
-              stockStatus={_getWineStatus(currentWineIndex)}
-              awardLevel={_getWineAward(currentWineIndex)}
+              wine={wines[_currentWineIndex]}
+              stockStatus={_getWineStatus(_currentWineIndex)}
+              awardLevel={_getWineAward(_currentWineIndex)}
             />
           )}
 
@@ -78,7 +77,7 @@ const FeaturedWineShowcase = () => {
                   key={index}
                   onClick={() => setCurrentWineIndex(index)}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    currentWineIndex === index
+                    _currentWineIndex === index
                       ? "bg-cream-300"
                       : "bg-cream-300/30"
                   }`}
