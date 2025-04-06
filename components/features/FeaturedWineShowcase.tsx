@@ -41,11 +41,11 @@ const FeaturedWineShowcase = () => {
     <section className="py-16 bg-white-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif text-primary">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100">
             Featured Wine
           </h2>
           <div className="section-underline mx-auto"></div>
-          <p className="text-deepBrown-100/80 max-w-2xl mx-auto">
+          <p className="text-deepBrown-100/80 max-w-2xl mx-auto font-inter">
             Explore our premium selection in a new interactive way. Rotate the
             bottle to admire the craftsmanship and discover the unique character
             of each wine.
@@ -66,7 +66,7 @@ const FeaturedWineShowcase = () => {
               variant="outline"
               size="icon"
               onClick={prevWine}
-              className="rounded-full border-secondary/70 text-deepBrown-100 hover:bg-secondary/20"
+              className="rounded-full border-cream-300/70 text-oliveGreen-100 hover:bg-wineRed-100/20"
               aria-label="Previous wine"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -79,8 +79,8 @@ const FeaturedWineShowcase = () => {
                   onClick={() => setCurrentWineIndex(index)}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
                     currentWineIndex === index
-                      ? "bg-cream-100"
-                      : "bg-cream-100/30"
+                      ? "bg-cream-300"
+                      : "bg-cream-300/30"
                   }`}
                   aria-label={`View wine ${index + 1}`}
                 />
@@ -91,7 +91,7 @@ const FeaturedWineShowcase = () => {
               variant="outline"
               size="icon"
               onClick={nextWine}
-              className="rounded-full border-secondary/70 text-deepBrown-100 hover:bg-secondary/20"
+              className="rounded-full border-cream-300/70 text-oliveGreen-100 hover:bg-wineRed-100/20"
               aria-label="Next wine"
             >
               <ChevronRight className="h-5 w-5" />

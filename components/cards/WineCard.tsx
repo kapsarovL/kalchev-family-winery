@@ -32,7 +32,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
   return (
     <>
       <motion.div
-        className="group rounded-lg overflow-hidden shadow-md bg-white transition-all duration-300 hover:shadow-xl"
+        className="group rounded-lg overflow-hidden shadow-md bg-cream-200/30 transition-all duration-300 hover:shadow-xl"
         whileHover={{ y: -5 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
@@ -55,10 +55,10 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
 
         <div className="p-4">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-serif font-bold text-deepBrown-100">
+            <h3 className="text-xl font-serif font-bold text-deepBrown-300">
               {wine.name}
             </h3>
-            <span className="text-lg font-medium text-wineRed-100">
+            <span className="text-lg font-medium text-oliveGreen-300">
               {wine.price}
             </span>
           </div>
@@ -69,7 +69,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
             </span>
           </div>
 
-          <p className="text-deepBrown-100/80 mb-4 line-clamp-3">
+          <p className="text-whinRed-300 mb-4 line-clamp-3">
             {wine.description}
           </p>
 

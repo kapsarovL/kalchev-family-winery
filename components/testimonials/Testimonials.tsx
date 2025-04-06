@@ -8,12 +8,12 @@ const Testimonials = () => {
     <section id="testimonials" className="py-16 md:py-24 bg-cream">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-brown mb-4">
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-wineRed-100 mb-4">
             What Our Customers Say
           </h2>
-          <p className="text-lg text-deep-brown/80 max-w-2xl mx-auto">
+          <p className="text-lg text-deepBrown-100/80 max-w-2xl mx-auto font-inter">
             Discover why wine enthusiasts and connoisseurs choose Kalchev Family
-            Winery for exceptional Bulgarian wines.
+            Winery for exceptional Macedonian wines.
           </p>
         </div>
 
@@ -21,7 +21,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-white p-6 rounded-lg shadow-md border border-cream/80 transition-transform hover:-translate-y-1 hover:shadow-lg"
+              className="bg-white-200 p-6 rounded-lg shadow-md border border-cream-100/80 transition-transform hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex items-center mb-4">
                 {/* Display rating stars */}
@@ -31,23 +31,23 @@ const Testimonials = () => {
                       key={i}
                       className={`w-4 h-4 ${
                         i < testimonial.rating
-                          ? "text-gold fill-gold"
-                          : "text-cream/60"
+                          ? "text-gold-100 fill-gold-100"
+                          : "text-cream-100/60"
                       }`}
                     />
                   ))}
                 </div>
-                <span className="text-sm text-deep-brown/60">
+                <span className="text-sm text-deepBrown-100/60">
                   {testimonial.rating}.0
                 </span>
               </div>
 
-              <p className="text-deep-brown/80 mb-4 italic">
+              <p className="text-deepBrown-100/80 mb-4 italic">
                 "{testimonial.text}"
               </p>
 
               <div className="mt-auto">
-                <p className="font-semibold text-wine-red">
+                <p className="font-semibold text-wineRed-100">
                   {testimonial.name}
                 </p>
               </div>

@@ -73,19 +73,19 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
     switch (awardLevel) {
       case "gold":
         return (
-          <div className="status-badge bg-gold-200 text-gold-100 border border-gold-100/20 ml-2">
+          <div className="status-badge bg-gold-100 text-white-100 border border-gold-100/20 ml-2">
             Gold Medal
           </div>
         );
       case "silver":
         return (
-          <div className="status-badge bg-cream bg-opacity-60 text-deepBrown-200 border border-cream ml-2">
+          <div className="status-badge bg-white-300 bg-opacity-60 text-wineRed-300 border border-cream-200 ml-2">
             Silver Medal
           </div>
         );
       case "bronze":
         return (
-          <div className="status-badge bg-wineRed-200 text-wineRed-100 border border-wineRed-100/20 ml-2">
+          <div className="status-badge bg-wineRed-100 text-cream-100 border border-wineRed-100/20 ml-2">
             Bronze Medal
           </div>
         );
@@ -100,7 +100,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-1 md:grid-cols-2 gap-8 bg-cream-100/30 rounded-xl p-6 shadow-sm border border-cream/80 ${className}`}
+      className={`grid grid-cols-1 md:grid-cols-2 gap-8 bg-cream-100/30 rounded-xl p-6 shadow-sm border border-cream-200/80 ${className}`}
     >
       <div className="product-viewer-container bg-cream-100 rounded-lg shadow-sm p-4 h-[400px] flex items-center justify-center">
         {/* Fix: Use the direct wine.bottleImage instead of generateBottleAngles function */}
@@ -117,23 +117,25 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
         <div className="mb-2">
           <Badge
             variant="outline"
-            className="bg-wineRed-100/10 text-wineRed-100 border-wineRed-100/20"
+            className="bg-wineRed-100/10 text-wineRed-100 border-wineRed-100"
           >
             {wine.type.charAt(0).toUpperCase() + wine.type.slice(1)} Wine
           </Badge>
           <Badge
             variant="outline"
-            className="ml-2 bg-cream/40 text-deepBrown-100 border-cream/70"
+            className="ml-2 bg-cream/40 text-deepBrown-100 border-cream-300/70"
           >
             {wine.year}
           </Badge>
         </div>
 
-        <h3 className="text-2xl md:text-3xl font-serif text-wineRed-100 mb-2">
+        <h3 className="text-2xl md:text-3xl font-playfair font-semibold text-wineRed-100 mb-2">
           {wine.name}
         </h3>
 
-        <p className="text-deepBrown-100/80 mb-4">{wine.description}</p>
+        <p className="text-deepBrown-100/80 mb-4 font-inter">
+          {wine.description}
+        </p>
 
         {/* Price and status display */}
         <div className="flex items-center justify-between mb-4">
@@ -147,11 +149,11 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
         </div>
 
         <div className="quantity-selector flex items-center mb-6">
-          <span className="mr-3 text-deepBrown-100/70">Quantity:</span>
+          <span className="mr-3 text-wineRed-100/70">Quantity:</span>
           <div className="flex items-center border border-cream-100 rounded">
             <Button
               onClick={decrementQuantity}
-              className="px-3 py-1 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
+              className="px-3 py-1 bg-cream-300 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
               aria-label="Decrease quantity"
             >
               -
@@ -159,7 +161,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
             <span className="px-3 py-1 text-deepBrown-100">{quantity}</span>
             <Button
               onClick={incrementQuantity}
-              className="px-3 py-1 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
+              className="px-3 py-1 bg-cream-300 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
               aria-label="Increase quantity"
             >
               +
@@ -177,10 +179,14 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
           </Button>
           <Button
             variant="outline"
-            className="border-cream text-deepBrown-100 hover:bg-cream/40 transition-colors"
+            className="border-cream-300/70 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
             aria-label={`Add ${wine.name} to wishlist`}
           >
-            <Heart className="h-4 w-4" />
+            <Heart
+              className="h-4 w-4  *:hover:bg-wineRed-100/20"
+              aria-hidden="true"
+              onClick={() => console.log("Clicked!")}
+            />
           </Button>
         </div>
       </div>

@@ -16,12 +16,12 @@ const Hero = () => {
         priority
       />
       <div className="bg-img-overlay"></div>
-      <div className="flex flex-col max-w-4xl text-center justify-center items-center mx-auto px-1 py-24 z-10">
+      <div className="flex flex-col max-w-4xl text-center font-inter justify-center text-cream-200 items-center mx-auto px-1 py-24 z-10">
         <small>Welcome to Kalchev Family Winery</small>
-        <h1 className="text-6xl font-bold font-playfair text-gold-200 mb-4">
+        <h1 className="text-6xl font-bold font-playfair text-white-200 mb-4">
           Crafting Exceptional Wine Since 1932
         </h1>
-        <p className="text-xl max-w-3xl">
+        <p className="text-xl max-w-3xl text-cream-200">
           Experience the essence of Macedonia wine tradition with our artisanal,
           family-crafted wines from the heart of the Bogdanci Valley.
         </p>

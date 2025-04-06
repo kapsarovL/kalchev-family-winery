@@ -7,10 +7,10 @@ const WinePhilosophy = () => {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2C1810] mb-4">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-4">
             Our Wine Philosophy
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-deepBrown-100/80 font-inter max-w-2xl mx-auto">
             We believe in letting nature express itself through every sip,
             crafting wines that honor tradition while embracing sustainable
             innovation.

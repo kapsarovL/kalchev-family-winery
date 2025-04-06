@@ -6,7 +6,7 @@ import WineCard from "@/components/cards/WineCard";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
-type FilterType = "all" | "red" | "white" | "rosé";
+type FilterType = "all" | "wineRed" | "white-100" | "rosé";
 
 const WineGallery = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
@@ -32,14 +32,14 @@ const WineGallery = () => {
   return (
     <section
       id="wines"
-      className="py-16 md:py-24 bg-gradient-to-b from-white to-cream/20"
+      className="py-16 md:py-24 bg-gradient-to-b from-white-200/80 to-wineRed-100/20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-brown mb-4">
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-4">
             Our Wine Collection
           </h2>
-          <p className="text-lg text-deep-brown/80 max-w-2xl mx-auto">
+          <p className="text-lg text-deepBrown-100/80 max-w-2xl mx-auto font-inter">
             Explore our range of premium wines, each crafted with passion and
             expertise to showcase the best of Bulgarian winemaking.
           </p>
@@ -52,30 +52,30 @@ const WineGallery = () => {
               variant={activeFilter === "all" ? "default" : "outline"}
               className={
                 activeFilter === "all"
-                  ? "bg-wine-red text-white hover:bg-gold transition-colors"
-                  : "hover:bg-cream hover:text-deep-brown transition-colors"
+                  ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
+                  : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
               onClick={() => handleFilterClick("all")}
             >
               All Wines
             </Button>
             <Button
-              variant={activeFilter === "red" ? "default" : "outline"}
+              variant={activeFilter === "wineRed" ? "default" : "outline"}
               className={
-                activeFilter === "red"
-                  ? "bg-wine-red text-white hover:bg-gold transition-colors"
-                  : "hover:bg-cream hover:text-deep-brown transition-colors"
+                activeFilter === "wineRed"
+                  ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
+                  : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
-              onClick={() => handleFilterClick("red")}
+              onClick={() => handleFilterClick("wineRed")}
             >
               Red Wines
             </Button>
             <Button
-              variant={activeFilter === "white" ? "default" : "outline"}
+              variant={activeFilter === "white-100" ? "default" : "outline"}
               className={
                 activeFilter === "white"
-                  ? "bg-wine-red text-white hover:bg-gold transition-colors"
-                  : "hover:bg-cream hover:text-deep-brown transition-colors"
+                  ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
+                  : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
               onClick={() => handleFilterClick("white")}
             >
@@ -85,8 +85,8 @@ const WineGallery = () => {
               variant={activeFilter === "rosé" ? "default" : "outline"}
               className={
                 activeFilter === "rosé"
-                  ? "bg-wine-red text-white hover:bg-gold transition-colors"
-                  : "hover:bg-cream hover:text-deep-brown transition-colors"
+                  ? "bg-wineRed-200 text-white-100 hover:bg-gold-100 transition-colors"
+                  : "hover:bg-cream-100 hover:text-deepBrown-100 transition-colors"
               }
               onClick={() => handleFilterClick("rosé")}
             >
@@ -96,7 +96,7 @@ const WineGallery = () => {
 
           <div className="relative w-full md:w-64">
             <Search
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deep-brown/60"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deepBrown-100/60"
               size={18}
             />
             <input

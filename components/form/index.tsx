@@ -44,10 +44,10 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
     errors: null,
   });
   return (
-    <Card className={cn("w-full max-w-md", className)}>
+    <Card className={cn("w-full max-w-md bg-wineRed-200", className)}>
       <CardHeader>
-        <CardTitle>How can we help?</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-cream-300">How can we help?</CardTitle>
+        <CardDescription className="text-cream-100/80">
           Need help with your project? We&apos;re here to assist you.
         </CardDescription>
       </CardHeader>
@@ -65,7 +65,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
           >
             <Label
               htmlFor="name"
-              className="group-data-[invalid=true]/field:text-destructive"
+              className="group-data-[invalid=true]/field:text-cream-100/80 text-cream-300"
             >
               Name <span aria-hidden="true">*</span>
             </Label>
@@ -73,7 +73,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
               id="name"
               name="name"
               placeholder="Lee Robinson"
-              className="group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
+              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
               aria-invalid={!!state.errors?.name}
               aria-errormessage="error-name"
@@ -91,7 +91,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
           >
             <Label
               htmlFor="email"
-              className="group-data-[invalid=true]/field:text-destructive"
+              className="group-data-[invalid=true]/field:text-destructive text-cream-300"
             >
               Email <span aria-hidden="true">*</span>
             </Label>
@@ -99,7 +99,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
               id="email"
               name="email"
               placeholder="leerob@acme.com"
-              className="group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
+              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
               aria-invalid={!!state.errors?.email}
               aria-errormessage="error-email"
@@ -118,7 +118,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
             <div className="mb-6">
               <label
                 htmlFor="subject"
-                className="block text-sm font-medium text-deep-brown/90 mb-1"
+                className="block text-sm font-medium mb-1 text-cream-300"
               >
                 Subject *
               </label>
@@ -126,7 +126,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
                 id="subject"
                 name="subject"
                 required
-                className="w-full px-4 py-2 border border-cream rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                 value={formState.subject}
                 onChange={handleInputChange}
               >
@@ -140,7 +140,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
             </div>
             <Label
               htmlFor="message"
-              className="group-data-[invalid=true]/field:text-destructive"
+              className="group-data-[invalid=true]/field:text-destructive text-cream-300"
             >
               Message <span aria-hidden="true">*</span>
             </Label>
@@ -148,7 +148,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
               id="message"
               name="message"
               placeholder="Type your message here..."
-              className="group-data-[invalid=true]/field:border-destructive focus-visible:group-data-[invalid=true]/field:ring-destructive"
+              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100"
               disabled={pending}
               aria-invalid={!!state.errors?.message}
               aria-errormessage="error-message"
@@ -162,7 +162,12 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
           </div>
         </CardContent>
         <CardFooter>
-          <Button type="submit" size="sm" disabled={pending}>
+          <Button
+            type="submit"
+            size="sm"
+            disabled={pending}
+            className="bg-cream-200 text-wineRed-100 hover:text-cream-100 hover:border-cream-200/30 border"
+          >
             {pending ? "Sending..." : "Send Message"}
           </Button>
         </CardFooter>

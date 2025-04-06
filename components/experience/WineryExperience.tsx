@@ -6,17 +6,17 @@ import Image from "next/image";
 
 const WineryExperience = () => {
   return (
-    <section id="experience" className="py-16 md:py-24 bg-cream/30">
+    <section id="experience" className="py-16 md:py-24 bg-cream-100/30">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-deepBrown-100 mb-6">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-wineRed-100 mb-6">
               Experience the Winery
             </h2>
             <p className="text-lg text-deepBrown-100/80 mb-6">
-              Visit our family winery in the heart of Bulgaria's Thracian Valley
-              and immerse yourself in a world of fine wines, rich traditions,
-              and warm hospitality.
+              Visit our family winery in the heart of Macedonia's Bogdanci
+              Valley and immerse yourself in a world of fine wines, rich
+              traditions, and warm hospitality.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -30,7 +30,7 @@ const WineryExperience = () => {
                   </h3>
                   <p className="text-deepBrown-100/70">
                     Guided tastings of our award-winning wines, from traditional
-                    Bulgarian varieties to international classics.
+                    Macedonia varieties to international classics.
                   </p>
                 </div>
               </div>
@@ -60,7 +60,7 @@ const WineryExperience = () => {
                   </h3>
                   <p className="text-deepBrown-100/70">
                     Enjoy local delicacies perfectly paired with our wines,
-                    showcasing the best of Bulgarian cuisine.
+                    showcasing the best of Macedonia's cuisine.
                   </p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ const WineryExperience = () => {
             <Button
               variant="default"
               size="lg"
-              className="bg-wineRed-100 text-white hover:bg-gold-100 transition-colors"
+              className="bg-wineRed-100 hover:text-white-100 hover:bg-gold-100 transition-colors"
             >
               Book Your Experience
             </Button>
@@ -95,11 +95,11 @@ const WineryExperience = () => {
               <Image
                 src={ExperienceImage}
                 alt="Wine tasting experience at Kalchev Family Winery"
-                className="rounded-lg shadow-xl w-full object-cover"
+                className="rounded-lg w-full object-cover"
                 style={{ maxHeight: "600px" }}
               />
-              <div className="absolute -bottom-4 -left-4 bg-cream p-4 rounded shadow-lg hidden md:block">
-                <p className="text-deepBrown-100 font-serif text-lg font-medium">
+              <div className="absolute -bottom-4 -left-4 bg-cream-200 p-4 rounded shadow-lg hidden md:block">
+                <p className="text-wineRed-100 font-serif text-lg font-medium">
                   Open for visits
                 </p>
                 <p className="text-deepBrown-100/70">Wed-Sun, 10am-6pm</p>

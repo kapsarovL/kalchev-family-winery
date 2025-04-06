@@ -71,7 +71,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="bg-deep-brown text-white pt-12 pb-6">
+    <footer className="bg-deepBrown-200 text-white-100 pt-12 pb-6">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
@@ -79,30 +79,30 @@ const Footer = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center mb-4 cursor-pointer"
             >
-              <Wine className="w-6 h-6 mr-2 text-gold" />
-              <span className="text-xl font-serif font-semibold text-cream">
+              <Wine className="w-6 h-6 mr-2 text-gold-100" />
+              <span className="text-xl font-playfair font-semibold text-cream-100">
                 Kalchev Family Winery
               </span>
             </button>
-            <p className="text-cream/80 mb-4">
-              Premium wines crafted with passion and tradition in Bulgaria's
+            <p className="text-cream-100/80 mb-4">
+              Premium wines crafted with passion and tradition in Macedonia's
               Thracian Valley since 1932.
             </p>
             <div className="flex space-x-4">
               <button
-                className="text-cream/80 hover:text-gold transition-colors"
+                className="text-cream-100/80 hover:text-gold-100 transition-colors"
                 onClick={() => _handleSocialClick("Facebook")}
               >
                 <Facebook className="w-5 h-5" />
               </button>
               <button
-                className="text-cream/80 hover:text-gold transition-colors"
+                className="text-cream-100/80 hover:text-gold-100 transition-colors"
                 onClick={() => _handleSocialClick("Instagram")}
               >
                 <Instagram className="w-5 h-5" />
               </button>
               <button
-                className="text-cream/80 hover:text-gold transition-colors"
+                className="text-cream-100/80 hover:text-gold-100 transition-colors"
                 onClick={() => _handleSocialClick("Twitter")}
               >
                 <Twitter className="w-5 h-5" />
@@ -111,41 +111,45 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4 text-cream">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
+            <h3 className="text-lg font-bold mb-4 text-cream-200 ">
+              Quick Links
+            </h3>
+            <ul className="space-y-2 ">
+              <li className="hover:text-cream-300 transition-colors">
                 <_FooterLink sectionId="about">About Us</_FooterLink>
               </li>
-              <li>
+              <li className="hover:text-cream-300 transition-colors">
                 <_FooterLink sectionId="wines">Our Wines</_FooterLink>
               </li>
-              <li>
+              <li className="hover:text-cream-300 transition-colors">
                 <_FooterLink sectionId="experience">
                   Winery Experience
                 </_FooterLink>
               </li>
-              <li>
+              <li className="hover:text-cream-300 transition-colors">
                 <_FooterLink sectionId="testimonials">Testimonials</_FooterLink>
               </li>
-              <li>
+              <li className="hover:text-cream-300 transition-colors">
                 <_FooterLink sectionId="contact">Contact</_FooterLink>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4 text-cream">Contact Us</h3>
-            <address className="text-cream/80 not-italic">
+            <h3 className="text-lg font-bold mb-4 text-cream-200">
+              Contact Us
+            </h3>
+            <address className="text-cream-100/90 not-italic">
               Kalchev Estate Vineyards
               <br />
               15 Grape Road
               <br />
-              Thracian Valley, Bulgaria
+              Bogdanci Valley, Macedonia
               <br />
               <br />
               <a
                 href="tel:+35988812345"
-                className="hover:text-gold transition-colors"
+                className="hover:text-gold-100 transition-colors"
               >
                 +359 888 123 456
               </a>
@@ -160,8 +164,10 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4 text-cream">Newsletter</h3>
-            <p className="text-cream/80 mb-4">
+            <h3 className="text-lg font-bold mb-4 text-cream-100">
+              Newsletter
+            </h3>
+            <p className="text-cream-100/80 mb-4">
               Subscribe to our newsletter for updates on new wine releases,
               events, and special offers.
             </p>
@@ -169,11 +175,11 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Your email"
-                className="px-4 py-2 bg-deep-brown/80 text-cream border border-cream/30 rounded-l-md focus:outline-none focus:border-gold flex-grow"
+                className="px-4 py-2 bg-deepBrown-100/80 text-cream border border-cream-100/30 rounded-l-md focus:outline-none focus:border-gold-100 flex-grow"
               />
               <button
                 type="submit"
-                className="bg-gold text-white px-4 py-2 rounded-r-md hover:bg-wine-red transition-colors duration-300 flex items-center justify-center"
+                className="bg-gold-100 text-white-100 px-4 py-2 rounded-r-md hover:bg-wineRed-100 transition-colors duration-300 flex items-center justify-center"
               >
                 <Send className="h-4 w-4" />
               </button>
@@ -181,15 +187,15 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className="border-cream/10 mb-6" />
+        <hr className="border-cream-100/10 mb-6" />
 
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-cream/60 text-sm mb-4 md:mb-0">
+          <p className="text-cream-100/60 text-sm mb-4 md:mb-0">
             &copy; {_currentYear} Kalchev Family Winery. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <button
-              className="text-cream/60 text-sm hover:text-gold transition-colors cursor-pointer"
+              className="text-cream-100/60 text-sm hover:text-gold-100 transition-colors cursor-pointer"
               onClick={() => {
                 toast({
                   title: "Privacy Policy",
@@ -201,7 +207,7 @@ const Footer = () => {
               Privacy Policy
             </button>
             <button
-              className="text-cream/60 text-sm hover:text-gold transition-colors cursor-pointer"
+              className="text-cream-100/60 text-sm hover:text-gold-100 transition-colors cursor-pointer"
               onClick={() => {
                 toast({
                   title: "Terms of Service",
@@ -213,7 +219,7 @@ const Footer = () => {
               Terms of Service
             </button>
             <button
-              className="text-cream/60 text-sm hover:text-gold transition-colors cursor-pointer"
+              className="text-cream-100/60 text-sm hover:text-gold-100 transition-colors cursor-pointer"
               onClick={() => {
                 toast({
                   title: "Cookie Policy",

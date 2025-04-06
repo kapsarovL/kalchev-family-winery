@@ -9,7 +9,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Elena Kovacheva",
-    text: "The Reserve Mavrud is simply outstanding. It perfectly captures the essence of Bulgarian winemaking tradition with a modern touch. The rich flavors and elegant finish make it my go-to wine for special occasions.",
+    text: "The Reserve Mavrud is simply outstanding. It perfectly captures the essence of Macedonia winemaking tradition with a modern touch. The rich flavors and elegant finish make it my go-to wine for special occasions.",
     rating: 5,
   },
   {
@@ -33,13 +33,13 @@ export const testimonials: Testimonial[] = [
   {
     id: 5,
     name: "Isabella Romano",
-    text: "Being an Italian with high standards for wine, I was pleasantly surprised by the quality and character of Kalchev's wines. Their Thracian Valley Merlot has become a staple in my collection. Bravo!",
+    text: "Being an Italian with high standards for wine, I was pleasantly surprised by the quality and character of Kalchev's wines. Their Bogdanci Valley Merlot has become a staple in my collection. Bravo!",
     rating: 4,
   },
   {
     id: 6,
     name: "Thomas Schmidt",
-    text: "I've been a wine collector for over 20 years, and Kalchev's Limited Edition Rubin is one of the most interesting wines I've added to my cellar recently. Complex, age-worthy, and distinctly Bulgarian.",
+    text: "I've been a wine collector for over 20 years, and Kalchev's Limited Edition Rubin is one of the most interesting wines I've added to my cellar recently. Complex, age-worthy, and distinctly Macedonian.",
     rating: 5,
   },
 ];

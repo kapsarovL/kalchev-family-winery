@@ -55,7 +55,7 @@ export const wines: Wine[] = [
     type: "red",
     year: "2018",
     description:
-      "Our Rubin, a Bulgarian crossing of Nebbiolo and Syrah, displays intense ruby color with aromas of forest fruits, violet, and pepper, supported by velvety tannins.",
+      "Our Rubin, a Macedonian crossing of Nebbiolo and Syrah, displays intense ruby color with aromas of forest fruits, violet, and pepper, supported by velvety tannins.",
     price: "€34.00",
     image: wineImage4,
     bottleImage: wineImage4,
