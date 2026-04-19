@@ -32,6 +32,20 @@ export const metadata: Metadata = {
     title: metaData.title,
     description: metaData.description,
     siteName: metaData.name,
+    images: [
+      {
+        url: `${metaData.url}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Kalchev Family Winery – Premium Macedonian Wines",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: metaData.title,
+    description: metaData.description,
+    images: [`${metaData.url}/opengraph-image`],
   },
   icons: "/favicon.ico",
 };

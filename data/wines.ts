@@ -1,9 +1,10 @@
 import { StaticImageData } from "next/image";
-import redwine from "@/public/images/redwine.jpg";
+import redwine from "@/public/images/redwine.webp";
 import vranec from "@/public/images/vranec.png";
-import temjanika from "@/public/images/temjanika.jpg";
-import rozewine from "@/public/images/rozewine.jpg";
-import rozejpg from "@/public/images/rozejpg.jpg";
+import merlot from "@/public/images/merlot.webp";
+import temjanika from "@/public/images/temjanika.webp";
+import rozewine from "@/public/images/rozewine.webp";
+import rozejpg from "@/public/images/roze.webp";
 
 export type Wine = {
   id: number;
@@ -48,19 +49,8 @@ export const wines: Wine[] = [
     description:
       "A smooth, medium-bodied Merlot with ripe plum and chocolate notes, showcasing the warm character of our Bogdanci Valley vineyards with subtle oak influence.",
     price: "€24.00",
-    image: redwine,
-    bottleImage: redwine,
-  },
-  {
-    id: 4,
-    name: "Limited Edition Rubin",
-    type: "red",
-    year: "2018",
-    description:
-      "Our Rubin, a Macedonian crossing of Nebbiolo and Syrah, displays intense ruby color with aromas of forest fruits, violet, and pepper, supported by velvety tannins.",
-    price: "€34.00",
-    image: vranec,
-    bottleImage: vranec,
+    image: merlot,
+    bottleImage: merlot,
   },
   {
     id: 5,
@@ -70,17 +60,6 @@ export const wines: Wine[] = [
     description:
       "This elegant Chardonnay balances ripe tropical fruit with crisp acidity, enhanced by subtle notes of vanilla and butter from partial oak aging.",
     price: "€22.00",
-    image: temjanika,
-    bottleImage: temjanika,
-  },
-  {
-    id: 6,
-    name: "Dimiat Terroir Selection",
-    type: "white",
-    year: "2021",
-    description:
-      "Made from the indigenous Dimiat grape, this aromatic white wine offers fresh citrus, white peach, and floral notes with a refreshing minerality that reflects our limestone soils.",
-    price: "€26.00",
     image: temjanika,
     bottleImage: temjanika,
   },

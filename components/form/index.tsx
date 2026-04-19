@@ -17,32 +17,32 @@ import { cn } from "@/lib/utils";
 import { contactFormAction } from "@/lib/actions";
 import { Check } from "lucide-react";
 
-export function Form({ className }: React.ComponentProps<typeof Card>) {
-  const [formState, setFormState] = React.useState({
-    subject: "",
-  });
-
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const [state, formAction, pending] = React.useActionState(contactFormAction, {
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
+export function Form({ className, onSuccess }: React.ComponentProps<typeof Card> & { onSuccess?: () => void }) {
+  const [subject, setSubject] = React.useState("");
+  const [pending, setPending] = React.useState(false);
+  const [state, setState] = React.useState<{
+    defaultValues: { name: string; email: string; message: string };
+    success: boolean;
+    errors: Record<string, string> | null;
+  }>({
+    defaultValues: { name: "", email: "", message: "" },
     success: false,
     errors: null,
   });
+
+  React.useEffect(() => {
+    if (state.success) onSuccess?.();
+  }, [state.success, onSuccess]);
+
+  const formAction = async (formData: FormData) => {
+    setPending(true);
+    try {
+      const result = await contactFormAction(null, formData);
+      setState(result as typeof state);
+    } finally {
+      setPending(false);
+    }
+  };
   return (
     <Card className={cn("w-full max-w-md bg-wineRed-200", className)}>
       <CardHeader>
@@ -51,7 +51,7 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
           Need help with your project? We&apos;re here to assist you.
         </CardDescription>
       </CardHeader>
-      <form action={formAction}>
+      <form onSubmit={(e) => { e.preventDefault(); formAction(new FormData(e.currentTarget)); }}>
         <CardContent className="flex flex-col gap-6">
           {state.success ? (
             <p className="text-muted-foreground flex items-center gap-2 text-sm">
@@ -127,8 +127,8 @@ export function Form({ className }: React.ComponentProps<typeof Card>) {
                 name="subject"
                 required
                 className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
-                value={formState.subject}
-                onChange={handleInputChange}
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
               >
                 <option value="">Select a subject</option>
                 <option value="General Inquiry">General Inquiry</option>

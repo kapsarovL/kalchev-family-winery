@@ -10,7 +10,8 @@ import {
   Wine as WineIcon,
 } from "lucide-react";
 import Image from "next/image";
-import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine"; // Adjust the import path as necessary
+import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine";
+import { useCart } from "@/lib/cart-context";
 
 interface WineShowcaseProps {
   wine: Wine;
@@ -26,7 +27,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
   awardLevel,
 }) => {
   const [quantity, setQuantity] = useState(1);
-  const [_currentAngle, _setCurrentAngle] = useState(0);
+  const { dispatch } = useCart();
 
   // Function to render stock status badge with appropriate colors
   const renderStockStatus = () => {
@@ -163,20 +164,17 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
           <Button
             className="flex-1 bg-wineRed-100 hover:bg-gold-100 transition-colors duration-300 text-white-200"
             aria-label={`Add ${wine.name} to cart`}
+            onClick={() => dispatch({ type: "ADD", wine })}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
-            Add to Cart
+            Add to Cart ({quantity})
           </Button>
           <Button
             variant="outline"
             className="border-cream-300/70 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
             aria-label={`Add ${wine.name} to wishlist`}
           >
-            <Heart
-              className="h-4 w-4  *:hover:bg-wineRed-100/20"
-              aria-hidden="true"
-              onClick={() => console.log("Clicked!")}
-            />
+            <Heart className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
       </div>

@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { Menu, X, Calendar, ShoppingCart } from "lucide-react";
+import Image from "next/image";
+import logo from "@/public/images/logo.webp";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -84,10 +86,17 @@ const Header = () => {
           transition={{ duration: 0.5 }}
         >
           <button
-            className="text-2xl font-serif text-gold-100 font-bold cursor-pointer"
+            className="cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            Kalchev Family Winery
+            <Image
+              src={logo}
+              alt="Kalchev Family Winery"
+              width={418}
+              height={596}
+              className="h-12 w-auto object-contain"
+              priority
+            />
           </button>
         </motion.div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, GlassWater, Utensils, Users } from "lucide-react";
-import ExperienceImage from "@/public/images/wines3.jpg";
+import ExperienceImage from "@/public/images/wines3.webp";
 import Image from "next/image";
 
 const WineryExperience = () => {
