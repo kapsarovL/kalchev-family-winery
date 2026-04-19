@@ -1,8 +1,9 @@
 import { StaticImageData } from "next/image";
-import wineImage1 from "@/public/images/redwine.jpg";
-import wineImage2 from "@/public/images/temjanika.jpg";
-import wineImage3 from "@/public/images/rozewine.jpg";
-import wineImage4 from "@/public/images/redwine.jpg";
+import redwine from "@/public/images/redwine.jpg";
+import vranec from "@/public/images/vranec.png";
+import temjanika from "@/public/images/temjanika.jpg";
+import rozewine from "@/public/images/rozewine.jpg";
+import rozejpg from "@/public/images/rozejpg.jpg";
 
 export type Wine = {
   id: number;
@@ -25,8 +26,8 @@ export const wines: Wine[] = [
     description:
       "Our premium Mavrud showcases Macedonia's signature grape variety with rich flavors of blackberry, black cherry, and spice, complemented by fine tannins and a long, elegant finish.",
     price: "€32.00",
-    image: wineImage1,
-    bottleImage: wineImage1,
+    image: redwine,
+    bottleImage: redwine,
   },
   {
     id: 2,
@@ -36,8 +37,8 @@ export const wines: Wine[] = [
     description:
       "Aged for 18 months in French oak barrels, this Cabernet Sauvignon offers complex aromas of black currant, cedar, and tobacco with a structured palate and impressive aging potential.",
     price: "€28.00",
-    image: wineImage2,
-    bottleImage: wineImage2,
+    image: vranec,
+    bottleImage: vranec,
   },
   {
     id: 3,
@@ -47,8 +48,8 @@ export const wines: Wine[] = [
     description:
       "A smooth, medium-bodied Merlot with ripe plum and chocolate notes, showcasing the warm character of our Bogdanci Valley vineyards with subtle oak influence.",
     price: "€24.00",
-    image: wineImage3,
-    bottleImage: wineImage3,
+    image: redwine,
+    bottleImage: redwine,
   },
   {
     id: 4,
@@ -58,8 +59,8 @@ export const wines: Wine[] = [
     description:
       "Our Rubin, a Macedonian crossing of Nebbiolo and Syrah, displays intense ruby color with aromas of forest fruits, violet, and pepper, supported by velvety tannins.",
     price: "€34.00",
-    image: wineImage4,
-    bottleImage: wineImage4,
+    image: vranec,
+    bottleImage: vranec,
   },
   {
     id: 5,
@@ -69,8 +70,8 @@ export const wines: Wine[] = [
     description:
       "This elegant Chardonnay balances ripe tropical fruit with crisp acidity, enhanced by subtle notes of vanilla and butter from partial oak aging.",
     price: "€22.00",
-    image: wineImage1,
-    bottleImage: wineImage1,
+    image: temjanika,
+    bottleImage: temjanika,
   },
   {
     id: 6,
@@ -80,8 +81,8 @@ export const wines: Wine[] = [
     description:
       "Made from the indigenous Dimiat grape, this aromatic white wine offers fresh citrus, white peach, and floral notes with a refreshing minerality that reflects our limestone soils.",
     price: "€26.00",
-    image: wineImage2,
-    bottleImage: wineImage2,
+    image: temjanika,
+    bottleImage: temjanika,
   },
   {
     id: 7,
@@ -91,8 +92,8 @@ export const wines: Wine[] = [
     description:
       "A delicate blend of Mavrud and Cabernet Sauvignon creates this crisp rosé with strawberry, watermelon, and rose petal aromas, perfect for warm summer days.",
     price: "€20.00",
-    image: wineImage3,
-    bottleImage: wineImage3,
+    image: rozewine,
+    bottleImage: rozewine,
   },
   {
     id: 8,
@@ -102,7 +103,7 @@ export const wines: Wine[] = [
     description:
       "Made in the traditional method, our sparkling wine spends 24 months on the lees, developing complex brioche and apple notes while maintaining vibrant freshness.",
     price: "€36.00",
-    image: wineImage4,
-    bottleImage: wineImage4,
+    image: rozejpg,
+    bottleImage: rozejpg,
   },
 ];

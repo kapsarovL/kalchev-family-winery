@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import WineDetailDialog from "./WineDetailDialog";
 import { motion } from "framer-motion";
+import { useCart } from "@/lib/cart-context";
+import { ShoppingCart } from "lucide-react";
 
 interface WineCardProps {
   wine: Wine;
@@ -14,6 +16,7 @@ interface WineCardProps {
 
 const WineCard: React.FC<WineCardProps> = ({ wine }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { dispatch } = useCart();
 
   // Get the appropriate badge color based on wine type
   const getBadgeColor = (type: string) => {
@@ -36,12 +39,13 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
         whileHover={{ y: -5 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <div className="relative h-[250px] overflow-hidden">
+        <div className="relative h-[300px] overflow-hidden bg-cream-100/60">
           <Image
             src={wine.image}
             alt={wine.name}
             fill={true}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-contain transition-transform duration-500 group-hover:scale-105 py-3"
           />
           <Badge
             variant="secondary"
@@ -77,10 +81,19 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
             <Button
               variant="default"
               size="sm"
-              className="bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors w-full"
+              className="bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors flex-1"
               onClick={() => setIsDialogOpen(true)}
             >
               View Details
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-wineRed-100/40 text-wineRed-100 hover:bg-wineRed-100 hover:text-white-100 transition-colors"
+              onClick={() => dispatch({ type: "ADD", wine })}
+              aria-label={`Add ${wine.name} to cart`}
+            >
+              <ShoppingCart size={16} />
             </Button>
           </div>
         </div>
