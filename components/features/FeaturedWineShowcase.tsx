@@ -10,7 +10,8 @@ import { getAllStockStatuses } from "@/lib/inventory";
 // Interface removed as it's now imported from types/wine.ts
 
 const FeaturedWineShowcase = () => {
-  const [_currentWineIndex, setCurrentWineIndex] = useState(0);
+  const [currentWineIndex, setCurrentWineIndex] = useState(0);
+
   const [stockStatuses, setStockStatuses] = useState<Record<number, WineStockStatus>>({});
 
   useEffect(() => {
@@ -29,12 +30,12 @@ const FeaturedWineShowcase = () => {
     );
   };
 
-  const _getWineStatus = (index: number): WineStockStatus => {
+  const getWineStatus = (index: number): WineStockStatus => {
     if (!wines[index]) return "in-stock";
     return stockStatuses[wines[index].id] ?? "in-stock";
   };
 
-  const _getWineAward = (index: number): WineAwardLevel => {
+  const getWineAward = (index: number): WineAwardLevel => {
     if (!wines[index]) return undefined;
     if (wines[index].id === 1) return "gold";
     if (wines[index].id === 3) return "silver";
@@ -58,11 +59,11 @@ const FeaturedWineShowcase = () => {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          {wines[_currentWineIndex] && (
+          {wines[currentWineIndex] && (
             <WineShowcase
-              wine={wines[_currentWineIndex]}
-              stockStatus={_getWineStatus(_currentWineIndex)}
-              awardLevel={_getWineAward(_currentWineIndex)}
+              wine={wines[currentWineIndex]}
+              stockStatus={getWineStatus(currentWineIndex)}
+              awardLevel={getWineAward(currentWineIndex)}
             />
           )}
 
@@ -83,7 +84,7 @@ const FeaturedWineShowcase = () => {
                   key={index}
                   onClick={() => setCurrentWineIndex(index)}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    _currentWineIndex === index
+                    currentWineIndex === index
                       ? "bg-cream-300"
                       : "bg-cream-300/30"
                   }`}

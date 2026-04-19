@@ -73,7 +73,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
             </span>
           </div>
 
-          <p className="text-whinRed-300 mb-4 line-clamp-3">
+          <p className="text-wineRed-300 mb-4 line-clamp-3">
             {wine.description}
           </p>
 

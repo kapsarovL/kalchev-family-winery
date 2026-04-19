@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
-import { Wine, MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
+import logo from "@/public/images/logo.webp";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { useToast } from "@/hooks/use-toast";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
@@ -67,7 +69,7 @@ const Footer = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2 mb-4 cursor-pointer group"
             >
-              <Wine className="w-5 h-5 text-gold-100" />
+              <Image src={logo} alt="Kalchev Family Winery" width={418} height={596} className="h-9 w-auto object-contain brightness-0 invert" />
               <span className="font-playfair text-lg font-bold text-cream-100 group-hover:text-gold-100 transition-colors">
                 Kalchev Family Winery
               </span>

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Send, Check } from "lucide-react";
+import { MapPin, Phone, Mail, Check } from "lucide-react";
 import { Form } from "@/components/form";
 
 const Contact = () => {
@@ -86,7 +85,7 @@ const Contact = () => {
               <h3 className="text-2xl font-playfair font-bold text-wineRed-200 text-start items-start flex flex-col mb-6">
                 Send Us a Message
               </h3>
-              <Form />
+              <Form onSuccess={handleSubmit} />
             </div>
             {formSubmitted && (
               <div className="mb-6 bg-wineRed-100/10 p-4 rounded-md border border-wineRed-100/20 flex items-center">

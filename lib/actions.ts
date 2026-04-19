@@ -29,9 +29,11 @@ export async function contactFormAction(
     const data = contactFormSchema.parse(Object.fromEntries(formData));
 
     if (process.env.DATABASE_URL) {
+      const subject = formData.get("subject")?.toString() || null;
       await db.insert(contactSubmissions).values({
         name: data.name,
         email: data.email,
+        subject,
         message: data.message,
       });
     }
