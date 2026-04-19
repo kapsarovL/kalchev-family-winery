@@ -4,6 +4,9 @@ import { ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TransitionProvider } from "@/lib/transition-context";
 import { StyleRegistry } from "@/lib/style-registry";
+import { CartProvider } from "@/lib/cart-context";
+import CartDrawer from "@/components/cart/CartDrawer";
+import { LocaleProvider } from "@/lib/i18n/locale-context";
 
 interface ClientLayoutProps {
   children: ReactNode;
@@ -13,10 +16,15 @@ interface ClientLayoutProps {
 export function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <StyleRegistry>
-      <TransitionProvider>
-        {children}
-        <Toaster />
-      </TransitionProvider>
+      <LocaleProvider>
+        <CartProvider>
+          <TransitionProvider>
+            {children}
+            <CartDrawer />
+            <Toaster />
+          </TransitionProvider>
+        </CartProvider>
+      </LocaleProvider>
     </StyleRegistry>
   );
 }

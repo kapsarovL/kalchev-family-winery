@@ -95,8 +95,10 @@ const WineryExperience = () => {
               <Image
                 src={ExperienceImage}
                 alt="Wine tasting experience at Kalchev Family Winery"
-                className="rounded-lg w-full object-cover"
-                style={{ maxHeight: "600px" }}
+                className="rounded-lg w-full object-cover max-h-[600px]"
+                width={800}
+                height={600}
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute -bottom-4 -left-4 bg-cream-200 p-4 rounded shadow-lg hidden md:block">
                 <p className="text-wineRed-100 font-serif text-lg font-medium">

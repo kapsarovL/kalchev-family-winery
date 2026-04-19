@@ -1,6 +1,10 @@
 "use server";
 
 import { contactFormSchema } from "@/lib/schema";
+import { db } from "@/lib/db";
+import { contactSubmissions } from "@/lib/db/schema";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { headers } from "next/headers";
 import { z } from "zod";
 
 export async function contactFormAction(
@@ -11,14 +15,26 @@ export async function contactFormAction(
     .record(z.string(), z.string())
     .parse(Object.fromEntries(formData.entries()));
 
+  const ip = (await headers()).get("x-forwarded-for") ?? "anonymous";
+  const { allowed, retryAfterSecs } = checkRateLimit(ip);
+  if (!allowed) {
+    return {
+      defaultValues,
+      success: false,
+      errors: { _form: `Too many requests. Please try again in ${retryAfterSecs}s.` },
+    };
+  }
+
   try {
     const data = contactFormSchema.parse(Object.fromEntries(formData));
 
-    // This simulates a slow response like a form submission.
-    // Replace this with your actual form submission logic.
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    console.log(data);
+    if (process.env.DATABASE_URL) {
+      await db.insert(contactSubmissions).values({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      });
+    }
 
     return {
       defaultValues: {

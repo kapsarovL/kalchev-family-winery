@@ -28,15 +28,6 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
   const [quantity, setQuantity] = useState(1);
   const [_currentAngle, _setCurrentAngle] = useState(0);
 
-  // Generate an array of images representing different angles of the wine bottle
-  // For demonstration purposes - in a real implementation, these would be actual
-  // different angle images of the same bottle
-  const generateBottleAngles = (basePath: string): string[] => {
-    // This is a simulated 360 view using the same image
-    // In production, this would be replaced with actual different angle images
-    return Array(12).fill(basePath);
-  };
-
   // Function to render stock status badge with appropriate colors
   const renderStockStatus = () => {
     switch (stockStatus) {
@@ -102,14 +93,13 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
     <div
       className={`grid grid-cols-1 md:grid-cols-2 gap-8 bg-cream-100/30 rounded-xl p-6 shadow-sm border border-cream-200/80 ${className}`}
     >
-      <div className="product-viewer-container bg-cream-100 rounded-lg shadow-sm p-4 h-[400px] flex items-center justify-center">
-        {/* Fix: Use the direct wine.bottleImage instead of generateBottleAngles function */}
+      <div className="product-viewer-container bg-cream-100 rounded-lg shadow-sm h-[400px] relative">
         <Image
           src={wine.bottleImage || "/images/default-wine.jpg"}
           alt={wine.name}
-          width={200}
-          height={400}
-          style={{ objectFit: "contain" }}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain p-6 drop-shadow-xl"
         />
       </div>
 

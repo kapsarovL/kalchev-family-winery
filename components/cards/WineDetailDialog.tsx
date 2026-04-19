@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { getPairings } from "@/data/pairings";
+import { Thermometer, Wine as WineGlass, UtensilsCrossed } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +15,6 @@ import { Wine } from "../../data/wines";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
-import { motion } from "framer-motion";
 
 interface WineDetailDialogProps {
   wine: Wine;
@@ -40,6 +41,8 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
     }
   };
 
+  const pairing = getPairings(wine.name);
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[800px] p-0 overflow-hidden bg-wineRed-100 rounded-lg">
@@ -55,14 +58,13 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Wine Image */}
-          <div className="relative h-[300px] md:h-auto overflow-hidden">
+          <div className="relative h-[300px] md:h-auto overflow-hidden bg-cream-100/20">
             <Image
               src={wine.image}
               alt={wine.name}
               fill={true}
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain", padding: "1rem" }}
               sizes="(max-width: 768px) 100vw, 50vw"
-              priority
             />
             <Badge
               variant="secondary"
@@ -94,16 +96,23 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-gold-100 mb-2">
+                <h4 className="text-lg font-medium text-gold-100 mb-3">
                   Perfect Pairings
                 </h4>
-                <p className="text-cream-100/80">
-                  {wine.type === "red"
-                    ? "Pairs beautifully with rich meats, aged cheeses, and hearty stews."
-                    : wine.type === "white"
-                    ? "Complements seafood, light pasta dishes, and soft cheeses perfectly."
-                    : "An excellent match for grilled vegetables, light salads, and fresh cheeses."}
-                </p>
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2 text-cream-100/80">
+                    <UtensilsCrossed size={15} className="mt-0.5 flex-shrink-0 text-gold-100" />
+                    <span>{pairing.foods.join(" · ")}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-cream-100/80">
+                    <Thermometer size={15} className="flex-shrink-0 text-gold-100" />
+                    <span>Serve at {pairing.temperature}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-cream-100/80">
+                    <WineGlass size={15} className="flex-shrink-0 text-gold-100" />
+                    <span>{pairing.glassType} glass</span>
+                  </div>
+                </div>
               </div>
 
               <div className="mb-6">

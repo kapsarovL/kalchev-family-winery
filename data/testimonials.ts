@@ -27,7 +27,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 4,
     name: "Alexander Dimitrov",
-    text: "The wine tasting experience at Kalchev Family Winery was the highlight of our Bulgarian vacation. The scenic vineyard, informative tour, and exceptional wines made for an unforgettable day. Highly recommend their Summer Rosé!",
+    text: "The wine tasting experience at Kalchev Family Winery was the highlight of our Macedonian vacation. The scenic vineyard, informative tour, and exceptional wines made for an unforgettable day. Highly recommend their Summer Rosé!",
     rating: 5,
   },
   {

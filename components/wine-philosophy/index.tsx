@@ -53,7 +53,7 @@ const WinePhilosophy = () => {
             </h3>
             <p className="text-slate-700">
               We celebrate the unique combination of soil, climate, and
-              tradition that makes our wines distinctly Bulgarian and uniquely
+              tradition that makes our wines distinctly Macedonian and uniquely
               Kalchev.
             </p>
           </div>
