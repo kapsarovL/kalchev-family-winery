@@ -66,8 +66,6 @@ jobs:
           cache: pnpm 
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:integration
-        env:
-          DOCKER_HOST: unix:///var/run/docker.sock
 
   # e2e smoke - critical paths only, chromium only on PRs
   e2e-smoke:
