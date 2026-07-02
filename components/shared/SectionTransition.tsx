@@ -54,7 +54,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
       y: 0,
       transition: {
         duration: 0.7,
-        ease: [0.25, 0.1, 0.25, 1.0], // Custom cubic bezier for a premium feel
+        ease: [0.25, 0.1, 0.25, 1.0] as const, // Custom cubic bezier for a premium feel
         delay: delay,
       },
     },

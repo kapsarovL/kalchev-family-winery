@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -28,7 +29,12 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --wine-red: 120, 20%, 20%;
+    --cream: 37, 58%, 80%;
+    --gold: 34, 45%, 40%;
+    --deep-brown: 30, 20%, 20%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -58,36 +64,16 @@
 }
 
 @layer utilities {
-  /*Typography*/
-
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Smooth scroll behavior */
   html {
     scroll-behavior: smooth;
-  }
-
-  /*Typography*/
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /*Typography*/
-
-  .text-balance {
-    text-wrap: balance;
   }
 
   .bg-img-overlay {
-    @apply absolute inset-0 bg-[rgb(44,24,16)] bg-opacity-70;
+    @apply absolute inset-0 bg-[rgba(0,0,0,0.06)];
   }
 
   .bg-fixed {
@@ -102,34 +88,19 @@
     @apply text-center max-w-3xl mx-auto mb-16;
   }
 
-  .bg-img-overlay {
-    @apply absolute inset-0 bg-[rgba(0,0,0,0.65)] bg-opacity-90; /* Updated opacity to 90 */
-  }
-
-  .bg-fixed {
-    background-attachment: fixed;
-  }
-
   .vineyard-bg {
-    background-image: url("@assets/");
+    background-image: url("/images/vineyard.jpg");
   }
 
   .winery-bg {
-    background-image: url("@assets/"); /* Updated to remove the specific image */
+    background-image: url("/images/winery.jpg");
   }
 
   .barrels-bg {
-    background-image: url("@assets/"); /* Updated to remove the specific image */
-    /* Added a fallback background color */
-    background-color: rgba(
-      255,
-      255,
-      255,
-      0.5
-    ); /* Fallback color for barrels background */
+    background-image: url("/images/barrels.jpg");
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
-  /* Product 360 viewer styles */
   .product-360-viewer {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -141,7 +112,6 @@
     cursor: grabbing;
   }
 
-  /* Wine showcase styles */
   .wine-showcase-container {
     position: relative;
   }
@@ -153,14 +123,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("@assets/481988925_1706029077011886_5314315098658897435_n.jpg");
+    background-image: url("/images/wine-showcase-bg.jpg");
     background-size: cover;
     background-position: center;
     opacity: 0.05;
     z-index: -1;
   }
 
-  /* Animation for wine bottle rotation */
   @keyframes rotateBottle {
     from {
       transform: rotateY(0deg);
@@ -197,11 +166,6 @@
     background-color: rgba(var(--wine-red), 0.3);
   }
 
-  .wine-indicator-dot.active {
-    background-color: var(--wine-red);
-  }
-
-  /* Wine-themed color utility classes */
   .bg-wine-red {
     background-color: rgb(var(--wine-red));
   }
@@ -266,7 +230,6 @@
     border-color: rgb(var(--deep-brown));
   }
 
-  /* Status badges with new colors */
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -292,7 +255,6 @@
     color: rgb(var(--deep-brown));
   }
 
-  /* Wine Club Membership section styles */
   .section-underline {
     height: 2px;
     width: 60px;

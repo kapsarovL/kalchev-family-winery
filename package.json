@@ -7,6 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:unit": "vitest run --config ./vitest.config.ts",
+    "test:unit:watch": "vitest --config ./vitest.config.ts",
+    "test:coverage-check": "vitest run --config ./vitest.config.ts --coverage",
+    "test:integration": "vitest run --config ./vitest.integration.config.ts",
+    "test:e2e": "playwright test --config ./playwright.config.ts",
+    "test:e2e:ui": "playwright test --config ./playwright.config.ts --ui",
+    "test:all": "pnpm test:unit && pnpm test:integration && pnpm test:e2e",
+    "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -61,10 +69,18 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.49.0",
     "@tailwindcss/typography": "0.5.19",
+    "@testcontainers/postgresql": "^12.0.4",
+    "postgres": "^3.4.5",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20",
     "@types/react": "18.2.45",
     "@types/react-dom": "18.2.18",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^4.1.9",
     "autoprefixer": "10.4.23",
     "dotenv": "^17.4.2",
     "drizzle-kit": "^0.31.8",
@@ -72,16 +88,14 @@
     "eslint": "^8",
     "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "10.1.8",
-    "postcss": "8.5.6",
+    "postcss": "^8.5.16",
     "tailwindcss": "3.4.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^6.0.5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^4.1.9"
   },
   "engines": {
     "node": ">=18.0.0 <23.0.0"
-  },
-  "overrides": {
-    "@esbuild-kit/core-utils": {
-      "esbuild": "^0.27.1"
-    }
   }
 }

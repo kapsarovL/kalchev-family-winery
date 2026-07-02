@@ -26,17 +26,11 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
-  // Add typescript path resolution for Vercel
   typescript: {
-    // Dangerously allow production builds to successfully complete even if your project has type errors.
-    // Needed to get a successful deployment while fixing remaining type issues
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
-  // Add ESLint configuration for Vercel
   eslint: {
-    // Dangerously allow production builds to successfully complete even if your project has ESLint errors.
-    // Needed to get a successful deployment while fixing remaining ESLint issues
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 };
 

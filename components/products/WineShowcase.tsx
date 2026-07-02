@@ -12,6 +12,7 @@ import {
 import Image from "next/image";
 import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine";
 import { useCart } from "@/lib/cart-context";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 interface WineShowcaseProps {
   wine: Wine;
@@ -28,6 +29,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const { dispatch } = useCart();
+  const { locale, t } = useLocale();
 
   // Function to render stock status badge with appropriate colors
   const renderStockStatus = () => {
@@ -97,7 +99,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
       <div className="product-viewer-container bg-cream-100 rounded-lg shadow-sm h-[400px] relative">
         <Image
           src={wine.bottleImage || "/images/default-wine.jpg"}
-          alt={wine.name}
+          alt={wine.translations[locale].name}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-contain p-6 drop-shadow-xl"
@@ -110,7 +112,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
             variant="outline"
             className="bg-wineRed-100/10 text-wineRed-100 border-wineRed-100"
           >
-            {wine.type.charAt(0).toUpperCase() + wine.type.slice(1)} Wine
+            {wine.translations[locale].type.charAt(0).toUpperCase() + wine.translations[locale].type.slice(1)} Wine
           </Badge>
           <Badge
             variant="outline"
@@ -121,11 +123,11 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
         </div>
 
         <h3 className="text-2xl md:text-3xl font-playfair font-semibold text-wineRed-100 mb-2">
-          {wine.name}
+          {wine.translations[locale].name}
         </h3>
 
         <p className="text-deepBrown-100/80 mb-4 font-inter">
-          {wine.description}
+          {wine.translations[locale].description}
         </p>
 
         {/* Price and status display */}
@@ -163,7 +165,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
         <div className="actions flex space-x-3">
           <Button
             className="flex-1 bg-wineRed-100 hover:bg-gold-100 transition-colors duration-300 text-white-200"
-            aria-label={`Add ${wine.name} to cart`}
+            aria-label={`${t.detail.addToCart}: ${wine.translations[locale].name}`}
             onClick={() => dispatch({ type: "ADD", wine })}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
@@ -172,7 +174,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
           <Button
             variant="outline"
             className="border-cream-300/70 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
-            aria-label={`Add ${wine.name} to wishlist`}
+            aria-label={`${t.detail.addToWishlist}: ${wine.translations[locale].name}`}
           >
             <Heart className="h-4 w-4" aria-hidden="true" />
           </Button>

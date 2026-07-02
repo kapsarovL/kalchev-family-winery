@@ -1,19 +1,19 @@
 "use client";
 import React from "react";
 import { Leaf, Droplets, Sun, Sparkles } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 const WinePhilosophy = () => {
+  const { t } = useLocale();
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-4">
-            Our Wine Philosophy
+            {t.philosophy.heading}
           </h2>
           <p className="text-lg text-deepBrown-100/80 font-inter max-w-2xl mx-auto">
-            We believe in letting nature express itself through every sip,
-            crafting wines that honor tradition while embracing sustainable
-            innovation.
+            {t.philosophy.subtitle}
           </p>
         </div>
 
@@ -23,11 +23,10 @@ const WinePhilosophy = () => {
               <Leaf className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
-              Sustainable Farming
+              {t.philosophy.pillar1Title}
             </h3>
             <p className="text-slate-700">
-              We cultivate our vineyards with respect for nature, using organic
-              practices to ensure the health of our soil and ecosystem.
+              {t.philosophy.pillar1Desc}
             </p>
           </div>
 
@@ -36,11 +35,10 @@ const WinePhilosophy = () => {
               <Droplets className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
-              Minimal Intervention
+              {t.philosophy.pillar2Title}
             </h3>
             <p className="text-slate-700">
-              Our winemaking approach focuses on gentle handling and minimal
-              processing to preserve the authentic character of our grapes.
+              {t.philosophy.pillar2Desc}
             </p>
           </div>
 
@@ -49,12 +47,10 @@ const WinePhilosophy = () => {
               <Sun className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
-              Terroir Expression
+              {t.philosophy.pillar3Title}
             </h3>
             <p className="text-slate-700">
-              We celebrate the unique combination of soil, climate, and
-              tradition that makes our wines distinctly Macedonian and uniquely
-              Kalchev.
+              {t.philosophy.pillar3Desc}
             </p>
           </div>
 
@@ -63,11 +59,10 @@ const WinePhilosophy = () => {
               <Sparkles className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-semibold text-[#2C1810] mb-2">
-              Artisanal Quality
+              {t.philosophy.pillar4Title}
             </h3>
             <p className="text-slate-700">
-              Each bottle represents our family's commitment to excellence, with
-              attention to detail at every step from vine to glass.
+              {t.philosophy.pillar4Desc}
             </p>
           </div>
         </div>

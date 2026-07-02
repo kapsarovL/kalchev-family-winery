@@ -4,26 +4,29 @@ import certificateImg from "@/public/images/certificate.webp";
 import Image from "next/image";
 import { Award, Leaf, Star } from "lucide-react";
 import React from "react";
-
-const CREDENTIALS = [
-  {
-    icon: <Award size={18} className="text-gold-100" />,
-    label: "Decanter World Wine Awards",
-    sublabel: "Gold Medal · 2023",
-  },
-  {
-    icon: <Star size={18} className="text-gold-100" />,
-    label: "Macedonian Wine Quality Mark",
-    sublabel: "Certified Excellence · 2022",
-  },
-  {
-    icon: <Leaf size={18} className="text-gold-100" />,
-    label: "Sustainable Viticulture",
-    sublabel: "Certified Producer · 2021",
-  },
-];
+import { useLocale } from "@/lib/i18n/locale-context";
 
 const AboutPage = () => {
+  const { t } = useLocale();
+
+  const CREDENTIALS = [
+    {
+      icon: <Award size={18} className="text-gold-100" />,
+      label: t.about.credential1,
+      sublabel: t.about.credential1Sub,
+    },
+    {
+      icon: <Star size={18} className="text-gold-100" />,
+      label: t.about.credential2,
+      sublabel: t.about.credential2Sub,
+    },
+    {
+      icon: <Leaf size={18} className="text-gold-100" />,
+      label: t.about.credential3,
+      sublabel: t.about.credential3Sub,
+    },
+  ];
+
   return (
     <section id="about" className="py-16 md:py-24 bg-cream-100">
       <div className="container mx-auto px-4">
@@ -41,7 +44,7 @@ const AboutPage = () => {
               />
               <div className="absolute -bottom-4 -right-4 sm:-bottom-5 sm:-right-5 bg-cream-300 p-2 sm:p-3 rounded shadow-lg">
                 <p className="text-wineRed-100 font-playfair font-bold text-base sm:text-lg">
-                  Est. 1932
+                  {t.about.est}
                 </p>
               </div>
             </div>
@@ -50,39 +53,30 @@ const AboutPage = () => {
           {/* Story + stats */}
           <div className="w-full md:w-2/3 bg-wineRed-200 px-5 py-8 rounded-lg shadow-md mx-auto">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold text-gold-100 mb-6">
-              Our Family Heritage
+              {t.about.heading}
             </h2>
             <p className="text-lg text-cream-100/80 mb-4">
-              For over 90 years, the Kalchev family has been dedicated to the
-              art of winemaking in Macedonia's renowned Bogdanci Valley, where
-              the perfect combination of soil, climate, and tradition creates
-              wines of exceptional character.
+              {t.about.p1}
+            </p>
+            <h3 className="text-2xl font-serif font-bold text-cream-300">
+              {t.about.sub1}
+            </h3>
+            <p className="text-lg text-cream-200/80 mb-4">
+              {t.about.p2}
             </p>
             <p className="text-lg text-cream-200/80 mb-4">
-              Our vineyards stretch across 50 hectares of rolling hills, where
-              we grow traditional Macedonian varieties like Mavrud and Rubin
-              alongside international classics such as Cabernet Sauvignon and
-              Chardonnay.
-            </p>
-            <p className="text-lg text-cream-200/80 mb-4">
-              Every bottle of Kalchev wine tells the story of our family's
-              passion, the land we cultivate, and the time-honored techniques
-              passed down through generations, combined with modern, sustainable
-              practices.
+              {t.about.p3}
             </p>
             <div className="mt-8 flex flex-wrap gap-8">
               <div>
-                <h3 className="text-2xl font-serif font-bold text-cream-300">50+</h3>
-                <p className="text-cream-200/70">Hectares of Vineyards</p>
+                <h3 className="text-2xl font-serif font-bold text-cream-300">
+                  {t.about.stat1}
+                </h3>
+                <p className="text-cream-200/70">
+                  {t.about.stat1Desc}
+                </p>
               </div>
-              <div>
-                <h3 className="text-2xl font-serif font-bold text-cream-300">12</h3>
-                <p className="text-cream-200/70">Grape Varieties</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-serif font-bold text-cream-300">90+</h3>
-                <p className="text-cream-200/70">Years of Tradition</p>
-              </div>
+              <div></div>
             </div>
           </div>
         </div>
@@ -92,7 +86,7 @@ const AboutPage = () => {
           <div className="flex items-center gap-3 mb-8">
             <div className="h-px flex-1 bg-deepBrown-100/10" />
             <p className="text-xs font-inter uppercase tracking-widest text-deepBrown-100/40">
-              Awards &amp; Certifications
+              {t.about.awards}
             </p>
             <div className="h-px flex-1 bg-deepBrown-100/10" />
           </div>
