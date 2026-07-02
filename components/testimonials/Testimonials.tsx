@@ -2,18 +2,19 @@
 import React from "react";
 import { testimonials } from "../../data/testimonials";
 import { Star } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 const Testimonials = () => {
+  const { locale, t } = useLocale();
   return (
     <section id="testimonials" className="py-16 md:py-24 bg-cream">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-wineRed-100 mb-4">
-            What Our Customers Say
+            {t.testimonials.heading}
           </h2>
           <p className="text-lg text-deepBrown-100/80 max-w-2xl mx-auto font-inter">
-            Discover why wine enthusiasts and connoisseurs choose Kalchev Family
-            Winery for exceptional Macedonian wines.
+            {t.testimonials.subtitle}
           </p>
         </div>
 
@@ -43,12 +44,12 @@ const Testimonials = () => {
               </div>
 
               <p className="text-deepBrown-100/80 mb-4 italic">
-                "{testimonial.text}"
+                &ldquo;{testimonial.translations[locale].text}&rdquo;
               </p>
 
               <div className="mt-auto">
                 <p className="font-semibold text-wineRed-100">
-                  {testimonial.name}
+                  {testimonial.translations[locale].name}
                 </p>
               </div>
             </div>

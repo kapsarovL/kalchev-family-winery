@@ -6,10 +6,12 @@ import logo from "@/public/images/logo.webp";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { useToast } from "@/hooks/use-toast";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { toast } = useToast();
+  const { t } = useLocale();
 
   const scrollTo = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -44,15 +46,15 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-16">
             <div className="flex-shrink-0 max-w-sm">
-              <p className="text-xs font-inter uppercase tracking-widest text-gold-100 mb-1">Stay in the loop</p>
+              <p className="text-xs font-inter uppercase tracking-widest text-gold-100 mb-1">{t.newsletter.stayInLoop}</p>
               <h2 className="font-playfair text-2xl font-bold text-cream-100 leading-snug">
-                Stories from the vineyard, straight to your inbox
+                {t.newsletter.heading}
               </h2>
             </div>
             <div className="flex-1 w-full">
               <NewsletterSignup />
               <p className="text-cream-100/30 text-xs mt-3 font-inter">
-                No spam. Unsubscribe at any time.
+                {t.newsletter.disclaimer}
               </p>
             </div>
           </div>
@@ -75,8 +77,7 @@ const Footer = () => {
               </span>
             </button>
             <p className="text-cream-100/60 text-sm font-inter leading-relaxed mb-6">
-              Premium wines crafted with passion and tradition in Macedonia's
-              Bogdanci Valley since 1932.
+              {t.footer.tagline}
             </p>
             <div className="flex gap-4">
               {[
@@ -98,20 +99,20 @@ const Footer = () => {
 
           {/* Quick links */}
           <div>
-            <SectionHeading>Explore</SectionHeading>
+            <SectionHeading>{t.footer.explore}</SectionHeading>
             <nav className="flex flex-col gap-2.5">
-              <FooterLink sectionId="about">About Us</FooterLink>
-              <FooterLink sectionId="wines">Our Wines</FooterLink>
-              <FooterLink sectionId="experience">Winery Experience</FooterLink>
-              <FooterLink sectionId="testimonials">Testimonials</FooterLink>
-              <FooterLink sectionId="wine-club">Wine Club</FooterLink>
-              <FooterLink sectionId="contact">Contact</FooterLink>
+              <FooterLink sectionId="about">{t.footer.aboutUs}</FooterLink>
+              <FooterLink sectionId="wines">{t.footer.ourWines}</FooterLink>
+              <FooterLink sectionId="experience">{t.footer.wineryExperience}</FooterLink>
+              <FooterLink sectionId="testimonials">{t.footer.testimonials}</FooterLink>
+              <FooterLink sectionId="wine-club">{t.footer.wineClub}</FooterLink>
+              <FooterLink sectionId="contact">{t.footer.contact}</FooterLink>
             </nav>
           </div>
 
           {/* Contact */}
           <div>
-            <SectionHeading>Find Us</SectionHeading>
+            <SectionHeading>{t.footer.findUs}</SectionHeading>
             <address className="not-italic space-y-3">
               <div className="flex gap-2.5 items-start text-sm text-cream-100/60 font-inter">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0 text-gold-100/60" />
@@ -134,12 +135,12 @@ const Footer = () => {
 
           {/* Opening hours */}
           <div>
-            <SectionHeading>Opening Hours</SectionHeading>
+            <SectionHeading>{t.footer.openingHours}</SectionHeading>
             <dl className="space-y-2 text-sm font-inter">
               {[
-                { day: "Mon – Fri", hours: "09:00 – 18:00" },
-                { day: "Saturday", hours: "10:00 – 20:00" },
-                { day: "Sunday", hours: "11:00 – 17:00" },
+                { day: t.footer.monFri, hours: "09:00 \u2013 18:00" },
+                { day: t.footer.saturday, hours: "10:00 \u2013 20:00" },
+                { day: t.footer.sunday, hours: "11:00 \u2013 17:00" },
               ].map(({ day, hours }) => (
                 <div key={day} className="flex justify-between gap-4">
                   <dt className="text-cream-100/40">{day}</dt>
@@ -155,10 +156,10 @@ const Footer = () => {
       <div className="border-t border-cream-100/10">
         <div className="container mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-cream-100/30 text-xs font-inter">
-            © {currentYear} Kalchev Family Winery. All rights reserved.
+            © {currentYear} Kalchev Family Winery. {t.footer.rights}
           </p>
           <div className="flex gap-5">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((label) => (
+            {[t.footer.privacy, t.footer.terms, t.footer.cookie].map((label) => (
               <button
                 key={label}
                 onClick={() => toast({ title: label, description: `Our ${label.toLowerCase()} outlines your rights and our responsibilities.` })}

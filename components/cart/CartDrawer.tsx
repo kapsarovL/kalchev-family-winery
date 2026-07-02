@@ -3,12 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { X, Trash2, ShoppingBag } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { Button } from "@/components/ui/button";
 
 export default function CartDrawer() {
   const { state, dispatch } = useCart();
+  const { locale } = useLocale();
   const total = state.items.reduce(
     (sum, item) => sum + parseFloat(item.wine.price.replace("€", "")) * item.quantity,
     0
@@ -63,14 +65,14 @@ export default function CartDrawer() {
                     <div className="relative w-14 h-20 flex-shrink-0 bg-cream-100/60 rounded">
                       <Image
                         src={wine.image}
-                        alt={wine.name}
+                        alt={wine.translations[locale].name}
                         fill
                         className="object-contain p-1"
                         sizes="56px"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-deepBrown-300 text-sm truncate">{wine.name}</p>
+                      <p className="font-medium text-deepBrown-300 text-sm truncate">{wine.translations[locale].name}</p>
                       <p className="text-gold-100 text-sm font-medium">{wine.price}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <button

@@ -1,9 +1,0 @@
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export default [
-  {
-    // Basic configuration optimized for Vercel deployment
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    extends: ["eslint:recommended", "next/core-web-vitals"],
-    ignores: ["node_modules/**", ".next/**", "out/**", ".vercel/**"],
-  },
-];

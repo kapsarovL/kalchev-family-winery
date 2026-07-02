@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Check, GlassWater, Calendar, Gift, Shield, Star } from "lucide-react";
 import { cn } from "../../lib/utils";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 // Define membership tiers with their features and pricing
 interface MembershipTier {
@@ -24,52 +25,57 @@ interface MembershipTier {
   icon: React.ReactNode;
 }
 
-const membershipTiers: MembershipTier[] = [
+const membershipTiers: Omit<MembershipTier, "name" | "description" | "features">[] = [
   {
     id: "basic",
-    name: "Basic Membership",
-    description: "Enjoy a selection of our finest wines.",
     price: "$29.99",
     billingPeriod: "monthly",
-    features: ["Monthly wine delivery", "Exclusive member discounts"],
     recommended: false,
     icon: <GlassWater />,
   },
   {
     id: "premium",
-    name: "Premium Membership",
-    description: "Get premium wines and exclusive access to events.",
     price: "$49.99",
     billingPeriod: "monthly",
-    features: [
-      "Monthly premium wine delivery",
-      "Access to exclusive events",
-      "Personalized wine recommendations",
-    ],
     recommended: true,
     icon: <Star />,
   },
   {
     id: "vip",
-    name: "VIP Membership",
-    description: "The ultimate wine experience with personalized service.",
     price: "$99.99",
     billingPeriod: "monthly",
-    features: [
-      "Monthly VIP wine delivery",
-      "One-on-one consultations",
-      "Exclusive VIP events",
-    ],
     recommended: false,
     icon: <Gift />,
   },
 ];
 
 const WineClubMembership = () => {
+  const { t } = useLocale();
   const [selectedTier, setSelectedTier] = useState<string>(
     membershipTiers.find((tier) => tier.recommended)?.id ||
       membershipTiers[0].id
   );
+
+  const tierContent = (tierId: string) => {
+    const map: Record<string, { name: string; description: string; features: string[] }> = {
+      basic: {
+        name: t.club.tier1Name,
+        description: t.club.tier1Desc,
+        features: [t.club.tier1Feature1, t.club.tier1Feature2],
+      },
+      premium: {
+        name: t.club.tier2Name,
+        description: t.club.tier2Desc,
+        features: [t.club.tier2Feature1, t.club.tier2Feature2, t.club.tier2Feature3],
+      },
+      vip: {
+        name: t.club.tier3Name,
+        description: t.club.tier3Desc,
+        features: [t.club.tier3Feature1, t.club.tier3Feature2, t.club.tier3Feature3],
+      },
+    };
+    return map[tierId];
+  };
 
   return (
     <section
@@ -79,26 +85,24 @@ const WineClubMembership = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-2">
-            Kalchev Wine Club
+            {t.club.heading}
           </h2>
           <div className="section-underline mx-auto"></div>
           <p className="text-deepBrown-100/80 max-w-2xl mx-auto mb-4 font-inter">
-            Join our exclusive wine club and embark on a journey through our
-            finest selections. Receive curated wines delivered to your doorstep
-            and enjoy member-only benefits.
+            {t.club.subtitle}
           </p>
           <div className="flex items-center justify-center space-x-4 mt-8 mb-12">
             <span className="flex items-center text-deepBrown-100/80">
               <Calendar className="w-5 h-5 mr-2 text-wineRed-100" />
-              Cancel Anytime
+              {t.club.cancelAnytime}
             </span>
             <span className="flex items-center text-deepBrown-100/80">
               <Gift className="w-5 h-5 mr-2 text-wineRed-100" />
-              Perfect for Gifting
+              {t.club.perfectForGifting}
             </span>
             <span className="flex items-center text-deepBrown-100/80">
               <Shield className="w-5 h-5 mr-2 text-wineRed-100" />
-              Satisfaction Guaranteed
+              {t.club.satisfactionGuaranteed}
             </span>
           </div>
         </div>
@@ -118,7 +122,7 @@ const WineClubMembership = () => {
             >
               {tier.recommended && (
                 <div className="absolute top-0 right-0 bg-wineRed-100 text-cream-100 py-1 px-3 text-xs font-medium">
-                  Most Popular
+                  {t.club.mostPopular}
                 </div>
               )}
               <CardHeader className="pb-4">
@@ -128,10 +132,10 @@ const WineClubMembership = () => {
                   </div>
                 </div>
                 <CardTitle className="text-2xl font-playfair text-center text-wineRed-100">
-                  {tier.name}
+                  {tierContent(tier.id).name}
                 </CardTitle>
                 <CardDescription className="text-center mt-2">
-                  {tier.description}
+                  {tierContent(tier.id).description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center pb-6">
@@ -144,7 +148,7 @@ const WineClubMembership = () => {
                   </span>
                 </div>
                 <ul className="space-y-3 text-left">
-                  {tier.features.map((feature, index) => (
+                  {tierContent(tier.id).features.map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <Check className="h-5 w-5 text-primary shrink-0 mr-2 mt-0.5" />
                       <span className="text-deepBrown-100/90">{feature}</span>
@@ -161,7 +165,7 @@ const WineClubMembership = () => {
                       : "bg-wineRed-200/80 hover:bg-wineRed-100"
                   )}
                 >
-                  {selectedTier === tier.id ? "Join Now" : "Select Plan"}
+                  {selectedTier === tier.id ? t.club.joinNow : t.club.selectPlan}
                 </Button>
               </CardFooter>
             </Card>
@@ -170,7 +174,7 @@ const WineClubMembership = () => {
 
         <div className="bg-cream-100/30 rounded-xl p-6 md:p-10 max-w-4xl mx-auto">
           <h3 className="text-2xl font-playfair text-wineRed-200 mb-4">
-            Wine Club Benefits
+            {t.club.benefitsHeading}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex items-start">
@@ -179,11 +183,10 @@ const WineClubMembership = () => {
               </div>
               <div>
                 <h4 className="font-medium text-deepBrown-100 mb-1">
-                  Curated Selections
+                  {t.club.benefit1Title}
                 </h4>
                 <p className="text-deepBrown-100/80 text-sm font-inter">
-                  Our winemaker personally selects each bottle to ensure you
-                  experience the very best of our vineyard.
+                  {t.club.benefit1Desc}
                 </p>
               </div>
             </div>
@@ -193,11 +196,10 @@ const WineClubMembership = () => {
               </div>
               <div>
                 <h4 className="font-medium text-deepBrown-100 mb-1">
-                  Exclusive Access
+                  {t.club.benefit2Title}
                 </h4>
                 <p className="text-deepBrown-100/80 text-sm font-inter">
-                  Members get first access to limited releases, reserve wines,
-                  and special vintages before the general public.
+                  {t.club.benefit2Desc}
                 </p>
               </div>
             </div>
@@ -207,11 +209,10 @@ const WineClubMembership = () => {
               </div>
               <div>
                 <h4 className="font-medium text-deepBrown-100 mb-1">
-                  Member Events
+                  {t.club.benefit3Title}
                 </h4>
                 <p className="text-deepBrown-100/80 text-sm font-inter">
-                  Join us for members-only tastings, harvest celebrations, and
-                  educational events throughout the year.
+                  {t.club.benefit3Desc}
                 </p>
               </div>
             </div>
@@ -221,11 +222,10 @@ const WineClubMembership = () => {
               </div>
               <div>
                 <h4 className="font-medium text-deepBrown-100 mb-1">
-                  Flexible Membership
+                  {t.club.benefit4Title}
                 </h4>
                 <p className="text-deepBrown-100/80 text-sm font-inter">
-                  Skip shipments, change your preferences, or cancel anytime
-                  with no penalties or hidden fees.
+                  {t.club.benefit4Desc}
                 </p>
               </div>
             </div>
@@ -234,9 +234,7 @@ const WineClubMembership = () => {
 
         <div className="text-center mt-12">
           <p className="text-sm text-deep-brown/60 max-w-2xl mx-auto">
-            By joining the Kalchev Wine Club, you certify that you are at least
-            21 years of age and agree to our Terms of Service. All shipments
-            require an adult signature upon delivery.
+            {t.club.disclaimer}
           </p>
         </div>
       </div>

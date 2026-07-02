@@ -15,6 +15,7 @@ import { Wine } from "../../data/wines";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 interface WineDetailDialogProps {
   wine: Wine;
@@ -41,7 +42,8 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
     }
   };
 
-  const pairing = getPairings(wine.name);
+  const { locale, t } = useLocale();
+  const pairing = getPairings(wine.key);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -61,7 +63,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
           <div className="relative h-[300px] md:h-auto overflow-hidden bg-cream-100/20">
             <Image
               src={wine.image}
-              alt={wine.name}
+              alt={wine.translations[locale].name}
               fill={true}
               style={{ objectFit: "contain", padding: "1rem" }}
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -69,10 +71,10 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
             <Badge
               variant="secondary"
               className={`absolute top-4 left-4 ${_getBadgeColor(
-                wine.type
+                wine.translations[locale].type
               )} font-medium`}
             >
-              {wine.type}
+              {wine.translations[locale].type}
             </Badge>
           </div>
 
@@ -80,25 +82,25 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
           <div className="p-6 flex flex-col">
             <DialogHeader className="mb-4">
               <DialogTitle className="text-2xl font-serif font-bold text-cream-100">
-                {wine.name}
+                {wine.translations[locale].name}
               </DialogTitle>
               <DialogDescription className="text-cream-100/60">
-                Vintage {wine.year}
+                {t.detail.vintage} {wine.year}
               </DialogDescription>
             </DialogHeader>
 
             <div className="flex-grow">
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-gold-100 mb-2">
-                  Tasting Notes
-                </h4>
-                <p className="text-cream-100/80">{wine.description}</p>
+                  <h4 className="text-lg font-medium text-gold-100 mb-2">
+                    {t.detail.tastingNotes}
+                  </h4>
+                  <p className="text-cream-100/80">{wine.translations[locale].description}</p>
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-gold-100 mb-3">
-                  Perfect Pairings
-                </h4>
+                  <h4 className="text-lg font-medium text-gold-100 mb-3">
+                    {t.detail.perfectPairings}
+                  </h4>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2 text-cream-100/80">
                     <UtensilsCrossed size={15} className="mt-0.5 flex-shrink-0 text-gold-100" />
@@ -106,7 +108,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
                   </div>
                   <div className="flex items-center gap-2 text-cream-100/80">
                     <Thermometer size={15} className="flex-shrink-0 text-gold-100" />
-                    <span>Serve at {pairing.temperature}</span>
+                    <span>{t.detail.serveAt} {pairing.temperature}</span>
                   </div>
                   <div className="flex items-center gap-2 text-cream-100/80">
                     <WineGlass size={15} className="flex-shrink-0 text-gold-100" />
@@ -116,13 +118,11 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
               </div>
 
               <div className="mb-6">
-                <h4 className="text-lg font-medium text-gold-100 mb-2">
-                  Winemaking
-                </h4>
+                  <h4 className="text-lg font-medium text-gold-100 mb-2">
+                    {t.detail.winemaking}
+                  </h4>
                 <p className="text-cream-100/80">
-                  Handcrafted in small batches with traditional methods passed
-                  down through generations. Carefully aged to develop complex
-                  flavors and perfect balance.
+                  {t.detail.winemakingDesc}
                 </p>
               </div>
             </div>
@@ -132,18 +132,18 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
                 <span className="text-2xl font-bold text-cream-300">
                   {wine.price}
                 </span>
-                <span className="text-cream-100/60">In Stock</span>
+                <span className="text-cream-100/60">{t.detail.inStock}</span>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <Button className="bg-wineRed-100 text-white-200 hover:text-wineRed-100 border-cream-300 border hover:bg-gold-100 transition-colors">
-                  Add to Cart
+                  {t.detail.addToCart}
                 </Button>
                 <Button
                   variant="outline"
                   className="border-wineRed-100 text-wineRed-100 hover:bg-gold-100 hover:text-wineRed-100 transition-colors"
                 >
-                  Add to Wishlist
+                  {t.detail.addToWishlist}
                 </Button>
               </div>
             </div>

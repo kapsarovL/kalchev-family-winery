@@ -9,6 +9,7 @@ import WineDetailDialog from "./WineDetailDialog";
 import { motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { ShoppingCart } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 interface WineCardProps {
   wine: Wine;
@@ -17,6 +18,7 @@ interface WineCardProps {
 const WineCard: React.FC<WineCardProps> = ({ wine }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { dispatch } = useCart();
+  const { locale, t } = useLocale();
 
   // Get the appropriate badge color based on wine type
   const getBadgeColor = (type: string) => {
@@ -42,7 +44,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
         <div className="relative h-[300px] overflow-hidden bg-cream-100/60">
           <Image
             src={wine.image}
-            alt={wine.name}
+            alt={wine.translations[locale].name}
             fill={true}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-contain transition-transform duration-500 group-hover:scale-105 py-3"
@@ -50,17 +52,17 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
           <Badge
             variant="secondary"
             className={`absolute top-3 right-3 ${getBadgeColor(
-              wine.type
+              wine.translations[locale].type
             )} font-medium`}
           >
-            {wine.type}
+            {wine.translations[locale].type}
           </Badge>
         </div>
 
         <div className="p-4">
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-serif font-bold text-deepBrown-300">
-              {wine.name}
+              {wine.translations[locale].name}
             </h3>
             <span className="text-lg font-medium text-oliveGreen-300">
               {wine.price}
@@ -69,12 +71,12 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
 
           <div className="mb-3">
             <span className="text-sm text-deepBrown-100/60">
-              Vintage {wine.year}
+              {t.wines.vintage} {wine.year}
             </span>
           </div>
 
           <p className="text-wineRed-300 mb-4 line-clamp-3">
-            {wine.description}
+            {wine.translations[locale].description}
           </p>
 
           <div className="flex gap-2">
@@ -84,14 +86,14 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
               className="bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors flex-1"
               onClick={() => setIsDialogOpen(true)}
             >
-              View Details
+              {t.wines.viewDetails}
             </Button>
             <Button
               variant="outline"
               size="sm"
               className="border-wineRed-100/40 text-wineRed-100 hover:bg-wineRed-100 hover:text-white-100 transition-colors"
               onClick={() => dispatch({ type: "ADD", wine })}
-              aria-label={`Add ${wine.name} to cart`}
+              aria-label={`${t.detail.addToCart}: ${wine.translations[locale].name}`}
             >
               <ShoppingCart size={16} />
             </Button>

@@ -16,8 +16,10 @@ import { cn } from "@/lib/utils";
 
 import { contactFormAction } from "@/lib/actions";
 import { Check } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 export function Form({ className, onSuccess }: React.ComponentProps<typeof Card> & { onSuccess?: () => void }) {
+  const { t } = useLocale();
   const [subject, setSubject] = React.useState("");
   const [pending, setPending] = React.useState(false);
   const [state, setState] = React.useState<{
@@ -46,9 +48,9 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
   return (
     <Card className={cn("w-full max-w-md bg-wineRed-200", className)}>
       <CardHeader>
-        <CardTitle className="text-cream-300">How can we help?</CardTitle>
+        <CardTitle className="text-cream-300">{t.form.heading}</CardTitle>
         <CardDescription className="text-cream-100/80">
-          Need help with your project? We&apos;re here to assist you.
+          {t.form.subtitle}
         </CardDescription>
       </CardHeader>
       <form onSubmit={(e) => { e.preventDefault(); formAction(new FormData(e.currentTarget)); }}>
@@ -56,7 +58,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
           {state.success ? (
             <p className="text-muted-foreground flex items-center gap-2 text-sm">
               <Check className="size-4" />
-              Your message has been sent. Thank you.
+              {t.form.success}
             </p>
           ) : null}
           <div
@@ -67,7 +69,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
               htmlFor="name"
               className="group-data-[invalid=true]/field:text-cream-100/80 text-cream-300"
             >
-              Name <span aria-hidden="true">*</span>
+              {t.form.name} <span aria-hidden="true">*</span>
             </Label>
             <Input
               id="name"
@@ -93,7 +95,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
               htmlFor="email"
               className="group-data-[invalid=true]/field:text-destructive text-cream-300"
             >
-              Email <span aria-hidden="true">*</span>
+              {t.form.email} <span aria-hidden="true">*</span>
             </Label>
             <Input
               id="email"
@@ -120,7 +122,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
                 htmlFor="subject"
                 className="block text-sm font-medium mb-1 text-cream-300"
               >
-                Subject *
+                {t.form.subject} *
               </label>
               <select
                 id="subject"
@@ -130,19 +132,19 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               >
-                <option value="">Select a subject</option>
-                <option value="General Inquiry">General Inquiry</option>
-                <option value="Wine Orders">Wine Orders</option>
-                <option value="Winery Visit">Winery Visit</option>
-                <option value="Wholesale">Wholesale</option>
-                <option value="Other">Other</option>
+                <option value="">{t.form.subjectPlaceholder}</option>
+                <option value="General Inquiry">{t.form.subjectGeneral}</option>
+                <option value="Wine Orders">{t.form.subjectOrders}</option>
+                <option value="Winery Visit">{t.form.subjectVisit}</option>
+                <option value="Wholesale">{t.form.subjectWholesale}</option>
+                <option value="Other">{t.form.subjectOther}</option>
               </select>
             </div>
             <Label
               htmlFor="message"
               className="group-data-[invalid=true]/field:text-destructive text-cream-300"
             >
-              Message <span aria-hidden="true">*</span>
+              {t.form.message} <span aria-hidden="true">*</span>
             </Label>
             <Textarea
               id="message"
@@ -168,7 +170,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
             disabled={pending}
             className="bg-cream-200 text-wineRed-100 hover:text-cream-100 hover:border-cream-200/30 border"
           >
-            {pending ? "Sending..." : "Send Message"}
+            {pending ? t.form.sending : t.form.send}
           </Button>
         </CardFooter>
       </form>

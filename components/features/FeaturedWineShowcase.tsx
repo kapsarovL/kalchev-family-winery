@@ -6,10 +6,12 @@ import WineShowcase from "@/components/products/WineShowcase";
 import { WineStockStatus, WineAwardLevel } from "@/types/wine";
 import { wines } from "@/data/wines";
 import { getAllStockStatuses } from "@/lib/inventory";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 // Interface removed as it's now imported from types/wine.ts
 
 const FeaturedWineShowcase = () => {
+  const { t } = useLocale();
   const [currentWineIndex, setCurrentWineIndex] = useState(0);
 
   const [stockStatuses, setStockStatuses] = useState<Record<number, WineStockStatus>>({});
@@ -48,13 +50,11 @@ const FeaturedWineShowcase = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100">
-            Featured Wine
+            {t.features.heading}
           </h2>
           <div className="section-underline mx-auto"></div>
           <p className="text-deepBrown-100/80 max-w-2xl mx-auto font-inter">
-            Explore our premium selection in a new interactive way. Rotate the
-            bottle to admire the craftsmanship and discover the unique character
-            of each wine.
+            {t.features.subtitle}
           </p>
         </div>
 
@@ -73,7 +73,7 @@ const FeaturedWineShowcase = () => {
               size="icon"
               onClick={prevWine}
               className="rounded-full border-cream-300/70 text-oliveGreen-100 hover:bg-wineRed-100/20"
-              aria-label="Previous wine"
+              aria-label={t.features.prev}
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -98,7 +98,7 @@ const FeaturedWineShowcase = () => {
               size="icon"
               onClick={nextWine}
               className="rounded-full border-cream-300/70 text-oliveGreen-100 hover:bg-wineRed-100/20"
-              aria-label="Next wine"
+              aria-label={t.features.next}
             >
               <ChevronRight className="h-5 w-5" />
             </Button>

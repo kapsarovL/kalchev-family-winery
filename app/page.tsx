@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/about";
@@ -13,7 +12,6 @@ import Testimonials from "@/components/testimonials/Testimonials";
 import ClubMembership from "@/components/membership/WineClubMembership";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/layout/Footer";
-import { useIsMobile } from "@/hooks/use-mobile";
 import SectionTransition from "@/components/shared/SectionTransition";
 import PageTransition from "@/components/shared/PageTransition";
 

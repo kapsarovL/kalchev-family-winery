@@ -1,22 +1,23 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, GlassWater, Utensils, Users } from "lucide-react";
 import ExperienceImage from "@/public/images/wines3.webp";
 import Image from "next/image";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 const WineryExperience = () => {
+  const { t } = useLocale();
   return (
     <section id="experience" className="py-16 md:py-24 bg-cream-100/30">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold text-wineRed-100 mb-6">
-              Experience the Winery
+              {t.experience.heading}
             </h2>
             <p className="text-lg text-deepBrown-100/80 mb-6">
-              Visit our family winery in the heart of Macedonia's Bogdanci
-              Valley and immerse yourself in a world of fine wines, rich
-              traditions, and warm hospitality.
+              {t.experience.subtitle}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -26,11 +27,10 @@ const WineryExperience = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-serif font-semibold text-deepBrown-100 mb-2">
-                    Wine Tastings
+                    {t.experience.card1Title}
                   </h3>
                   <p className="text-deepBrown-100/70">
-                    Guided tastings of our award-winning wines, from traditional
-                    Macedonia varieties to international classics.
+                    {t.experience.card1Desc}
                   </p>
                 </div>
               </div>
@@ -41,11 +41,10 @@ const WineryExperience = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-serif font-semibold text-deepBrown-100 mb-2">
-                    Vineyard Tours
+                    {t.experience.card2Title}
                   </h3>
                   <p className="text-deepBrown-100/70">
-                    Walk through our picturesque vineyards and learn about our
-                    sustainable farming practices and unique terroir.
+                    {t.experience.card2Desc}
                   </p>
                 </div>
               </div>
@@ -56,11 +55,10 @@ const WineryExperience = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-serif font-semibold text-deepBrown-100 mb-2">
-                    Food Pairings
+                    {t.experience.card3Title}
                   </h3>
                   <p className="text-deepBrown-100/70">
-                    Enjoy local delicacies perfectly paired with our wines,
-                    showcasing the best of Macedonia's cuisine.
+                    {t.experience.card3Desc}
                   </p>
                 </div>
               </div>
@@ -71,11 +69,10 @@ const WineryExperience = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-serif font-semibold text-deepBrown-100 mb-2">
-                    Special Events
+                    {t.experience.card4Title}
                   </h3>
                   <p className="text-deepBrown-100/70">
-                    From harvest celebrations to themed dinners, our seasonal
-                    events offer unique wine experiences.
+                    {t.experience.card4Desc}
                   </p>
                 </div>
               </div>
@@ -86,7 +83,7 @@ const WineryExperience = () => {
               size="lg"
               className="bg-wineRed-100 hover:text-white-100 hover:bg-gold-100 transition-colors"
             >
-              Book Your Experience
+              {t.experience.cta}
             </Button>
           </div>
 
@@ -102,9 +99,9 @@ const WineryExperience = () => {
               />
               <div className="absolute -bottom-4 -left-4 bg-cream-200 p-4 rounded shadow-lg hidden md:block">
                 <p className="text-wineRed-100 font-serif text-lg font-medium">
-                  Open for visits
+                  {t.experience.openForVisits}
                 </p>
-                <p className="text-deepBrown-100/70">Wed-Sun, 10am-6pm</p>
+                <p className="text-deepBrown-100/70">{t.experience.hours}</p>
               </div>
             </div>
           </div>

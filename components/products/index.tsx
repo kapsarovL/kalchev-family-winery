@@ -5,6 +5,7 @@ import { wines } from "../../data/wines";
 import WineCard from "@/components/cards/WineCard";
 import { Button } from "@/components/ui/button";
 import { Search, ArrowUpDown } from "lucide-react";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 type FilterType = "all" | "red" | "white" | "rosé";
 type SortType = "default" | "price-asc" | "price-desc";
@@ -13,13 +14,14 @@ const WineGallery = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [sort, setSort] = useState<SortType>("default");
+  const { locale, t } = useLocale();
 
   const filteredWines = wines
     .filter((wine) => {
-      const matchesType = activeFilter === "all" || wine.type === activeFilter;
+      const matchesType = activeFilter === "all" || wine.translations["en"].type === activeFilter;
       const matchesSearch =
-        wine.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        wine.description.toLowerCase().includes(searchTerm.toLowerCase());
+        wine.translations[locale].name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        wine.translations[locale].description.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesType && matchesSearch;
     })
     .sort((a, b) => {
@@ -31,16 +33,16 @@ const WineGallery = () => {
     });
 
   const filterButtons: { label: string; value: FilterType }[] = [
-    { label: "All Wines", value: "all" },
-    { label: "Red", value: "red" },
-    { label: "White", value: "white" },
-    { label: "Rosé", value: "rosé" },
+    { label: t.wines.all, value: "all" },
+    { label: t.wines.red, value: "red" },
+    { label: t.wines.white, value: "white" },
+    { label: t.wines.rose, value: "rosé" },
   ];
 
   const sortOptions: { label: string; value: SortType }[] = [
-    { label: "Default", value: "default" },
-    { label: "Price: Low → High", value: "price-asc" },
-    { label: "Price: High → Low", value: "price-desc" },
+    { label: t.wines.sortDefault, value: "default" },
+    { label: t.wines.sortPriceAsc, value: "price-asc" },
+    { label: t.wines.sortPriceDesc, value: "price-desc" },
   ];
 
   return (
@@ -51,11 +53,10 @@ const WineGallery = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-4">
-            Our Wine Collection
+            {t.wines.heading}
           </h2>
           <p className="text-lg text-deepBrown-100/80 max-w-2xl mx-auto font-inter">
-            Explore our range of premium wines, each crafted with passion and
-            expertise to showcase the best of Macedonian winemaking.
+            {t.wines.subheading}
           </p>
         </div>
 
@@ -106,7 +107,7 @@ const WineGallery = () => {
               />
               <input
                 type="text"
-                placeholder="Search wines..."
+                placeholder={t.wines.search}
                 className="w-full pl-10 pr-4 py-2 border border-cream rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50 text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -124,10 +125,10 @@ const WineGallery = () => {
         {filteredWines.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-xl font-medium text-deepBrown-100 mb-2">
-              No wines found
+              {t.wines.noResults}
             </h3>
             <p className="text-deepBrown-100/60">
-              Try adjusting your filters or search term
+              {t.wines.noResultsSub}
             </p>
           </div>
         )}

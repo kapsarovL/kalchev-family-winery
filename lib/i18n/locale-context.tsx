@@ -16,7 +16,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("kalchev-locale") as Locale | null;
-    if (saved === "en" || saved === "mk") setLocaleState(saved);
+    if (saved === "en" || saved === "mk" || saved === "gr") setLocaleState(saved);
   }, []);
 
   const setLocale = (l: Locale) => {

@@ -1,15 +1,24 @@
 import { StaticImageData } from "next/image";
 
-export interface Wine {
-  id: number;
+export type WineTranslation = {
   name: string;
   type: "red" | "white" | "rosé";
-  year: string;
   description: string;
+};
+
+export interface Wine {
+  id: number;
+  key: string;
+  year: string;
   price: string;
   image: string | StaticImageData;
   bottleImage: string | StaticImageData;
   label?: string;
+  translations: {
+    en: WineTranslation;
+    mk: WineTranslation;
+    gr: WineTranslation;
+  };
 }
 
 export type WineStockStatus = "in-stock" | "limited" | "pre-order";
