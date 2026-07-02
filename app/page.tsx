@@ -28,10 +28,10 @@ export default function Home() {
         <Header />
         <Hero />
         <SectionTransition>
-          <About />
+          <WinePhilosophy />
         </SectionTransition>
         <SectionTransition delay={0.1}>
-          <WinePhilosophy />
+          <About />
         </SectionTransition>
         <SectionTransition delay={0.2}>
           <WineGallery />
