@@ -15,7 +15,7 @@ export const translations = {
       smallTitle: "Welcome to Kalchev Wine Vision",
       heading: "Wine Made with Soul 2008",
       paragraph:
-        "In the heart of southeastern Macedonia, in sunny Bogdanci, the story of our family garage winery is born<bold> Kalchev Wine Vision.</bold>",
+        "In the heart of southeastern Macedonia, in sunny Bogdanci, the story of our family garage winery is born Kalchev Wine Vision.",
       cta1: "Learn More",
       cta2: "Book Tasting",
     },
@@ -149,8 +149,7 @@ export const translations = {
       hoursWeekend: "Wednesday - Sunday: 10:00 AM - 6:00 PM",
       hoursClosed: "Monday - Tuesday: Closed",
       sendMessage: "Send Us a Message",
-      success:
-        "Thank you for your message! We'll get back to you soon.",
+      success: "Thank you for your message! We'll get back to you soon.",
     },
     form: {
       heading: "How can we help?",
@@ -552,7 +551,8 @@ export const translations = {
       tier1Feature1: "Μηνιαία παράδοση κρασιού",
       tier1Feature2: "Αποκλειστικές εκπτώσεις μελών",
       tier2Name: "Premium συνδρομή",
-      tier2Desc: "Αποκτήστε premium κρασιά και αποκλειστική πρόσβαση σε εκδηλώσεις.",
+      tier2Desc:
+        "Αποκτήστε premium κρασιά και αποκλειστική πρόσβαση σε εκδηλώσεις.",
       tier2Feature1: "Μηνιαία premium παράδοση κρασιού",
       tier2Feature2: "Πρόσβαση σε αποκλειστικές εκδηλώσεις",
       tier2Feature3: "Εξατομικευμένες προτάσεις κρασιού",
