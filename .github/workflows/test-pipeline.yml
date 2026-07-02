@@ -90,10 +90,10 @@ jobs:
           path: playwright-report/
           retention-days: 14
 
-  # nightly only - full browser matrix
+  # full browser matrix (nightly + PRs, not in required checks)
   e2e-full-matrix:
     name: E2E Full Browser Matrix
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     strategy:
       matrix:
