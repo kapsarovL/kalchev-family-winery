@@ -104,6 +104,9 @@ importers:
       drizzle-zod:
         specifier: 0.8.3
         version: 0.8.3(drizzle-orm@0.45.2(@neondatabase/serverless@1.1.0)(postgres@3.4.9))(zod@3.25.76)
+      framer-motion:
+        specifier: ^12.42.2
+        version: 12.42.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       lucide-react:
         specifier: 0.561.0
         version: 0.561.0(react@18.2.0)
