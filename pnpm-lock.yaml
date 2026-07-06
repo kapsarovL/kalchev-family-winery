@@ -200,7 +200,7 @@ importers:
         specifier: '>=8.5.10'
         version: 8.5.16
       postgres:
-        specifier: ^3.4.5
+        specifier: ^3.4.9
         version: 3.4.9
       tailwindcss:
         specifier: 3.4.17
