@@ -17,6 +17,7 @@ const inter = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(metaData.url),
   title: {
     default: metaData.name,
     template: `%s | ${metaData.name}`,
