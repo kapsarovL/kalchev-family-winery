@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { metaData } from "@/config/site";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const playfairDisplay = localFont({
@@ -58,6 +59,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           Skip to content
         </a>
         <ClientLayout>{children}</ClientLayout>
+        <Analytics />
       </body>
     </html>
   );
