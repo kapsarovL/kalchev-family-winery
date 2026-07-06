@@ -53,6 +53,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${playfairDisplay.variable} ${inter.variable}`}>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

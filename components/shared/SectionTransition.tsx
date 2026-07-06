@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -37,9 +39,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      observer.disconnect();
     };
   }, []);
 

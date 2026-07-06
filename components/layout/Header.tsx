@@ -6,13 +6,14 @@ import Image from "next/image";
 import logo from "@/public/images/logo.webp";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { useCart } from "@/lib/cart-context";
 import { useLocale } from "@/lib/i18n/locale-context";
 
 const NAV_SECTIONS = [
+  "home",
   "about",
   "wines",
   "experience",
@@ -33,6 +34,12 @@ const Header = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   const handleScrollToSection = (sectionId: string) => {
+    if (sectionId === "home") {
+      if (mobileMenuOpen) setMobileMenuOpen(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       if (mobileMenuOpen) setMobileMenuOpen(false);
@@ -68,7 +75,9 @@ const Header = () => {
     sectionId: string;
     children: React.ReactNode;
   }) => {
-    const isActive = activeSection === sectionId;
+    const isActive = sectionId === "home"
+      ? activeSection === ""
+      : activeSection === sectionId;
     return (
       <button
         className={`relative transition-colors cursor-pointer text-left pb-0.5 ${
@@ -125,6 +134,7 @@ const Header = () => {
               delayChildren: 0.2,
             }}
           >
+            <NavLink sectionId="home">{t.nav.home}</NavLink>
             <NavLink sectionId="about">{t.nav.about}</NavLink>
             <NavLink sectionId="wines">{t.nav.wines}</NavLink>
             <NavLink sectionId="experience">{t.nav.experience}</NavLink>
@@ -177,6 +187,8 @@ const Header = () => {
           <button
             onClick={toggleMobileMenu}
             className="md:hidden text-deepBrown-100"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -184,15 +196,17 @@ const Header = () => {
       </div>
 
       {/* Mobile menu */}
-      {isMobile && mobileMenuOpen && (
-        <motion.div
+      <AnimatePresence>
+        {isMobile && mobileMenuOpen && (
+          <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="md:hidden bg-white-100/95 backdrop-blur-sm border-t border-cream-200 px-4 py-4 flex flex-col gap-4"
+          className="md:hidden bg-white-100/10 backdrop-blur-lg border-t border-cream-200/20 px-4 py-4 flex flex-col gap-4"
         >
           {(
             [
+              "home",
               "about",
               "wines",
               "experience",
@@ -202,6 +216,7 @@ const Header = () => {
             ] as const
           ).map((id) => {
             const label: Record<string, string> = {
+              home: t.nav.home,
               about: t.nav.about,
               wines: t.nav.wines,
               experience: t.nav.experience,
@@ -224,16 +239,17 @@ const Header = () => {
             );
           })}
           <div className="flex items-center gap-3 mt-1">
-            <button
-              onClick={() =>
-                setLocale(
-                  locale === "en" ? "mk" : locale === "mk" ? "gr" : "en"
-                )
-              }
-              className="text-xs font-medium border border-deepBrown-100/30 rounded px-2 py-1 text-deepBrown-100/70 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
-            >
-              {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
-            </button>
+          <button
+            onClick={() =>
+              setLocale(
+                locale === "en" ? "mk" : locale === "mk" ? "gr" : "en"
+              )
+            }
+            className="text-xs font-medium border border-deepBrown-100/30 rounded px-2 py-1 text-deepBrown-100/70 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
+            aria-label="Switch language"
+          >
+            {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
+          </button>
             <Button
               size="sm"
               className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors flex-1"
@@ -243,8 +259,9 @@ const Header = () => {
               {t.nav.bookTasting}
             </Button>
           </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

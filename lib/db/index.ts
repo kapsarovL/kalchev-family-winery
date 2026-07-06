@@ -6,6 +6,11 @@ if (!process.env.DATABASE_URL) {
   console.warn("[db] DATABASE_URL is not set — database features will be unavailable.");
 }
 
-const sql = neon(process.env.DATABASE_URL ?? "postgresql://placeholder");
+let db: ReturnType<typeof drizzle> | null = null;
 
-export const db = drizzle(sql, { schema });
+if (process.env.DATABASE_URL) {
+  const sql = neon(process.env.DATABASE_URL);
+  db = drizzle(sql, { schema });
+}
+
+export { db };

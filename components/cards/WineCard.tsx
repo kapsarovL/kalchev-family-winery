@@ -92,7 +92,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
               variant="outline"
               size="sm"
               className="border-wineRed-100/40 text-wineRed-100 hover:bg-wineRed-100 hover:text-white-100 transition-colors"
-              onClick={() => dispatch({ type: "ADD", wine })}
+              onClick={() => dispatch({ type: "ADD", wine, quantity: 1 })}
               aria-label={`${t.detail.addToCart}: ${wine.translations[locale].name}`}
             >
               <ShoppingCart size={16} />

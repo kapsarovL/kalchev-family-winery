@@ -33,6 +33,9 @@
     --cream: 37, 58%, 80%;
     --gold: 34, 45%, 40%;
     --deep-brown: 30, 20%, 20%;
+    --olive-green: 120, 30%, 20%;
+    --white: 0, 0%, 100%;
+    --black: 0, 0%, 0%;
   }
 
   .dark {
@@ -74,10 +77,6 @@
 
   .bg-fixed {
     background-attachment: fixed;
-  }
-
-  .section-underline {
-    @apply block w-20 h-1 bg-accent mb-6;
   }
 
   .section-centered {
@@ -260,5 +259,21 @@
       rgb(var(--wine-red))
     );
     margin-bottom: 16px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    z-index: 9999;
+    padding: 1em;
+    background-color: var(--color-deepBrown-200);
+    color: var(--color-cream-100);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+
+  .skip-link:focus {
+    left: 0.5rem;
+    top: 0.5rem;
   }
 }

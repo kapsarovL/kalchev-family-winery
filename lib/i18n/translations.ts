@@ -3,6 +3,7 @@ export type Locale = "en" | "mk" | "gr";
 export const translations = {
   en: {
     nav: {
+      home: "Home",
       about: "About",
       wines: "Our Wines",
       experience: "Experience",
@@ -223,6 +224,7 @@ export const translations = {
   },
   mk: {
     nav: {
+      home: "Почетна",
       about: "За нас",
       wines: "Нашите вина",
       experience: "Искуство",
@@ -443,6 +445,7 @@ export const translations = {
   },
   gr: {
     nav: {
+      home: "Αρχική",
       about: "Σχετικά",
       wines: "Τα κρασιά μας",
       experience: "Εμπειρία",

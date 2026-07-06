@@ -19,7 +19,9 @@ export function ClientLayout({ children }: ClientLayoutProps) {
       <LocaleProvider>
         <CartProvider>
           <TransitionProvider>
-            {children}
+            <main id="main-content" suppressHydrationWarning>
+              {children}
+            </main>
             <CartDrawer />
             <Toaster />
           </TransitionProvider>

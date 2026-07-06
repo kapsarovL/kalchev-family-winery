@@ -166,7 +166,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
           <Button
             className="flex-1 bg-wineRed-100 hover:bg-gold-100 transition-colors duration-300 text-white-200"
             aria-label={`${t.detail.addToCart}: ${wine.translations[locale].name}`}
-            onClick={() => dispatch({ type: "ADD", wine })}
+            onClick={() => dispatch({ type: "ADD", wine, quantity })}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
             Add to Cart ({quantity})

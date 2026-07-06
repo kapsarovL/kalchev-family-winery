@@ -35,7 +35,7 @@ const Contact = () => {
                   <MapPin className="w-5 h-5 text-gold-100 mt-1 mr-3" />
                   <div>
                     <h4 className="font-medium text-cream-300">{t.contact.location}</h4>
-                    <p className="text-cream-200/70">
+                    <p className="text-cream-200/85">
                       Kalchev Estate Vineyards
                       <br />
                       15 Grape Road
@@ -49,8 +49,8 @@ const Contact = () => {
                   <Phone className="w-5 h-5 text-gold-100 mt-1 mr-3" />
                   <div>
                     <h4 className="font-medium text-cream-300">{t.contact.phone}</h4>
-                    <p className="text-cream-200/70">+359 888 123 456</p>
-                    <p className="text-cream-200/70">+359 2 987 6543</p>
+                    <p className="text-cream-200/85">+359 888 123 456</p>
+                    <p className="text-cream-200/85">+359 2 987 6543</p>
                   </div>
                 </div>
 
@@ -58,8 +58,8 @@ const Contact = () => {
                   <Mail className="w-5 h-5 text-gold-100 mt-1 mr-3" />
                   <div>
                     <h4 className="font-medium text-cream-300">{t.contact.email}</h4>
-                    <p className="text-cream-200/70">info@kalchevwinery.com</p>
-                    <p className="text-cream-200/70">
+                    <p className="text-cream-200/85">info@kalchevwinery.com</p>
+                    <p className="text-cream-200/85">
                       orders@kalchevwinery.com
                     </p>
                   </div>
@@ -70,7 +70,7 @@ const Contact = () => {
                 <h4 className="font-medium text-cream-300 mb-2">
                   {t.contact.openingHours}
                 </h4>
-                <p className="text-cream-200/70">
+                  <p className="text-cream-200/85">
                   <span className="font-medium">{t.contact.wineryTastingRoom}:</span>
                   <br />
                   {t.contact.hoursWeekend}

@@ -1,7 +1,8 @@
 "use server";
 
-import { db } from "@/lib/db";
+import { headers } from "next/headers";
 import { newsletterSubscribers } from "@/lib/db/schema";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { z } from "zod";
 
 const emailSchema = z.string().email();
@@ -10,6 +11,14 @@ export async function subscribeToNewsletter(
   _prevState: unknown,
   formData: FormData
 ): Promise<{ success: boolean; message: string }> {
+  const headerStore = await headers();
+  const rawIp = headerStore.get("x-forwarded-for");
+  const ip = rawIp?.split(",")[0]?.trim() ?? headerStore.get("x-real-ip") ?? "unknown";
+  const { allowed, retryAfterSecs } = checkRateLimit(ip);
+  if (!allowed) {
+    return { success: false, message: `Too many requests. Try again in ${retryAfterSecs} seconds.` };
+  }
+
   const email = formData.get("email");
   const parsed = emailSchema.safeParse(email);
 
@@ -18,6 +27,11 @@ export async function subscribeToNewsletter(
   }
 
   if (!process.env.DATABASE_URL) {
+    return { success: true, message: "You're subscribed! Welcome to the Kalchev family." };
+  }
+
+  const { db } = await import("@/lib/db");
+  if (!db) {
     return { success: true, message: "You're subscribed! Welcome to the Kalchev family." };
   }
 

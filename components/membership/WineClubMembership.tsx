@@ -118,6 +118,10 @@ const WineClubMembership = () => {
                   : "border-transparent hover:border-primary/30",
                 tier.recommended ? "md:scale-105" : ""
               )}
+              role="radio"
+              aria-checked={selectedTier === tier.id}
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedTier(tier.id); }}
               onClick={() => setSelectedTier(tier.id)}
             >
               {tier.recommended && (

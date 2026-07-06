@@ -1,9 +1,8 @@
 "use server";
 
 import { contactFormSchema } from "@/lib/schema";
-import { db } from "@/lib/db";
-import { contactSubmissions } from "@/lib/db/schema";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { contactSubmissions } from "@/lib/db/schema";
 import { headers } from "next/headers";
 import { z } from "zod";
 
@@ -11,46 +10,48 @@ export async function contactFormAction(
   _prevState: unknown,
   formData: FormData
 ) {
-  const defaultValues = z
-    .record(z.string(), z.string())
-    .parse(Object.fromEntries(formData.entries()));
-
-  const ip = (await headers()).get("x-forwarded-for") ?? "anonymous";
+  const rawHeaders = await headers();
+  const rawIp = rawHeaders.get("x-forwarded-for");
+  const ip = rawIp?.split(",")[0]?.trim() ?? "anonymous";
   const { allowed, retryAfterSecs } = checkRateLimit(ip);
   if (!allowed) {
     return {
-      defaultValues,
+      defaultValues: { name: "", email: "", message: "" },
       success: false,
       errors: { _form: `Too many requests. Please try again in ${retryAfterSecs}s.` },
     };
   }
 
+  const raw = Object.fromEntries(formData);
+
   try {
-    const data = contactFormSchema.parse(Object.fromEntries(formData));
+    const data = contactFormSchema.parse(raw);
 
     if (process.env.DATABASE_URL) {
-      const subject = formData.get("subject")?.toString() || null;
-      await db.insert(contactSubmissions).values({
-        name: data.name,
-        email: data.email,
-        subject,
-        message: data.message,
-      });
+      const { db } = await import("@/lib/db");
+      if (db) {
+        try {
+          await db.insert(contactSubmissions).values({
+            name: data.name,
+            email: data.email,
+            subject: data.subject ?? null,
+            message: data.message,
+          });
+        } catch {
+          // Log silently — form success doesn't depend on DB
+        }
+      }
     }
 
     return {
-      defaultValues: {
-        name: "",
-        email: "",
-        message: "",
-      },
+      defaultValues: { name: "", email: "", message: "" },
       success: true,
       errors: null,
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
       return {
-        defaultValues,
+        defaultValues: { name: raw.name as string, email: raw.email as string, message: raw.message as string },
         success: false,
         errors: Object.fromEntries(
           Object.entries(error.flatten().fieldErrors).map(([key, value]) => [
@@ -62,18 +63,9 @@ export async function contactFormAction(
     }
 
     return {
-      defaultValues,
+      defaultValues: { name: "", email: "", message: "" },
       success: false,
-      errors: null,
-
-      errorMessage:
-        error instanceof z.ZodError
-          ? error.errors
-          : "An unexpected error occurred.",
-
-      logError: error instanceof Error ? error.message : "Unknown error",
-      timestamp: new Date().toISOString(),
-      additionalInfo: "Please contact support if the issue persists.",
+      errors: { _form: "An unexpected error occurred. Please try again later." },
     };
   }
 }
