@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Locale, translations, Translations } from "./translations";
 
 type LocaleContextType = {
@@ -12,16 +12,19 @@ type LocaleContextType = {
 const LocaleContext = createContext<LocaleContextType | null>(null);
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("kalchev-locale") as Locale | null;
-    if (saved === "en" || saved === "mk" || saved === "gr") setLocaleState(saved);
-  }, []);
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    try {
+      const saved = typeof window !== "undefined" ? localStorage.getItem("kalchev-locale") : null;
+      if (saved === "en" || saved === "mk" || saved === "gr") return saved;
+    } catch {}
+    return "en";
+  });
 
   const setLocale = (l: Locale) => {
     setLocaleState(l);
-    localStorage.setItem("kalchev-locale", l);
+    try {
+      localStorage.setItem("kalchev-locale", l);
+    } catch {}
   };
 
   return (

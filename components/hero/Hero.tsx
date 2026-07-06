@@ -5,6 +5,11 @@ import { useLocale } from "@/lib/i18n/locale-context";
 
 const Hero = () => {
   const { t } = useLocale();
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="relative h-screen max-h-[70vh] md:max-h-screen w-full flex items-center justify-center text-white-100 overflow-hidden">
       <picture>
@@ -18,7 +23,7 @@ const Hero = () => {
         />
         <img
           src="/images/hero-background.avif"
-          alt={t.hero.smallTitle}
+          alt=""
           className="absolute inset-0 size-full object-cover"
           fetchPriority="high"
         />
@@ -38,12 +43,14 @@ const Hero = () => {
           <Button
             variant="default"
             className="mt-4 bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300"
+            onClick={() => scrollTo("wines")}
           >
             {t.hero.cta1}
           </Button>
           <Button
             variant="outline"
             className="mt-4 bg-transparent text-white-100 hover:bg-wineRed-100 hover:text-cream-100 hover:border-wineRed-100 transition-colors duration-300"
+            onClick={() => scrollTo("contact")}
           >
             {t.hero.cta2}
           </Button>

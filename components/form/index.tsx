@@ -56,7 +56,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
       <form onSubmit={(e) => { e.preventDefault(); formAction(new FormData(e.currentTarget)); }}>
         <CardContent className="flex flex-col gap-6">
           {state.success ? (
-            <p className="text-muted-foreground flex items-center gap-2 text-sm">
+            <p className="text-muted-foreground flex items-center gap-2 text-sm" role="status" aria-live="polite">
               <Check className="size-4" />
               {t.form.success}
             </p>

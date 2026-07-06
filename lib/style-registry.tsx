@@ -12,34 +12,27 @@ interface StyleRegistryProps {
  * Helps prevent "No link element found for chunk" errors
  */
 export function StyleRegistry({ children }: StyleRegistryProps) {
-  // Track if we're in the browser
-  const _isBrowser = typeof window !== "undefined";
-
   useEffect(() => {
-    if (_isBrowser) {
-      // Find any missing CSS chunks and ensure they load properly
-      const _missingChunks = document.querySelectorAll(
-        "link[data-missing-chunk]"
+    const missingChunks = document.querySelectorAll(
+      "link[data-missing-chunk]"
+    );
+
+    if (missingChunks.length > 0) {
+      console.debug(
+        `StyleRegistry: Found ${missingChunks.length} missing CSS chunks, reloading them`
       );
 
-      if (_missingChunks.length > 0) {
-        console.debug(
-          `StyleRegistry: Found ${_missingChunks.length} missing CSS chunks, reloading them`
-        );
-
-        _missingChunks.forEach((link) => {
-          const href = link.getAttribute("href");
-          if (href) {
-            // Force reload the CSS
-            const newLink = document.createElement("link");
-            newLink.rel = "stylesheet";
-            newLink.href = href;
-            document.head.appendChild(newLink);
-          }
-        });
-      }
+      missingChunks.forEach((link) => {
+        const href = link.getAttribute("href");
+        if (href) {
+          const newLink = document.createElement("link");
+          newLink.rel = "stylesheet";
+          newLink.href = href;
+          document.head.appendChild(newLink);
+        }
+      });
     }
-  }, [_isBrowser]);
+  }, []);
 
   return <>{children}</>;
 }

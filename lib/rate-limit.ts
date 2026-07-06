@@ -1,14 +1,26 @@
 const store = new Map<string, { count: number; resetAt: number }>();
 
-const WINDOW_MS = 60_000; // 1 minute
+const WINDOW_MS = 60_000;
 const MAX_REQUESTS = 3;
+let lastCleanup = Date.now();
 
-export function checkRateLimit(ip: string): { allowed: boolean; retryAfterSecs: number } {
+function maybeCleanup(): void {
   const now = Date.now();
-  const entry = store.get(ip);
+  if (now - lastCleanup < 300_000) return;
+  lastCleanup = now;
+  for (const [key, entry] of store) {
+    if (now > entry.resetAt) store.delete(key);
+  }
+}
+
+export function checkRateLimit(ip: string | null): { allowed: boolean; retryAfterSecs: number } {
+  maybeCleanup();
+  const now = Date.now();
+  const clientIp = ip ?? "unknown";
+  const entry = store.get(clientIp);
 
   if (!entry || now > entry.resetAt) {
-    store.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    store.set(clientIp, { count: 1, resetAt: now + WINDOW_MS });
     return { allowed: true, retryAfterSecs: 0 };
   }
 

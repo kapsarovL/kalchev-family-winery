@@ -1,12 +1,13 @@
 "use server";
 
-import { db } from "@/lib/db";
 import { wineInventory } from "@/lib/db/schema";
 import { WineStockStatus } from "@/types/wine";
 import { eq } from "drizzle-orm";
 
 export async function getStockStatus(wineId: number): Promise<WineStockStatus> {
   if (!process.env.DATABASE_URL) return "in-stock";
+  const { db } = await import("@/lib/db");
+  if (!db) return "in-stock";
   try {
     const [row] = await db.select().from(wineInventory).where(eq(wineInventory.wineId, wineId)).limit(1);
     if (!row) return "in-stock";
@@ -20,6 +21,8 @@ export async function getStockStatus(wineId: number): Promise<WineStockStatus> {
 
 export async function getAllStockStatuses(): Promise<Record<number, WineStockStatus>> {
   if (!process.env.DATABASE_URL) return {};
+  const { db } = await import("@/lib/db");
+  if (!db) return {};
   try {
     const rows = await db.select().from(wineInventory);
     return Object.fromEntries(
