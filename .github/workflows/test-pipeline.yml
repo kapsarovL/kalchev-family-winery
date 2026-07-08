@@ -9,11 +9,11 @@ on:
     branches: [main]
   schedule:
     # Nightly full run (full browser matrix, full E2E suite)
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
 
 concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true # don't waste CI minutes on superseded pushes
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true # don't waste CI minutes on superseded pushes
 
 jobs:
   lint-and-typecheck:
@@ -52,7 +52,7 @@ jobs:
       - name: Enforce coverage thresholds
         run: pnpm test:coverage-check
 
-# Integration tests - needs Docker for Testcontainers
+  # Integration tests - needs Docker for Testcontainers
   integration-tests:
     name: Integration Tests
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-          cache: pnpm 
+          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:integration
 
@@ -109,7 +109,7 @@ jobs:
       - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
       - run: pnpm test:e2e --project=${{ matrix.browser }}
         env:
-          FULL_BROWSER_MATRIX: 'true'
+          FULL_BROWSER_MATRIX: "true"
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v5
@@ -118,7 +118,7 @@ jobs:
           path: playwright-report/
           retention-days: 14
 
-# required status check for branch protection
+  # required status check for branch protection
   required-checks-passed:
     name: All Required Checks Passed
     runs-on: ubuntu-latest

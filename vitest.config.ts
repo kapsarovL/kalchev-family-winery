@@ -13,24 +13,12 @@ export default defineConfig({
       "components/**/*.{test,spec}.{ts,tsx}",
       "lib/**/*.{test,spec}.{ts,tsx}",
     ],
-    exclude: [
-      "**/node_modules/**",
-      "**/e2e/**",
-      "**/*.integration.{test,spec}.ts",
-    ],
+    exclude: ["**/node_modules/**", "**/e2e/**", "**/*.integration.{test,spec}.ts"],
     coverage: {
       provider: "v8",
       reporter: ["text", "html", "lcov"],
-      include: [
-        "lib/**",
-        "components/**",
-      ],
-      exclude: [
-        "**/*.d.ts",
-        "**/*.config.ts",
-        "**/types.ts",
-        "**/*.stories.tsx",
-      ],
+      include: ["lib/**", "components/**"],
+      exclude: ["**/*.d.ts", "**/*.config.ts", "**/types.ts", "**/*.stories.tsx"],
       thresholds: {
         lines: 0,
         branches: 0,

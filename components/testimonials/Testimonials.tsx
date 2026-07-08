@@ -46,16 +46,12 @@ const Testimonials = () => {
                     <Star
                       key={i}
                       className={`w-4 h-4 ${
-                        i < testimonial.rating
-                          ? "text-gold-100 fill-gold-100"
-                          : "text-cream-100/60"
+                        i < testimonial.rating ? "text-gold-100 fill-gold-100" : "text-cream-100/60"
                       }`}
                     />
                   ))}
                 </div>
-                <span className="text-sm text-deepBrown-100/60">
-                  {testimonial.rating}.0
-                </span>
+                <span className="text-sm text-deepBrown-100/60">{testimonial.rating}.0</span>
               </div>
 
               <p className="text-deepBrown-100/80 mb-4 italic">

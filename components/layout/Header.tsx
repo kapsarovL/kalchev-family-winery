@@ -47,16 +47,12 @@ const Header = () => {
 
       setTimeout(
         () => {
-          const headerHeight =
-            document.querySelector("header")?.offsetHeight || 0;
+          const headerHeight = document.querySelector("header")?.offsetHeight || 0;
           const offsetPosition =
-            element.getBoundingClientRect().top +
-            window.pageYOffset -
-            headerHeight -
-            20;
+            element.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         },
-        mobileMenuOpen ? 300 : 0
+        mobileMenuOpen ? 300 : 0,
       );
     }
   };
@@ -69,22 +65,12 @@ const Header = () => {
     });
   };
 
-  const NavLink = ({
-    sectionId,
-    children,
-  }: {
-    sectionId: string;
-    children: React.ReactNode;
-  }) => {
-    const isActive = sectionId === "home"
-      ? activeSection === ""
-      : activeSection === sectionId;
+  const NavLink = ({ sectionId, children }: { sectionId: string; children: React.ReactNode }) => {
+    const isActive = sectionId === "home" ? activeSection === "" : activeSection === sectionId;
     return (
       <button
         className={`relative transition-colors cursor-pointer text-left pb-0.5 ${
-          isActive
-            ? "text-cream-100 font-semibold"
-            : "text-wineRed-100 hover:text-cream-100"
+          isActive ? "text-cream-100 font-semibold" : "text-wineRed-100 hover:text-cream-100"
         }`}
         onClick={() => handleScrollToSection(sectionId)}
       >
@@ -149,40 +135,38 @@ const Header = () => {
         <motion.div
           className="hidden md:flex items-center gap-2 lg:gap-3"
           initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <button
+            onClick={() => setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")}
+            className="text-xs font-medium border border-deepBrown-100/90 rounded px-2 py-1 text-deepBrown-100/90 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
+            aria-label="Switch language"
           >
-            <button
-              onClick={() =>
-                setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")
-              }
-              className="text-xs font-medium border border-deepBrown-100/90 rounded px-2 py-1 text-deepBrown-100/90 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
-              aria-label="Switch language"
-            >
-              {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
-            </button>
-            <button
-              onClick={() => cartDispatch({ type: "SET_OPEN", open: true })}
-              className="relative text-deepBrown-100/90 hover:text-wineRed-100 transition-colors"
-              aria-label="Open cart"
-            >
-              <ShoppingCart size={22} />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-wineRed-100 text-white-100 text-xs w-4 h-4 rounded-full flex items-center justify-center font-medium">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-            <Button
-              variant="default"
-              size="sm"
-              className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300 whitespace-nowrap text-xs lg:text-sm"
-              onClick={handleBookTasting}
-            >
-              <Calendar className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1.5 lg:mr-2" />
-              {t.nav.bookTasting}
-            </Button>
-          </motion.div>
+            {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
+          </button>
+          <button
+            onClick={() => cartDispatch({ type: "SET_OPEN", open: true })}
+            className="relative text-deepBrown-100/90 hover:text-wineRed-100 transition-colors"
+            aria-label="Open cart"
+          >
+            <ShoppingCart size={22} />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-wineRed-100 text-white-100 text-xs w-4 h-4 rounded-full flex items-center justify-center font-medium">
+                {cartCount}
+              </span>
+            )}
+          </button>
+          <Button
+            variant="default"
+            size="sm"
+            className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300 whitespace-nowrap text-xs lg:text-sm"
+            onClick={handleBookTasting}
+          >
+            <Calendar className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1.5 lg:mr-2" />
+            {t.nav.bookTasting}
+          </Button>
+        </motion.div>
 
         {/* Mobile menu button */}
         {isMobile && (
@@ -201,68 +185,64 @@ const Header = () => {
       <AnimatePresence>
         {isMobile && mobileMenuOpen && (
           <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="md:hidden bg-white-100/10 backdrop-blur-lg border-t border-cream-200/20 px-4 py-4 flex flex-col gap-4"
-        >
-          {(
-            [
-              "home",
-              "about",
-              "wines",
-              "experience",
-              "testimonials",
-              "wine-club",
-              "gift-packages",
-              "contact",
-            ] as const
-          ).map((id) => {
-            const label: Record<string, string> = {
-              home: t.nav.home,
-              about: t.nav.about,
-              wines: t.nav.wines,
-              experience: t.nav.experience,
-              testimonials: t.nav.testimonials,
-              "wine-club": t.nav.wineClub,
-              "gift-packages": t.nav.giftPackages,
-              contact: t.nav.contact,
-            };
-            return (
-              <button
-                key={id}
-                className={`text-left transition-colors ${
-                  activeSection === id
-                    ? "text-wineRed-100 font-semibold"
-                    : "text-deepBrown-100/90 hover:text-wineRed-100"
-                }`}
-                onClick={() => handleScrollToSection(id)}
-              >
-                {label[id]}
-              </button>
-            );
-          })}
-          <div className="flex items-center gap-3 mt-1">
-          <button
-            onClick={() =>
-              setLocale(
-                locale === "en" ? "mk" : locale === "mk" ? "gr" : "en"
-              )
-            }
-            className="text-xs font-medium border border-deepBrown-100/30 rounded px-2 py-1 text-deepBrown-100/70 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
-            aria-label="Switch language"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden bg-white-100/10 backdrop-blur-lg border-t border-cream-200/20 px-4 py-4 flex flex-col gap-4"
           >
-            {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
-          </button>
-            <Button
-              size="sm"
-              className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors flex-1"
-              onClick={handleBookTasting}
-            >
-              <Calendar className="h-4 w-4 mr-2" />
-              {t.nav.bookTasting}
-            </Button>
-          </div>
+            {(
+              [
+                "home",
+                "about",
+                "wines",
+                "experience",
+                "testimonials",
+                "wine-club",
+                "gift-packages",
+                "contact",
+              ] as const
+            ).map((id) => {
+              const label: Record<string, string> = {
+                home: t.nav.home,
+                about: t.nav.about,
+                wines: t.nav.wines,
+                experience: t.nav.experience,
+                testimonials: t.nav.testimonials,
+                "wine-club": t.nav.wineClub,
+                "gift-packages": t.nav.giftPackages,
+                contact: t.nav.contact,
+              };
+              return (
+                <button
+                  key={id}
+                  className={`text-left transition-colors ${
+                    activeSection === id
+                      ? "text-wineRed-100 font-semibold"
+                      : "text-deepBrown-100/90 hover:text-wineRed-100"
+                  }`}
+                  onClick={() => handleScrollToSection(id)}
+                >
+                  {label[id]}
+                </button>
+              );
+            })}
+            <div className="flex items-center gap-3 mt-1">
+              <button
+                onClick={() => setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")}
+                className="text-xs font-medium border border-deepBrown-100/30 rounded px-2 py-1 text-deepBrown-100/70 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
+                aria-label="Switch language"
+              >
+                {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
+              </button>
+              <Button
+                size="sm"
+                className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors flex-1"
+                onClick={handleBookTasting}
+              >
+                <Calendar className="h-4 w-4 mr-2" />
+                {t.nav.bookTasting}
+              </Button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

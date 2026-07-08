@@ -6,10 +6,7 @@ import { contactSubmissions } from "@/lib/db/schema";
 import { headers } from "next/headers";
 import { z } from "zod";
 
-export async function contactFormAction(
-  _prevState: unknown,
-  formData: FormData
-) {
+export async function contactFormAction(_prevState: unknown, formData: FormData) {
   const rawHeaders = await headers();
   const rawIp = rawHeaders.get("x-forwarded-for");
   const ip = rawIp?.split(",")[0]?.trim() ?? "anonymous";
@@ -51,13 +48,17 @@ export async function contactFormAction(
   } catch (error) {
     if (error instanceof z.ZodError) {
       return {
-        defaultValues: { name: raw.name as string, email: raw.email as string, message: raw.message as string },
+        defaultValues: {
+          name: raw.name as string,
+          email: raw.email as string,
+          message: raw.message as string,
+        },
         success: false,
         errors: Object.fromEntries(
           Object.entries(error.flatten().fieldErrors).map(([key, value]) => [
             key,
             value?.join(", "),
-          ])
+          ]),
         ),
       };
     }

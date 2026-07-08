@@ -18,7 +18,10 @@ import { contactFormAction } from "@/lib/actions";
 import { Check } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
 
-export function Form({ className, onSuccess }: React.ComponentProps<typeof Card> & { onSuccess?: () => void }) {
+export function Form({
+  className,
+  onSuccess,
+}: React.ComponentProps<typeof Card> & { onSuccess?: () => void }) {
   const { t } = useLocale();
   const [subject, setSubject] = React.useState("");
   const [pending, setPending] = React.useState(false);
@@ -49,22 +52,26 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
     <Card className={cn("w-full max-w-md bg-wineRed-200", className)}>
       <CardHeader>
         <CardTitle className="text-cream-300">{t.form.heading}</CardTitle>
-        <CardDescription className="text-cream-100/80">
-          {t.form.subtitle}
-        </CardDescription>
+        <CardDescription className="text-cream-100/80">{t.form.subtitle}</CardDescription>
       </CardHeader>
-      <form onSubmit={(e) => { e.preventDefault(); formAction(new FormData(e.currentTarget)); }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          formAction(new FormData(e.currentTarget));
+        }}
+      >
         <CardContent className="flex flex-col gap-6">
           {state.success ? (
-            <p className="text-muted-foreground flex items-center gap-2 text-sm" role="status" aria-live="polite">
+            <p
+              className="text-muted-foreground flex items-center gap-2 text-sm"
+              role="status"
+              aria-live="polite"
+            >
               <Check className="size-4" />
               {t.form.success}
             </p>
           ) : null}
-          <div
-            className="group/field grid gap-2"
-            data-invalid={!!state.errors?.name}
-          >
+          <div className="group/field grid gap-2" data-invalid={!!state.errors?.name}>
             <Label
               htmlFor="name"
               className="group-data-[invalid=true]/field:text-cream-100/80 text-cream-300"
@@ -88,10 +95,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
               </p>
             )}
           </div>
-          <div
-            className="group/field grid gap-2"
-            data-invalid={!!state.errors?.email}
-          >
+          <div className="group/field grid gap-2" data-invalid={!!state.errors?.email}>
             <Label
               htmlFor="email"
               className="group-data-[invalid=true]/field:text-destructive text-cream-300"
@@ -115,15 +119,9 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
               </p>
             )}
           </div>
-          <div
-            className="group/field grid gap-2"
-            data-invalid={!!state.errors?.message}
-          >
+          <div className="group/field grid gap-2" data-invalid={!!state.errors?.message}>
             <div className="mb-6">
-              <label
-                htmlFor="subject"
-                className="block text-sm font-medium mb-1 text-cream-300"
-              >
+              <label htmlFor="subject" className="block text-sm font-medium mb-1 text-cream-300">
                 {t.form.subject} *
               </label>
               <select

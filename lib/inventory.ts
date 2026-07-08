@@ -9,7 +9,11 @@ export async function getStockStatus(wineId: number): Promise<WineStockStatus> {
   const { db } = await import("@/lib/db");
   if (!db) return "in-stock";
   try {
-    const [row] = await db.select().from(wineInventory).where(eq(wineInventory.wineId, wineId)).limit(1);
+    const [row] = await db
+      .select()
+      .from(wineInventory)
+      .where(eq(wineInventory.wineId, wineId))
+      .limit(1);
     if (!row) return "in-stock";
     if (row.stock === 0) return "pre-order";
     if (row.stock <= 10) return "limited";
@@ -26,7 +30,10 @@ export async function getAllStockStatuses(): Promise<Record<number, WineStockSta
   try {
     const rows = await db.select().from(wineInventory);
     return Object.fromEntries(
-      rows.map((r) => [r.wineId, r.stock === 0 ? "pre-order" : r.stock <= 10 ? "limited" : "in-stock"])
+      rows.map((r) => [
+        r.wineId,
+        r.stock === 0 ? "pre-order" : r.stock <= 10 ? "limited" : "in-stock",
+      ]),
     );
   } catch {
     return {};

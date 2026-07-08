@@ -31,7 +31,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
         threshold: 0.15,
         // Margin to trigger earlier (negative value) or later (positive value)
         rootMargin: "0px 0px -50px 0px",
-      }
+      },
     );
 
     if (sectionRef.current) {

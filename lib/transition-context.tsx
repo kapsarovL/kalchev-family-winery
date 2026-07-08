@@ -11,13 +11,9 @@ type TransitionContextType = {
   _setExitAnimation: (exit: boolean) => void;
 };
 
-const TransitionContext = createContext<TransitionContextType | undefined>(
-  undefined
-);
+const TransitionContext = createContext<TransitionContextType | undefined>(undefined);
 
-export const TransitionProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const TransitionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [_isAnimating, _setIsAnimating] = useState(false);
   const [_previousPath, _setPreviousPath] = useState("/");
   const [_exitAnimation, _setExitAnimation] = useState(false);
@@ -41,9 +37,7 @@ export const TransitionProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useTransitionContext = (): TransitionContextType => {
   const context = useContext(TransitionContext);
   if (context === undefined) {
-    throw new Error(
-      "useTransitionContext must be used within a TransitionProvider"
-    );
+    throw new Error("useTransitionContext must be used within a TransitionProvider");
   }
   return context;
 };

@@ -126,12 +126,8 @@ const WineGallery = () => {
 
         {filteredWines.length === 0 && (
           <div className="text-center py-12">
-            <h3 className="text-xl font-medium text-deepBrown-100 mb-2">
-              {t.wines.noResults}
-            </h3>
-            <p className="text-deepBrown-100/60">
-              {t.wines.noResultsSub}
-            </p>
+            <h3 className="text-xl font-medium text-deepBrown-100 mb-2">{t.wines.noResults}</h3>
+            <p className="text-deepBrown-100/60">{t.wines.noResultsSub}</p>
           </div>
         )}
       </div>

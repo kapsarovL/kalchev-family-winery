@@ -16,7 +16,10 @@ const cards = [
 const WineryExperience = () => {
   const { t } = useLocale();
   return (
-    <section id="experience" className="relative overflow-hidden py-12 md:py-24 min-h-[500px] sm:min-h-[600px] md:min-h-[750px] lg:min-h-[850px]">
+    <section
+      id="experience"
+      className="relative overflow-hidden py-12 md:py-24 min-h-[500px] sm:min-h-[600px] md:min-h-[750px] lg:min-h-[850px]"
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-cream-100/60 via-cream-100/20 to-cream-200/40" />
       <div className="absolute top-0 right-0 size-48 md:size-72 lg:size-96 bg-wineRed-100/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 size-36 md:size-56 lg:size-72 bg-gold-100/10 rounded-full blur-3xl" />

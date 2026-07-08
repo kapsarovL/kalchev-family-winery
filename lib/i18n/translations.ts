@@ -223,7 +223,7 @@ export const translations = {
     cookieConsent: {
       title: "We Value Your Privacy",
       message:
-        "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking \"Accept All\", you consent to our use of cookies.",
+        'We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.',
       accept: "Accept All",
       reject: "Decline",
       settings: "Cookie Settings",
@@ -231,14 +231,11 @@ export const translations = {
       dialogDesc:
         "Customize which cookies you allow. Essential cookies are always enabled for the site to function properly.",
       essential: "Essential",
-      essentialDesc:
-        "Required for the website to function. Cannot be disabled.",
+      essentialDesc: "Required for the website to function. Cannot be disabled.",
       analytics: "Analytics",
-      analyticsDesc:
-        "Help us understand how visitors interact with our site.",
+      analyticsDesc: "Help us understand how visitors interact with our site.",
       marketing: "Marketing",
-      marketingDesc:
-        "Used to deliver relevant ads and track campaign performance.",
+      marketingDesc: "Used to deliver relevant ads and track campaign performance.",
       save: "Save Preferences",
     },
     features: {
@@ -349,8 +346,7 @@ export const translations = {
       card2Desc:
         "Прошетајте низ нашите живописни лозја и дознајте за нашите одржливи практики и единствен тероар.",
       card3Title: "Храна и вино",
-      card3Desc:
-        "Уживајте во локални специјалитети совршено комбинирани со нашите вина.",
+      card3Desc: "Уживајте во локални специјалитети совршено комбинирани со нашите вина.",
       card4Title: "Специјални настани",
       card4Desc:
         "Од прослави на берба до тематски вечери, нашите сезонски настани нудат уникатни вински доживувања.",
@@ -465,8 +461,7 @@ export const translations = {
       disclaimer: "Без спам. Откажете се во секое време.",
     },
     footer: {
-      tagline:
-        "Премиум вина создадени со страст и традиција во Богданци од 1932 година.",
+      tagline: "Премиум вина создадени со страст и традиција во Богданци од 1932 година.",
       explore: "Истражи",
       aboutUs: "За нас",
       ourWines: "Нашите вина",
@@ -488,7 +483,7 @@ export const translations = {
     cookieConsent: {
       title: "Ја цениме вашата приватност",
       message:
-        "Користиме колачиња за да го подобриме вашето искуство, да го анализираме сообраќајот и да го персонализираме содржината. Со кликнување на \"Прифати ги сите\", се согласувате со употребата на колачиња.",
+        'Користиме колачиња за да го подобриме вашето искуство, да го анализираме сообраќајот и да го персонализираме содржината. Со кликнување на "Прифати ги сите", се согласувате со употребата на колачиња.',
       accept: "Прифати ги сите",
       reject: "Одбиј",
       settings: "Подесувања за колачиња",
@@ -496,14 +491,11 @@ export const translations = {
       dialogDesc:
         "Прилагодете кои колачиња ги дозволувате. Суштинските колачиња се секогаш вклучени за правилно функционирање на страницата.",
       essential: "Суштински",
-      essentialDesc:
-        "Потребни за функционирање на веб-страницата. Не може да се исклучат.",
+      essentialDesc: "Потребни за функционирање на веб-страницата. Не може да се исклучат.",
       analytics: "Аналитика",
-      analyticsDesc:
-        "Помагаат да разбереме како посетителите комуницираат со нашата страница.",
+      analyticsDesc: "Помагаат да разбереме како посетителите комуницираат со нашата страница.",
       marketing: "Маркетинг",
-      marketingDesc:
-        "Се користат за прикажување релевантни реклами и следење на кампањи.",
+      marketingDesc: "Се користат за прикажување релевантни реклами и следење на кампањи.",
       save: "Зачувај преференци",
     },
     features: {
@@ -643,8 +635,7 @@ export const translations = {
       tier1Feature1: "Μηνιαία παράδοση κρασιού",
       tier1Feature2: "Αποκλειστικές εκπτώσεις μελών",
       tier2Name: "Premium συνδρομή",
-      tier2Desc:
-        "Αποκτήστε premium κρασιά και αποκλειστική πρόσβαση σε εκδηλώσεις.",
+      tier2Desc: "Αποκτήστε premium κρασιά και αποκλειστική πρόσβαση σε εκδηλώσεις.",
       tier2Feature1: "Μηνιαία premium παράδοση κρασιού",
       tier2Feature2: "Πρόσβαση σε αποκλειστικές εκδηλώσεις",
       tier2Feature3: "Εξατομικευμένες προτάσεις κρασιού",
@@ -703,8 +694,7 @@ export const translations = {
       hoursWeekend: "Τετάρτη - Κυριακή: 10:00 π.μ. - 6:00 μ.μ.",
       hoursClosed: "Δευτέρα - Τρίτη: Κλειστά",
       sendMessage: "Στείλτε μας μήνυμα",
-      success:
-        "Σας ευχαριστούμε για το μήνυμά σας! Θα επικοινωνήσουμε σύντομα.",
+      success: "Σας ευχαριστούμε για το μήνυμά σας! Θα επικοινωνήσουμε σύντομα.",
     },
     form: {
       heading: "Πώς μπορούμε να βοηθήσουμε;",
@@ -755,7 +745,7 @@ export const translations = {
     cookieConsent: {
       title: "Εκτιμούμε το απόρρητό σας",
       message:
-        "Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία περιήγησής σας, να αναλύουμε την επισκεψιμότητα και να εξατομικεύουμε το περιεχόμενο. Κάνοντας κλικ στο \"Αποδοχή όλων\", συναινείτε στη χρήση των cookies.",
+        'Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία περιήγησής σας, να αναλύουμε την επισκεψιμότητα και να εξατομικεύουμε το περιεχόμενο. Κάνοντας κλικ στο "Αποδοχή όλων", συναινείτε στη χρήση των cookies.',
       accept: "Αποδοχή όλων",
       reject: "Απόρριψη",
       settings: "Ρυθμίσεις cookies",
@@ -763,8 +753,7 @@ export const translations = {
       dialogDesc:
         "Προσαρμόστε ποια cookies επιτρέπετε. Τα απαραίτητα cookies είναι πάντα ενεργά για τη σωστή λειτουργία του ιστότοπου.",
       essential: "Απαραίτητα",
-      essentialDesc:
-        "Απαραίτητα για τη λειτουργία του ιστότοπου. Δεν μπορούν να απενεργοποιηθούν.",
+      essentialDesc: "Απαραίτητα για τη λειτουργία του ιστότοπου. Δεν μπορούν να απενεργοποιηθούν.",
       analytics: "Αναλυτικά",
       analyticsDesc:
         "Μας βοηθούν να κατανοήσουμε πώς οι επισκέπτες αλληλεπιδρούν με τον ιστότοπό μας.",

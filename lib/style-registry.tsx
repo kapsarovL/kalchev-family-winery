@@ -13,13 +13,11 @@ interface StyleRegistryProps {
  */
 export function StyleRegistry({ children }: StyleRegistryProps) {
   useEffect(() => {
-    const missingChunks = document.querySelectorAll(
-      "link[data-missing-chunk]"
-    );
+    const missingChunks = document.querySelectorAll("link[data-missing-chunk]");
 
     if (missingChunks.length > 0) {
       console.debug(
-        `StyleRegistry: Found ${missingChunks.length} missing CSS chunks, reloading them`
+        `StyleRegistry: Found ${missingChunks.length} missing CSS chunks, reloading them`,
       );
 
       missingChunks.forEach((link) => {

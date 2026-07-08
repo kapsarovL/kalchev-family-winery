@@ -9,14 +9,17 @@ const emailSchema = z.string().email();
 
 export async function subscribeToNewsletter(
   _prevState: unknown,
-  formData: FormData
+  formData: FormData,
 ): Promise<{ success: boolean; message: string }> {
   const headerStore = await headers();
   const rawIp = headerStore.get("x-forwarded-for");
   const ip = rawIp?.split(",")[0]?.trim() ?? headerStore.get("x-real-ip") ?? "unknown";
   const { allowed, retryAfterSecs } = checkRateLimit(ip);
   if (!allowed) {
-    return { success: false, message: `Too many requests. Try again in ${retryAfterSecs} seconds.` };
+    return {
+      success: false,
+      message: `Too many requests. Try again in ${retryAfterSecs} seconds.`,
+    };
   }
 
   const email = formData.get("email");
@@ -36,10 +39,7 @@ export async function subscribeToNewsletter(
   }
 
   try {
-    await db
-      .insert(newsletterSubscribers)
-      .values({ email: parsed.data })
-      .onConflictDoNothing();
+    await db.insert(newsletterSubscribers).values({ email: parsed.data }).onConflictDoNothing();
 
     return { success: true, message: "You're subscribed! Welcome to the Kalchev family." };
   } catch {

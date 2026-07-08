@@ -21,9 +21,7 @@ const WineGiftPackages = () => {
             {p.heading}
           </h2>
           <div className="section-underline mx-auto" />
-          <p className="text-deepBrown-100/80 max-w-2xl mx-auto mt-4 font-inter">
-            {p.subtitle}
-          </p>
+          <p className="text-deepBrown-100/80 max-w-2xl mx-auto mt-4 font-inter">{p.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start">
@@ -43,18 +41,17 @@ const WineGiftPackages = () => {
               <h3 className="text-2xl md:text-3xl font-playfair font-bold text-deepBrown-100">
                 {p.packageName}
               </h3>
-              <p className="text-deepBrown-100/80 font-inter leading-relaxed">
-                {p.packageDesc}
-              </p>
+              <p className="text-deepBrown-100/80 font-inter leading-relaxed">{p.packageDesc}</p>
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-lg font-playfair font-semibold text-wineRed-100">
-                {p.includes}
-              </h4>
+              <h4 className="text-lg font-playfair font-semibold text-wineRed-100">{p.includes}</h4>
               <ul className="space-y-3">
                 {p.items.map((item: string, i: number) => (
-                  <li key={i} className="flex items-start gap-3 text-deepBrown-100/80 font-inter justify-center lg:justify-start">
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-deepBrown-100/80 font-inter justify-center lg:justify-start"
+                  >
                     <span className="mt-1.5 size-2 rounded-full bg-gold-100 flex-shrink-0" />
                     {item}
                   </li>
@@ -62,9 +59,7 @@ const WineGiftPackages = () => {
               </ul>
             </div>
 
-            <div className="text-3xl font-bold text-wineRed-100 font-playfair">
-              {p.price}
-            </div>
+            <div className="text-3xl font-bold text-wineRed-100 font-playfair">{p.price}</div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button className="bg-wineRed-200 hover:bg-wineRed-100 text-cream-100 px-10 py-6 text-base">

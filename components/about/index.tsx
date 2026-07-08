@@ -29,23 +29,17 @@ const AboutPage = () => {
               {t.about.heading}
             </h2>
             <p className="text-lg text-cream-100/90 mb-4">{t.about.p1}</p>
-            <h3 className="text-2xl font-serif font-bold text-gold-100">
-              {t.about.sub1}
-            </h3>
+            <h3 className="text-2xl font-serif font-bold text-gold-100">{t.about.sub1}</h3>
             <p className="text-lg text-cream-100/90 mb-4">{t.about.p2}</p>
             <p className="text-lg text-cream-100/90 mb-4">{t.about.p3}</p>
             <div className="mt-8 flex flex-wrap gap-6 sm:gap-8">
               <div>
-                <h3 className="text-2xl font-serif font-bold text-gold-100">
-                  {t.about.stat1}
-                </h3>
+                <h3 className="text-2xl font-serif font-bold text-gold-100">{t.about.stat1}</h3>
                 <p className="text-cream-100/80">{t.about.stat1Desc}</p>
               </div>
               {stat2 ? (
                 <div>
-                  <h3 className="text-2xl font-serif font-bold text-gold-100">
-                    {stat2}
-                  </h3>
+                  <h3 className="text-2xl font-serif font-bold text-gold-100">{stat2}</h3>
                   <p className="text-cream-100/80">{stat2Desc}</p>
                 </div>
               ) : null}

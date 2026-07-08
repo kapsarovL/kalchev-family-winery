@@ -52,7 +52,7 @@ const CookieConsent = () => {
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px 200px 0px" }
+      { rootMargin: "0px 0px 200px 0px" },
     );
 
     const footer = document.querySelector("footer");
@@ -132,9 +132,7 @@ const CookieConsent = () => {
                   />
                   <div
                     className={`size-4 rounded flex items-center justify-center transition-colors ${
-                      preferences[key]
-                        ? "bg-gold-100"
-                        : "bg-transparent border border-cream-100/30"
+                      preferences[key] ? "bg-gold-100" : "bg-transparent border border-cream-100/30"
                     } ${alwaysOn ? "border-cream-100/10" : ""}`}
                   >
                     {preferences[key] && <Check size={12} className="text-deepBrown-200" />}

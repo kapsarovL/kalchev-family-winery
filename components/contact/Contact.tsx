@@ -59,18 +59,14 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-cream-300">{t.contact.email}</h4>
                     <p className="text-cream-200/85">info@kalchevwinery.com</p>
-                    <p className="text-cream-200/85">
-                      orders@kalchevwinery.com
-                    </p>
+                    <p className="text-cream-200/85">orders@kalchevwinery.com</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8">
-                <h4 className="font-medium text-cream-300 mb-2">
-                  {t.contact.openingHours}
-                </h4>
-                  <p className="text-cream-200/85">
+                <h4 className="font-medium text-cream-300 mb-2">{t.contact.openingHours}</h4>
+                <p className="text-cream-200/85">
                   <span className="font-medium">{t.contact.wineryTastingRoom}:</span>
                   <br />
                   {t.contact.hoursWeekend}
@@ -91,9 +87,7 @@ const Contact = () => {
             {formSubmitted && (
               <div className="mb-6 bg-wineRed-100/10 p-4 rounded-md border border-wineRed-100/20 flex items-center">
                 <Check className="w-5 h-5 text-wineRed-100 mr-2" />
-                <p className="text-wineRed-100">
-                  {t.contact.success}
-                </p>
+                <p className="text-wineRed-100">{t.contact.success}</p>
               </div>
             )}
           </div>

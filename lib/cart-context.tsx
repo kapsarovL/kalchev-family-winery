@@ -11,11 +11,13 @@ const cartItemSchema = z.object({
     id: z.number(),
     price: z.string(),
     image: z.string(),
-    translations: z.record(z.object({
-      name: z.string(),
-      description: z.string(),
-      type: z.string(),
-    })),
+    translations: z.record(
+      z.object({
+        name: z.string(),
+        description: z.string(),
+        type: z.string(),
+      }),
+    ),
   }),
   quantity: z.number(),
 });
@@ -40,7 +42,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         isOpen: true,
         items: existing
           ? state.items.map((i) =>
-              i.wine.id === action.wine.id ? { ...i, quantity: i.quantity + action.quantity } : i
+              i.wine.id === action.wine.id ? { ...i, quantity: i.quantity + action.quantity } : i,
             )
           : [...state.items, { wine: action.wine, quantity: action.quantity }],
       };
@@ -54,7 +56,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
           action.quantity <= 0
             ? state.items.filter((i) => i.wine.id !== action.id)
             : state.items.map((i) =>
-                i.wine.id === action.id ? { ...i, quantity: action.quantity } : i
+                i.wine.id === action.id ? { ...i, quantity: action.quantity } : i,
               ),
       };
     case "CLEAR":

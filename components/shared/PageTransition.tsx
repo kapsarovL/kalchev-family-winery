@@ -58,14 +58,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
     if (pathname !== null) {
       setPreviousPath(pathname);
     }
-  }, [
-    pathname,
-    previousPath,
-    isAnimating,
-    setIsAnimating,
-    setPreviousPath,
-    setExitAnimation,
-  ]);
+  }, [pathname, previousPath, isAnimating, setIsAnimating, setPreviousPath, setExitAnimation]);
 
   // If exitAnimation is true, it means a link was clicked and we should animate out
   useEffect(() => {

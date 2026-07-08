@@ -23,11 +23,7 @@ interface WineDetailDialogProps {
   onClose: () => void;
 }
 
-const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
-  wine,
-  isOpen,
-  onClose,
-}) => {
+const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClose }) => {
   // Get the appropriate badge color based on wine type
   const _getBadgeColor = (type: string) => {
     switch (type) {
@@ -71,7 +67,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
             <Badge
               variant="secondary"
               className={`absolute top-4 left-4 ${_getBadgeColor(
-                wine.translations[locale].type
+                wine.translations[locale].type,
               )} font-medium`}
             >
               {wine.translations[locale].type}
@@ -91,16 +87,14 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
 
             <div className="flex-grow">
               <div className="mb-6">
-                  <h4 className="text-lg font-medium text-gold-100 mb-2">
-                    {t.detail.tastingNotes}
-                  </h4>
-                  <p className="text-cream-100/80">{wine.translations[locale].description}</p>
+                <h4 className="text-lg font-medium text-gold-100 mb-2">{t.detail.tastingNotes}</h4>
+                <p className="text-cream-100/80">{wine.translations[locale].description}</p>
               </div>
 
               <div className="mb-6">
-                  <h4 className="text-lg font-medium text-gold-100 mb-3">
-                    {t.detail.perfectPairings}
-                  </h4>
+                <h4 className="text-lg font-medium text-gold-100 mb-3">
+                  {t.detail.perfectPairings}
+                </h4>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2 text-cream-100/80">
                     <UtensilsCrossed size={15} className="mt-0.5 flex-shrink-0 text-gold-100" />
@@ -108,7 +102,9 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
                   </div>
                   <div className="flex items-center gap-2 text-cream-100/80">
                     <Thermometer size={15} className="flex-shrink-0 text-gold-100" />
-                    <span>{t.detail.serveAt} {pairing.temperature}</span>
+                    <span>
+                      {t.detail.serveAt} {pairing.temperature}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-cream-100/80">
                     <WineGlass size={15} className="flex-shrink-0 text-gold-100" />
@@ -118,20 +114,14 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({
               </div>
 
               <div className="mb-6">
-                  <h4 className="text-lg font-medium text-gold-100 mb-2">
-                    {t.detail.winemaking}
-                  </h4>
-                <p className="text-cream-100/80">
-                  {t.detail.winemakingDesc}
-                </p>
+                <h4 className="text-lg font-medium text-gold-100 mb-2">{t.detail.winemaking}</h4>
+                <p className="text-cream-100/80">{t.detail.winemakingDesc}</p>
               </div>
             </div>
 
             <div className="mt-auto pt-4 border-t border-cream-200">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-2xl font-bold text-cream-300">
-                  {wine.price}
-                </span>
+                <span className="text-2xl font-bold text-cream-300">{wine.price}</span>
                 <span className="text-cream-100/60">{t.detail.inStock}</span>
               </div>
 
