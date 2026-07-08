@@ -47,7 +47,7 @@ const Footer = () => {
 
       {/* Newsletter band */}
       <div className="border-b border-cream-100/10">
-        <div className="container mx-auto px-4 py-10">
+        <div className="container mx-auto px-4 py-8 md:py-10">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-16">
             <div className="flex-shrink-0 max-w-sm">
               <p className="text-xs font-inter uppercase tracking-widest text-gold-100 mb-1">{t.newsletter.stayInLoop}</p>
@@ -66,8 +66,8 @@ const Footer = () => {
       </div>
 
       {/* Main columns */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
 
           {/* Brand */}
           <div className="lg:col-span-1">

@@ -13,7 +13,7 @@ const WineGiftPackages = () => {
   return (
     <section
       id="gift-packages"
-      className="relative overflow-hidden bg-gradient-to-b from-cream-100/40 to-cream-200/20 py-20 md:py-32"
+      className="relative overflow-hidden bg-gradient-to-b from-cream-100/40 to-cream-200/20 py-12 md:py-32"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-14 md:mb-20">
@@ -27,7 +27,7 @@ const WineGiftPackages = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <div className="relative aspect-square max-w-lg w-full mt-12">
+          <div className="relative aspect-square max-w-lg w-full mt-6 md:mt-12">
             <div className="absolute inset-0 bg-gradient-to-br from-wineRed-100/10 to-gold-100/10 rounded-3xl" />
             <Image
               src={packageImg}
@@ -38,7 +38,7 @@ const WineGiftPackages = () => {
             />
           </div>
 
-          <div className="space-y-10 max-w-xl ml-auto mt-12">
+          <div className="space-y-10 max-w-xl lg:ml-auto mx-auto mt-6 md:mt-12 text-center lg:text-left">
             <div className="space-y-4 mb-10">
               <h3 className="text-2xl md:text-3xl font-playfair font-bold text-deepBrown-100">
                 {p.packageName}
@@ -54,7 +54,7 @@ const WineGiftPackages = () => {
               </h4>
               <ul className="space-y-3">
                 {p.items.map((item: string, i: number) => (
-                  <li key={i} className="flex items-start gap-3 text-deepBrown-100/80 font-inter">
+                  <li key={i} className="flex items-start gap-3 text-deepBrown-100/80 font-inter justify-center lg:justify-start">
                     <span className="mt-1.5 size-2 rounded-full bg-gold-100 flex-shrink-0" />
                     {item}
                   </li>
@@ -66,7 +66,7 @@ const WineGiftPackages = () => {
               {p.price}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button className="bg-wineRed-200 hover:bg-wineRed-100 text-cream-100 px-10 py-6 text-base">
                 <Gift className="size-5 mr-2" />
                 {p.cta}
@@ -80,7 +80,7 @@ const WineGiftPackages = () => {
               </Button>
             </div>
 
-            <div className="flex flex-wrap gap-6 pt-6 border-t border-cream-200">
+            <div className="flex flex-wrap gap-6 pt-6 border-t border-cream-200 justify-center lg:justify-start">
               <span className="flex items-center gap-2 text-sm text-deepBrown-100/60 font-inter">
                 <Truck className="size-4 text-gold-100" />
                 {p.freeShipping}

@@ -13,9 +13,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-cream-200">
+    <section id="contact" className="py-12 md:py-24 bg-cream-200">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-200 mb-4">
             {t.contact.heading}
           </h2>
@@ -24,8 +24,8 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="flex justify-center items-center w-full flex-col lg:flex-row gap-24">
-          <div className=" lg:w-2/3">
+        <div className="flex justify-center items-center w-full flex-col lg:flex-row gap-12 lg:gap-24">
+          <div className="w-full lg:w-2/3">
             <h3 className="text-2xl font-playfair font-bold text-wineRed-200 mb-6">
               {t.contact.contactInfo}
             </h3>

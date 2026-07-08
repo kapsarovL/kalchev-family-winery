@@ -91,7 +91,7 @@ const WineClubMembership = () => {
           <p className="text-deepBrown-100/80 max-w-2xl mx-auto mb-4 font-inter">
             {t.club.subtitle}
           </p>
-          <div className="flex items-center justify-center gap-6 mt-10 mb-14">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-10 mb-14">
             <span className="flex items-center text-deepBrown-100/80">
               <Calendar className="w-5 h-5 mr-2 text-wineRed-100" />
               {t.club.cancelAnytime}

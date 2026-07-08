@@ -29,7 +29,7 @@ const Hero = () => {
         />
       </picture>
       <div className="absolute inset-0 bg-[rgba(0,0,0,0.06)]" />
-      <div className="flex flex-col max-w-3xl text-center font-inter justify-center text-cream-200 items-center mx-auto px-1 mb-10 md:mb-32 z-10">
+      <div className="flex flex-col max-w-3xl text-center font-inter justify-center text-cream-200 items-center mx-auto px-4 mb-10 md:mb-32 z-10">
         <small className="font-semibold text-xl text-wineRed-100">
           {t.hero.smallTitle}
         </small>
@@ -39,17 +39,17 @@ const Hero = () => {
         <p className="text-lg md:text-xl max-w-xl text-cream-200">
           {t.hero.paragraph}
         </p>
-        <div className="space-x-4">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6">
           <Button
             variant="default"
-            className="mt-4 bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300"
+            className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300"
             onClick={() => scrollTo("wines")}
           >
             {t.hero.cta1}
           </Button>
           <Button
             variant="outline"
-            className="mt-4 bg-transparent text-white-100 hover:bg-wineRed-100 hover:text-cream-100 hover:border-wineRed-100 transition-colors duration-300"
+            className="bg-transparent text-white-100 hover:bg-wineRed-100 hover:text-cream-100 hover:border-wineRed-100 transition-colors duration-300"
             onClick={() => scrollTo("contact")}
           >
             {t.hero.cta2}
