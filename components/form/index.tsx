@@ -74,6 +74,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
             <Input
               id="name"
               name="name"
+              autoComplete="name"
               placeholder="Lee Robinson"
               className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
@@ -100,6 +101,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
             <Input
               id="email"
               name="email"
+              autoComplete="email"
               placeholder="leerob@acme.com"
               className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive"
               disabled={pending}
@@ -127,6 +129,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
               <select
                 id="subject"
                 name="subject"
+                autoComplete="off"
                 required
                 className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
                 value={subject}
@@ -149,6 +152,7 @@ export function Form({ className, onSuccess }: React.ComponentProps<typeof Card>
             <Textarea
               id="message"
               name="message"
+              autoComplete="off"
               placeholder="Type your message here..."
               className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100"
               disabled={pending}

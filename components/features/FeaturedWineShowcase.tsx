@@ -54,20 +54,20 @@ const FeaturedWineShowcase = () => {
   };
 
   return (
-    <section className="min-h-screen py-16 relative overflow-hidden">
+    <section className="min-h-screen py-12 md:py-16 relative overflow-hidden">
       <video
         autoPlay
         muted
         loop
         playsInline
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover scale-125"
+        className="absolute inset-0 w-full h-full object-cover scale-100 md:scale-125"
       >
         <source src="/videos/red_wine_waves.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/50" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-gold-100">
             {t.features.heading}
           </h2>

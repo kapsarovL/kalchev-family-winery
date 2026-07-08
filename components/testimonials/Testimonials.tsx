@@ -11,20 +11,20 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden py-16 md:py-24"
+      className="relative overflow-hidden py-12 md:py-24"
       style={{ backgroundColor: "#fdf8f0" }}
     >
       <Image
         src={bgSection}
         alt=""
-        className="absolute z-10"
+        className="absolute z-10 hidden md:block"
         style={{ left: 0, top: 0, width: "auto", height: "auto", maxWidth: "none" }}
         width={667}
         height={374}
         priority={false}
       />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-wineRed-100 mb-4">
             {t.testimonials.heading}
           </h2>
@@ -33,7 +33,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
