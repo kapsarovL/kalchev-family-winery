@@ -11,7 +11,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-screen max-h-[70vh] md:max-h-screen w-full flex items-center justify-center text-white-100 overflow-hidden">
+    <div className="relative h-screen max-h-[60vh] sm:max-h-[70vh] md:max-h-screen w-full flex items-center justify-center text-white-100 overflow-hidden">
       <picture>
         <source
           media="(max-width: 640px)"
@@ -30,13 +30,13 @@ const Hero = () => {
       </picture>
       <div className="absolute inset-0 bg-[rgba(0,0,0,0.06)]" />
       <div className="flex flex-col max-w-3xl text-center font-inter justify-center text-cream-200 items-center mx-auto px-4 mb-10 md:mb-32 z-10">
-        <small className="font-semibold text-xl text-wineRed-100">
+        <small className="font-semibold text-base sm:text-lg md:text-xl text-wineRed-100">
           {t.hero.smallTitle}
         </small>
-        <h1 className="text-4xl md:text-6xl font-bold font-playfair text-white-200 mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-playfair text-white-200 mb-4">
           {t.hero.heading}
         </h1>
-        <p className="text-lg md:text-xl max-w-xl text-cream-200">
+        <p className="text-base sm:text-lg md:text-xl max-w-xl text-cream-200">
           {t.hero.paragraph}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6">

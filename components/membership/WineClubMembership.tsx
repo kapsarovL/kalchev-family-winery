@@ -83,15 +83,15 @@ const WineClubMembership = () => {
       id="wine-club"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14 md:mb-20">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-2">
+        <div className="text-center mb-10 sm:mb-14 md:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-2">
             {t.club.heading}
           </h2>
           <div className="section-underline mx-auto"></div>
           <p className="text-deepBrown-100/80 max-w-2xl mx-auto mb-4 font-inter">
             {t.club.subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-10 mb-14">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-8 sm:mt-10 mb-10 sm:mb-14">
             <span className="flex items-center text-deepBrown-100/80">
               <Calendar className="w-5 h-5 mr-2 text-wineRed-100" />
               {t.club.cancelAnytime}
@@ -107,7 +107,7 @@ const WineClubMembership = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12 mb-16">
           {membershipTiers.map((tier) => (
             <Card
               key={tier.id}
@@ -176,11 +176,11 @@ const WineClubMembership = () => {
           ))}
         </div>
 
-        <div className="bg-cream-100/30 rounded-xl p-8 md:p-12 max-w-4xl mx-auto mt-16">
+        <div className="bg-cream-100/30 rounded-xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto mt-12 sm:mt-16">
           <h3 className="text-2xl font-playfair text-wineRed-200 mb-8">
             {t.club.benefitsHeading}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             <div className="flex items-start">
               <div className="bg-wineRed-100 p-2 rounded-full mr-4">
                 <GlassWater className="h-5 w-5 text-cream-200" />

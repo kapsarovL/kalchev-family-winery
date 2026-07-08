@@ -117,7 +117,7 @@ const Header = () => {
               alt="Kalchev Family Winery"
               width={418}
               height={596}
-              className="h-14 w-auto object-contain"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
               priority
             />
           </button>
@@ -126,7 +126,7 @@ const Header = () => {
         {/* Desktop Navigation */}
         {!isMobile && (
           <motion.nav
-            className="flex items-center text-center justify-center font-semibold md:flex space-x-10 ml-16"
+            className="flex items-center text-center justify-center font-semibold md:flex gap-4 lg:gap-6 xl:gap-8 ml-8 xl:ml-16"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -147,42 +147,42 @@ const Header = () => {
         )}
 
         <motion.div
-          className="hidden md:flex items-center gap-3"
+          className="hidden md:flex items-center gap-2 lg:gap-3"
           initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <button
-            onClick={() =>
-              setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")
-            }
-            className="text-xs font-medium border border-deepBrown-100/90 rounded px-2 py-1 text-deepBrown-100/90 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
-            aria-label="Switch language"
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
-          </button>
-          <button
-            onClick={() => cartDispatch({ type: "SET_OPEN", open: true })}
-            className="relative text-deepBrown-100/90 hover:text-wineRed-100 transition-colors"
-            aria-label="Open cart"
-          >
-            <ShoppingCart size={22} />
-            {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-wineRed-100 text-white-100 text-xs w-4 h-4 rounded-full flex items-center justify-center font-medium">
-                {cartCount}
-              </span>
-            )}
-          </button>
-          <Button
-            variant="default"
-            size="sm"
-            className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300"
-            onClick={handleBookTasting}
-          >
-            <Calendar className="h-4 w-4 mr-2" />
-            {t.nav.bookTasting}
-          </Button>
-        </motion.div>
+            <button
+              onClick={() =>
+                setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")
+              }
+              className="text-xs font-medium border border-deepBrown-100/90 rounded px-2 py-1 text-deepBrown-100/90 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
+              aria-label="Switch language"
+            >
+              {locale === "en" ? "MK" : locale === "mk" ? "GR" : "EN"}
+            </button>
+            <button
+              onClick={() => cartDispatch({ type: "SET_OPEN", open: true })}
+              className="relative text-deepBrown-100/90 hover:text-wineRed-100 transition-colors"
+              aria-label="Open cart"
+            >
+              <ShoppingCart size={22} />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-wineRed-100 text-white-100 text-xs w-4 h-4 rounded-full flex items-center justify-center font-medium">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+            <Button
+              variant="default"
+              size="sm"
+              className="bg-gold-100 text-white-100 hover:bg-wineRed-100 transition-colors duration-300 whitespace-nowrap text-xs lg:text-sm"
+              onClick={handleBookTasting}
+            >
+              <Calendar className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1.5 lg:mr-2" />
+              {t.nav.bookTasting}
+            </Button>
+          </motion.div>
 
         {/* Mobile menu button */}
         {isMobile && (
