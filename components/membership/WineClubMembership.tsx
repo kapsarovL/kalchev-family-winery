@@ -79,11 +79,11 @@ const WineClubMembership = () => {
 
   return (
     <section
-      className="py-24 mx-auto bg-white-200/50 min-h-screen"
+      className="py-20 md:py-32 mx-auto bg-white-200/50 min-h-screen"
       id="wine-club"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-14 md:mb-20">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-2">
             {t.club.heading}
           </h2>
@@ -91,7 +91,7 @@ const WineClubMembership = () => {
           <p className="text-deepBrown-100/80 max-w-2xl mx-auto mb-4 font-inter">
             {t.club.subtitle}
           </p>
-          <div className="flex items-center justify-center space-x-4 mt-8 mb-12">
+          <div className="flex items-center justify-center gap-6 mt-10 mb-14">
             <span className="flex items-center text-deepBrown-100/80">
               <Calendar className="w-5 h-5 mr-2 text-wineRed-100" />
               {t.club.cancelAnytime}
@@ -107,7 +107,7 @@ const WineClubMembership = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 mb-16">
           {membershipTiers.map((tier) => (
             <Card
               key={tier.id}
@@ -129,9 +129,9 @@ const WineClubMembership = () => {
                   {t.club.mostPopular}
                 </div>
               )}
-              <CardHeader className="pb-4">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 rounded-full bg-cream-200/30 text-wineRed-100">
+              <CardHeader className="pb-6">
+                <div className="flex justify-center mb-6">
+                  <div className="p-4 rounded-full bg-cream-200/30 text-wineRed-100">
                     {tier.icon}
                   </div>
                 </div>
@@ -142,8 +142,8 @@ const WineClubMembership = () => {
                   {tierContent(tier.id).description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="text-center pb-6">
-                <div className="mb-6">
+              <CardContent className="text-center pb-8">
+                <div className="mb-8">
                   <span className="text-4xl font-bold text-deepBrown-100">
                     ${tier.price}
                   </span>
@@ -151,7 +151,7 @@ const WineClubMembership = () => {
                     /{tier.billingPeriod}
                   </span>
                 </div>
-                <ul className="space-y-3 text-left">
+                <ul className="space-y-4 text-left">
                   {tierContent(tier.id).features.map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <Check className="h-5 w-5 text-primary shrink-0 mr-2 mt-0.5" />
@@ -176,11 +176,11 @@ const WineClubMembership = () => {
           ))}
         </div>
 
-        <div className="bg-cream-100/30 rounded-xl p-6 md:p-10 max-w-4xl mx-auto">
-          <h3 className="text-2xl font-playfair text-wineRed-200 mb-4">
+        <div className="bg-cream-100/30 rounded-xl p-8 md:p-12 max-w-4xl mx-auto mt-16">
+          <h3 className="text-2xl font-playfair text-wineRed-200 mb-8">
             {t.club.benefitsHeading}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex items-start">
               <div className="bg-wineRed-100 p-2 rounded-full mr-4">
                 <GlassWater className="h-5 w-5 text-cream-200" />
@@ -236,7 +236,7 @@ const WineClubMembership = () => {
           </div>
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <p className="text-sm text-deep-brown/60 max-w-2xl mx-auto">
             {t.club.disclaimer}
           </p>

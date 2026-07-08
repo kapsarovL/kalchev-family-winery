@@ -6,6 +6,7 @@ import { TransitionProvider } from "@/lib/transition-context";
 import { StyleRegistry } from "@/lib/style-registry";
 import { CartProvider } from "@/lib/cart-context";
 import CartDrawer from "@/components/cart/CartDrawer";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import { LocaleProvider } from "@/lib/i18n/locale-context";
 
 interface ClientLayoutProps {
@@ -23,6 +24,7 @@ export function ClientLayout({ children }: ClientLayoutProps) {
               {children}
             </main>
             <CartDrawer />
+            <ScrollToTop />
             <Toaster />
           </TransitionProvider>
         </CartProvider>

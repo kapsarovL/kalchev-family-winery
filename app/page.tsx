@@ -10,8 +10,10 @@ import FeaturedWineShowcase from "@/components/features/FeaturedWineShowcase";
 import WineryExperience from "@/components/experience/WineryExperience";
 import Testimonials from "@/components/testimonials/Testimonials";
 import ClubMembership from "@/components/membership/WineClubMembership";
+import WineGiftPackages from "@/components/packages/WineGiftPackages";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/layout/Footer";
+import CookieConsent from "@/components/layout/CookieConsent";
 import SectionTransition from "@/components/shared/SectionTransition";
 import PageTransition from "@/components/shared/PageTransition";
 
@@ -48,12 +50,16 @@ export default function Home() {
         <SectionTransition delay={0.1}>
           <ClubMembership />
         </SectionTransition>
+        <SectionTransition delay={0.1}>
+          <WineGiftPackages />
+        </SectionTransition>
         <SectionTransition delay={0.2}>
           <Contact />
         </SectionTransition>
         <SectionTransition delay={0.1}>
           <Footer />
         </SectionTransition>
+        <CookieConsent />
       </motion.div>
     </PageTransition>
   );

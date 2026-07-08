@@ -5,7 +5,7 @@ export type PairingData = {
 };
 
 export const pairings: Record<string, PairingData> = {
-  "reserve-mavrud": {
+  "vranec-barrique": {
     foods: ["Lamb chops", "Aged kashkaval", "Beef stew"],
     temperature: "16–18°C",
     glassType: "Bordeaux",
@@ -39,6 +39,11 @@ export const pairings: Record<string, PairingData> = {
     foods: ["Grilled vegetables", "Salmon tartare", "Fresh cheeses"],
     temperature: "8–10°C",
     glassType: "Rosé",
+  },
+  "alsar": {
+    foods: ["Grilled lamb chops", "Aged kashkaval cheese", "Herb-crusted beef"],
+    temperature: "16–18°C",
+    glassType: "Bordeaux",
   },
   "sparkling-brut": {
     foods: ["Oysters", "Sushi", "Strawberries & cream"],

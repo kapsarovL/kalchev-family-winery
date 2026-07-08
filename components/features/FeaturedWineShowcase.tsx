@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import WineShowcase from "@/components/products/WineShowcase";
 import { WineStockStatus, WineAwardLevel } from "@/types/wine";
@@ -11,8 +11,7 @@ import { useLocale } from "@/lib/i18n/locale-context";
 const FeaturedWineShowcase = () => {
   const { t } = useLocale();
   const [currentWineIndex, setCurrentWineIndex] = useState(0);
-  const [videoPlaying, setVideoPlaying] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
+
 
   const [stockStatuses, setStockStatuses] = useState<Record<number, WineStockStatus>>({});
 
@@ -20,15 +19,14 @@ const FeaturedWineShowcase = () => {
     getAllStockStatuses().then(setStockStatuses).catch(console.error);
   }, []);
 
-  const toggleVideo = () => {
-    if (!videoRef.current) return;
-    if (videoPlaying) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
-    }
-    setVideoPlaying(!videoPlaying);
-  };
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prevWine();
+      if (e.key === "ArrowRight") nextWine();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const prevWine = () => {
     setCurrentWineIndex((prevIndex) =>
@@ -58,7 +56,6 @@ const FeaturedWineShowcase = () => {
   return (
     <section className="min-h-screen py-16 relative overflow-hidden">
       <video
-        ref={videoRef}
         autoPlay
         muted
         loop
@@ -69,14 +66,6 @@ const FeaturedWineShowcase = () => {
         <source src="/videos/red_wine_waves.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/50" />
-      <button
-        onClick={toggleVideo}
-        className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-cream-100/70 hover:text-cream-100 hover:bg-black/60 transition-colors"
-        aria-label={videoPlaying ? "Pause video" : "Play video"}
-      >
-        {videoPlaying ? <Pause size={16} /> : <Play size={16} />}
-      </button>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-playfair font-bold text-gold-100">
@@ -97,26 +86,26 @@ const FeaturedWineShowcase = () => {
             />
           )}
 
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex items-center justify-center mt-8 gap-4">
             <Button
               variant="outline"
               size="icon"
               onClick={prevWine}
-              className="rounded-full border-cream-100/50 text-cream-100 hover:bg-white/20"
+              className="group relative rounded-full border-white/20 bg-white/10 text-cream-100 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 hover:border-white/40 hover:shadow-gold-100/20 focus-visible:ring-2 focus-visible:ring-gold-100 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent size-12"
               aria-label={t.features.prev}
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="size-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
             </Button>
 
-            <div className="flex space-x-1.5">
+            <div className="flex items-center gap-2.5">
               {wines.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentWineIndex(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  className={`relative transition-all duration-300 rounded-full ${
                     currentWineIndex === index
-                      ? "bg-gold-100"
-                      : "bg-cream-100/40"
+                      ? "w-8 h-2.5 bg-gold-100"
+                      : "w-2.5 h-2.5 bg-cream-100/40 hover:bg-cream-100/70"
                   }`}
                   aria-label={`View wine ${index + 1}`}
                 />
@@ -127,10 +116,10 @@ const FeaturedWineShowcase = () => {
               variant="outline"
               size="icon"
               onClick={nextWine}
-              className="rounded-full border-cream-100/50 text-cream-100 hover:bg-white/20"
+              className="group relative rounded-full border-white/20 bg-white/10 text-cream-100 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 hover:border-white/40 hover:shadow-gold-100/20 focus-visible:ring-2 focus-visible:ring-gold-100 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent size-12"
               aria-label={t.features.next}
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Button>
           </div>
         </div>

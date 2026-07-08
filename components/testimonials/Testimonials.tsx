@@ -1,14 +1,29 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { testimonials } from "../../data/testimonials";
 import { Star } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
+import bgSection from "@/public/images/background-section.webp";
 
 const Testimonials = () => {
   const { locale, t } = useLocale();
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-cream">
-      <div className="container mx-auto px-4">
+    <section
+      id="testimonials"
+      className="relative overflow-hidden py-16 md:py-24"
+      style={{ backgroundColor: "#fdf8f0" }}
+    >
+      <Image
+        src={bgSection}
+        alt=""
+        className="absolute z-10"
+        style={{ left: 0, top: 0, width: "auto", height: "auto", maxWidth: "none" }}
+        width={667}
+        height={374}
+        priority={false}
+      />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-wineRed-100 mb-4">
             {t.testimonials.heading}
@@ -22,7 +37,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-white-200 p-6 rounded-lg shadow-md border border-cream-100/80 transition-transform hover:-translate-y-1 hover:shadow-lg"
+              className="bg-white-200/40 backdrop-blur-md p-6 rounded-lg shadow-md border border-cream-100/50 transition-transform hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex items-center mb-4">
                 {/* Display rating stars */}
