@@ -5,6 +5,7 @@ import merlot from "@/public/images/merlot.webp";
 import temjanika from "@/public/images/temjanika.webp";
 import rozewine from "@/public/images/rozewine.webp";
 import rozejpg from "@/public/images/roze.webp";
+import alsar from "@/public/images/alsar.png";
 
 export type WineTranslation = {
   name: string;
@@ -30,54 +31,54 @@ export type Wine = {
 export const wines: Wine[] = [
   {
     id: 1,
-    key: "reserve-mavrud",
+    key: "vranec-barrique",
     year: "2018",
-    price: "€32.00",
+    price: "€6.00",
     image: redwine,
     bottleImage: redwine,
     translations: {
       en: {
-        name: "Reserve Mavrud",
+        name: "Vranec Barrique",
         type: "red",
         description:
-          "Our premium Mavrud showcases Macedonia's signature grape variety with rich flavors of blackberry, black cherry, and spice, complemented by fine tannins and a long, elegant finish.",
+          "Our premium Vranec showcases Macedonia's signature grape variety with rich flavors of blackberry, black cherry, and spice, complemented by fine tannins and a long, elegant finish.",
       },
       mk: {
-        name: "Резерва Мавруд",
+        name: "Вранец Бариќуе",
         type: "red",
         description:
-          "Нашиот премиум Мавруд ја прикажува препознатливата македонска сорта грозје со богати вкусови на капина, црна цреша и зачини, надополнети со фини танини и долг, елегантен завршеток.",
+          "Црвеното вино од сортата Вранец, берба од лозов насад. Вино со контролирано потекло (ВКП) Гевгелиско - Валандовско виногорје месност Блатиште Богданци Касна берба и одлежано во француско дабово буре лимитирана количина. Оваа вино има традиција на производство во семејната винарија, и ги  отсликува поднебјето и стилот на вино што се пие во нашиот регион. Богато со ароми и лесно за пиење, се комбинира со црвено месо и традиционална храна. Калчев",
       },
       gr: {
-        name: "Reserve Mavrud",
+        name: "Vranec Barrique",
         type: "red",
         description:
-          "Το premium Mavrud μας αναδεικνύει την χαρακτηριστική μακεδονική ποικιλία σταφυλιού με πλούσιες γεύσεις βατόμουρου, μαύρου κερασιού και μπαχαρικών, συμπληρωμένες με λεπτές τανίνες και μια μακρά, κομψή επίγευση.",
+          "Το premium Vranec μας αναδεικνύει την χαρακτηριστική μακεδονική ποικιλία σταφυλιού με πλούσιες γεύσεις βατόμουρου, μαύρου κερασιού και μπαχαρικών, συμπληρωμένες με λεπτές τανίνες και μια μακρά, κομψή επίγευση.",
       },
     },
   },
   {
     id: 2,
-    key: "barrel-aged-cabernet-sauvignon",
+    key: "Вранец Бариќуе",
     year: "2017",
     price: "€28.00",
     image: vranec,
     bottleImage: vranec,
     translations: {
       en: {
-        name: "Barrel-Aged Cabernet Sauvignon",
+        name: "Вранец Бариќуе",
         type: "red",
         description:
-          "Aged for 18 months in French oak barrels, this Cabernet Sauvignon offers complex aromas of black currant, cedar, and tobacco with a structured palate and impressive aging potential.",
+          "Црвеното вино од сортата Вранец, берба од лозов насад. Вино со контролирано потекло (ВКП) Гевгелиско - Валандовско виногорје месност Блатиште Богданци Касна берба и одлежано во француско дабово буре лимитирана количина. Оваа вино има традиција на производство во семејната винарија, и ги  отсликува поднебјето и стилот на вино што се пие во нашиот регион. Богато со ароми и лесно за пиење, се комбинира со црвено месо и традиционална храна. Калчев",
       },
       mk: {
-        name: "Одлежан Каберне Совињон",
+        name: "Вранец Бариќуе",
         type: "red",
         description:
           "Одлежан 18 месеци во француски дабови буриња, овој Каберне Совињон нуди комплексни ароми на црна рибизла, кедар и тутун со структуриран вкус и импресивен потенцијал за одлежување.",
       },
       gr: {
-        name: "Cabernet Sauvignon Παλαιωμένο σε Βαρέλι",
+        name: "Вранец Бариќуе",
         type: "red",
         description:
           "Παλαιωμένο για 18 μήνες σε γαλλικά δρύινα βαρέλια, αυτό το Cabernet Sauvignon προσφέρει σύνθετα αρώματα μαύρης σταφίδας, κέδρου και καπνού με δομημένη γεύση και εντυπωσιακό δυναμικό παλαίωσης.",
@@ -113,27 +114,55 @@ export const wines: Wine[] = [
     },
   },
   {
+    id: 4,
+    key: "alsar",
+    year: "2018",
+    price: "€32.00",
+    image: alsar,
+    bottleImage: alsar,
+    translations: {
+      en: {
+        name: "Alsar",
+        type: "red",
+        description:
+          "A distinguished red wine from the Tikveš wine region, grown at the foothills of Mount Alsar. This cuvée blends traditional Macedonian grape varieties with careful oak aging, delivering aromas of ripe dark berries, dried herbs, and subtle spices. Full-bodied with silky tannins and a long, mineral-driven finish that reflects the unique terroir of this ancient wine-growing area.",
+      },
+      mk: {
+        name: "Алшар",
+        type: "red",
+        description:
+          "Префинето црвено вино од Тиквешкото виногорје, одгледано во подножјето на планината Алшар. Ова кувее ги спојува традиционалните македонски сорти грозје со внимателно одлежување во даб, нудејќи ароми на зрели темни бобинки, суви билки и суптилни зачини. Полно тело со свиленкасти танини и долг, минерален завршеток што го отсликува уникатниот тероар на овој древен вински регион.",
+      },
+      gr: {
+        name: "Άλσαρ",
+        type: "red",
+        description:
+          "Ένα διακεκριμένο κόκκινο κρασί από την οινοπαραγωγική περιοχή Τίκβες, που καλλιεργείται στους πρόποδες του όρους Άλσαρ. Αυτό το cuvée συνδυάζει παραδοσιακές μακεδονικές ποικιλίες σταφυλιού με προσεκτική παλαίωση σε δρυ, προσφέροντας αρώματα ώριμων σκούρων μούρων, αποξηραμένων βοτάνων και λεπτών μπαχαρικών. Γεμάτο σώμα με μεταξένιες τανίνες και μακρά, ορυκτή επίγευση που αντανακλά το μοναδικό terroir αυτής της αρχαίας οινοπαραγωγικής περιοχής.",
+      },
+    },
+  },
+  {
     id: 5,
-    key: "estate-chardonnay",
+    key: "Темјаника кувее",
     year: "2020",
     price: "€22.00",
     image: temjanika,
     bottleImage: temjanika,
     translations: {
       en: {
-        name: "Estate Chardonnay",
+        name: "Темјаника кувее",
         type: "white",
         description:
           "This elegant Chardonnay balances ripe tropical fruit with crisp acidity, enhanced by subtle notes of vanilla and butter from partial oak aging.",
       },
       mk: {
-        name: "Шардоне Од Винарија",
+        name: "Темјаника кувее",
         type: "white",
         description:
-          "Овој елегантен Шардоне балансира зрело тропско овошје со свежа киселост, збогатен со суптилни ноти на ванила и путер од делумно одлежување во даб.",
+          "Ова префинето ароматично бело вино е создадено од внимателно избрано грозје од сортите Темјаника и Итанизаника Мускат. Бо чашата откуика светла слеместо-жолт на боја и богат бузет оз бели цветови, багрем, праска и свежи цитрушни нијанса, надополнетисо елекниик мускатен карактер. На непцето е свежо, хармонично е свилен касата, со префинета кичетост и догв, елегантен зав винтож што ја наглакува неговата природна аромантичност. Најдобро се служи разладено на 8-10С",
       },
       gr: {
-        name: "Chardonnay Κτήματος",
+        name: "Темјаника кувее",
         type: "white",
         description:
           "Αυτό το κομψό Chardonnay εξισορροπεί ώριμα τροπικά φρούτα με τραγανή οξύτητα, ενισχυμένο με λεπτές νότες βανίλιας και βουτύρου από μερική παλαίωση σε δρυ.",
@@ -142,29 +171,29 @@ export const wines: Wine[] = [
   },
   {
     id: 7,
-    key: "summer-rose",
+    key: "Розе Блатисте",
     year: "2021",
-    price: "€20.00",
+    price: "6 €",
     image: rozewine,
     bottleImage: rozewine,
     translations: {
       en: {
-        name: "Summer Rosé",
+        name: "Rosé Blatiste",
         type: "rosé",
         description:
-          "A delicate blend of Mavrud and Cabernet Sauvignon creates this crisp rosé with strawberry, watermelon, and rose petal aromas, perfect for warm summer days.",
+          "Semisweet rosé wine that reflects the tradition and style of wines from our region. This rosé is created from a carefully selected grape blend: 50% Vranec, 25% Merlot, 25% Muscat Hamburg. The grapes come from our own vineyard and are selectively harvested at night to preserve their natural aromas. Rich with fragrant notes of raspberry, rosehip, and red berries. The taste is balanced, fresh, and fruity with soft tannins and pleasant acidity. Pairs excellently with traditional Macedonian cuisine, cold appetizers, fresh cheeses, and fresh salads.",
       },
       mk: {
-        name: "Летно Розе",
+        name: "Розе Блатисте",
         type: "rosé",
         description:
-          "Деликатен бленд на Мавруд и Каберне Совињон создава свежо розе со ароми на јагода, лубеница и ливчиња од роза, совршено за топли летни денови.",
+          "Полусуво розе вино кое ја отсликува традицијата и стилот на вината од нашиот регион.Ова розе е создадено од внимателно избран бренд на грозје, Вранец-50%, Мерлот-25%, Мускат хамбург-25%.Лозјето потекнува од сопствен лозов насад исе бере селективно во ноќни услови за зачувувајне на неговите природни ароми.Богато со мирисни ноти на малина, шипка и црвени зрнести овошја.Вкусот е балансиран, свеж и овошен со нежни танини и пријатна киселост. Одлично се комбинира со традиционална македонска кујна, ладни предјадејна, свежи сирејна и свежи салати.",
       },
       gr: {
-        name: "Καλοκαιρινή Ροζέ",
+        name: "Ροζέ Μπλάτιστε",
         type: "rosé",
         description:
-          "Ένας λεπτός συνδυασμός Mavrud και Cabernet Sauvignon δημιουργεί αυτό το δροσερό ροζέ με αρώματα φράουλας, καρπουζιού και ροδοπέταλου, ιδανικό για ζεστές καλοκαιρινές ημέρες.",
+          "Ημίγλυκο ροζέ κρασί που αντανακλά την παράδοση και το στυλ των κρασιών της περιοχής μας. Αυτό το ροζέ δημιουργείται από προσεκτικά επιλεγμένη μίξη σταφυλιών: 50% Vranec, 25% Merlot, 25% Muscat Hamburg. Τα σταφύλια προέρχονται από το δικό μας αμπέλι και συλλέγονται επιλεκτικά τη νύχτα για να διατηρήσουν τα φυσικά τους αρώματα. Πλούσιο με αρωματικές νότες βατόμουρου, τριανταφυλλιάς και κόκκινων μούρων. Η γεύση είναι ισορροπημένη, φρέσκια και φρουτώδης με απαλές τανίνες και ευχάριστη οξύτητα. Συνδυάζεται εξαιρετικά με παραδοσιακή μακεδονική κουζίνα, κρύα ορεκτικά, φρέσκα τυριά και φρέσκες σαλάτες.",
       },
     },
   },

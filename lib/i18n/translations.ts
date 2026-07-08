@@ -9,6 +9,7 @@ export const translations = {
       experience: "Experience",
       testimonials: "Testimonials",
       wineClub: "Wine Club",
+      giftPackages: "Gift Packages",
       contact: "Contact",
       bookTasting: "Book Tasting",
     },
@@ -137,6 +138,27 @@ export const translations = {
       disclaimer:
         "By joining the Kalchev Wine Club, you certify that you are at least 21 years of age and agree to our Terms of Service. All shipments require an adult signature upon delivery.",
     },
+    packages: {
+      heading: "Wine Gift Packages",
+      subtitle:
+        "Celebrate life's special moments with our handcrafted wine gift packages, beautifully presented and ready to delight any wine lover.",
+      packageName: "The Collector's Trio",
+      packageDesc:
+        "A curated selection of three award-winning wines from our family vineyard, beautifully packaged in a handcrafted wooden gift box with tasting notes and pairing recommendations.",
+      includes: "What's Inside",
+      items: [
+        "Vranec Barrique 2018 — our flagship red, aged 24 months in oak",
+        "Temjanika Cuvée 2020 — aromatic white, fresh and elegant",
+        "Sparkling Brut — traditional method, 36 months on lees",
+        "Handwritten tasting notes & pairing guide",
+        "Complimentary wine stopper & branded glasses",
+      ],
+      price: "€89.00",
+      cta: "Order Gift Package",
+      ctaWishlist: "Add to Wishlist",
+      freeShipping: "Free shipping",
+      giftWrap: "Gift wrap included",
+    },
     contact: {
       heading: "Get in Touch",
       subtitle:
@@ -186,6 +208,7 @@ export const translations = {
       wineryExperience: "Winery Experience",
       testimonials: "Testimonials",
       wineClub: "Wine Club",
+      giftPackages: "Gift Packages",
       contact: "Contact",
       findUs: "Find Us",
       openingHours: "Opening Hours",
@@ -196,6 +219,27 @@ export const translations = {
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       cookie: "Cookie Policy",
+    },
+    cookieConsent: {
+      title: "We Value Your Privacy",
+      message:
+        "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking \"Accept All\", you consent to our use of cookies.",
+      accept: "Accept All",
+      reject: "Decline",
+      settings: "Cookie Settings",
+      dialogTitle: "Cookie Preferences",
+      dialogDesc:
+        "Customize which cookies you allow. Essential cookies are always enabled for the site to function properly.",
+      essential: "Essential",
+      essentialDesc:
+        "Required for the website to function. Cannot be disabled.",
+      analytics: "Analytics",
+      analyticsDesc:
+        "Help us understand how visitors interact with our site.",
+      marketing: "Marketing",
+      marketingDesc:
+        "Used to deliver relevant ads and track campaign performance.",
+      save: "Save Preferences",
     },
     features: {
       heading: "Featured Wine",
@@ -230,6 +274,7 @@ export const translations = {
       experience: "Искуство",
       testimonials: "Препораки",
       wineClub: "Вински клуб",
+      giftPackages: "Подарочни пакети",
       contact: "Контакт",
       bookTasting: "Резервирај дегустација",
     },
@@ -358,6 +403,27 @@ export const translations = {
       disclaimer:
         "Со приклучување кон Винскиот клуб Калчев, потврдувате дека имате најмалку 21 година и се согласувате со нашите Услови. Сите пратки бараат потпис од возрасно лице при достава.",
     },
+    packages: {
+      heading: "Подарочни пакети вино",
+      subtitle:
+        "Прославете ги посебните моменти во животот со нашите рачно изработени подарочни пакети вино, прекрасно претставени и подготвени да го воодушеват секој љубител на вино.",
+      packageName: "Колекционерско трио",
+      packageDesc:
+        "Курирана селекција на три наградени вина од нашето семејно лозје, прекрасно спакувани во рачно изработена дрвена кутија со ноти за дегустација и препораки за комбинирање.",
+      includes: "Што содржи",
+      items: [
+        "Вранец Барик 2018 — нашето водечко црвено, одлежано 24 месеци во даб",
+        "Темјаника Кувее 2020 — ароматично бело, свежо и елегантно",
+        "Спарклинг Брут — традиционален метод, 36 месеци на талог",
+        "Рачно напишани ноти за дегустација и водич за комбинирање",
+        "Бесплатен затворач за вино и брендирани чаши",
+      ],
+      price: "€89.00",
+      cta: "Нарачај подарочен пакет",
+      ctaWishlist: "Додај во желби",
+      freeShipping: "Бесплатна испорака",
+      giftWrap: "Вклучено пакување за подарок",
+    },
     contact: {
       heading: "Контактирајте не",
       subtitle:
@@ -407,6 +473,7 @@ export const translations = {
       wineryExperience: "Искуство",
       testimonials: "Препораки",
       wineClub: "Вински клуб",
+      giftPackages: "Подарочни пакети",
       contact: "Контакт",
       findUs: "Најдете не",
       openingHours: "Работно време",
@@ -417,6 +484,27 @@ export const translations = {
       privacy: "Политика за приватност",
       terms: "Услови на користење",
       cookie: "Политика за колачиња",
+    },
+    cookieConsent: {
+      title: "Ја цениме вашата приватност",
+      message:
+        "Користиме колачиња за да го подобриме вашето искуство, да го анализираме сообраќајот и да го персонализираме содржината. Со кликнување на \"Прифати ги сите\", се согласувате со употребата на колачиња.",
+      accept: "Прифати ги сите",
+      reject: "Одбиј",
+      settings: "Подесувања за колачиња",
+      dialogTitle: "Преференци за колачиња",
+      dialogDesc:
+        "Прилагодете кои колачиња ги дозволувате. Суштинските колачиња се секогаш вклучени за правилно функционирање на страницата.",
+      essential: "Суштински",
+      essentialDesc:
+        "Потребни за функционирање на веб-страницата. Не може да се исклучат.",
+      analytics: "Аналитика",
+      analyticsDesc:
+        "Помагаат да разбереме како посетителите комуницираат со нашата страница.",
+      marketing: "Маркетинг",
+      marketingDesc:
+        "Се користат за прикажување релевантни реклами и следење на кампањи.",
+      save: "Зачувај преференци",
     },
     features: {
       heading: "Препорачано вино",
@@ -451,6 +539,7 @@ export const translations = {
       experience: "Εμπειρία",
       testimonials: "Μαρτυρίες",
       wineClub: "Λέσχη κρασιού",
+      giftPackages: "Συσκευασίες δώρου",
       contact: "Επικοινωνία",
       bookTasting: "Κράτηση γευσιγνωσίας",
     },
@@ -580,6 +669,27 @@ export const translations = {
       disclaimer:
         "Με την εγγραφή σας στο Kalchev Wine Club, πιστοποιείτε ότι είστε τουλάχιστον 21 ετών και συμφωνείτε με τους Όρους Παροχής Υπηρεσιών. Όλες οι αποστολές απαιτούν υπογραφή ενηλίκου κατά την παράδοση.",
     },
+    packages: {
+      heading: "Συσκευασίες δώρου κρασιού",
+      subtitle:
+        "Γιορτάστε τις ξεχωριστές στιγμές της ζωής με τις χειροποίητες συσκευασίες δώρου κρασιού μας, όμορφα παρουσιασμένες και έτοιμες να ενθουσιάσουν κάθε λάτρη του κρασιού.",
+      packageName: "Τρίο συλλέκτη",
+      packageDesc:
+        "Μια επιλεγμένη συλλογή τριών βραβευμένων κρασιών από τον οικογενειακό μας αμπελώνα, όμορφα συσκευασμένη σε χειροποίητο ξύλινο κουτί με σημειώσεις γευσιγνωσίας και προτάσεις συνδυασμού.",
+      includes: "Τι περιέχει",
+      items: [
+        "Vranec Barrique 2018 — το κορυφαίο κόκκινο μας, παλαιωμένο 24 μήνες σε δρυ",
+        "Temjanika Cuvée 2020 — αρωματικό λευκό, φρέσκο και κομψό",
+        "Sparkling Brut — παραδοσιακή μέθοδος, 36 μήνες σε οινολάσπη",
+        "Χειρόγραφες σημειώσεις γευσιγνωσίας & οδηγός συνδυασμών",
+        "Δωρεάν τάπα κρασιού & επώνυμα ποτήρια",
+      ],
+      price: "€89.00",
+      cta: "Παραγγελία συσκευασίας δώρου",
+      ctaWishlist: "Προσθήκη στα αγαπημένα",
+      freeShipping: "Δωρεάν αποστολή",
+      giftWrap: "Δωρεάν περιτύλιγμα δώρου",
+    },
     contact: {
       heading: "Επικοινωνήστε μαζί μας",
       subtitle:
@@ -630,6 +740,7 @@ export const translations = {
       wineryExperience: "Εμπειρία",
       testimonials: "Μαρτυρίες",
       wineClub: "Λέσχη κρασιού",
+      giftPackages: "Συσκευασίες δώρου",
       contact: "Επικοινωνία",
       findUs: "Βρείτε μας",
       openingHours: "Ώρες λειτουργίας",
@@ -640,6 +751,27 @@ export const translations = {
       privacy: "Πολιτική απορρήτου",
       terms: "Όροι χρήσης",
       cookie: "Πολιτική cookies",
+    },
+    cookieConsent: {
+      title: "Εκτιμούμε το απόρρητό σας",
+      message:
+        "Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία περιήγησής σας, να αναλύουμε την επισκεψιμότητα και να εξατομικεύουμε το περιεχόμενο. Κάνοντας κλικ στο \"Αποδοχή όλων\", συναινείτε στη χρήση των cookies.",
+      accept: "Αποδοχή όλων",
+      reject: "Απόρριψη",
+      settings: "Ρυθμίσεις cookies",
+      dialogTitle: "Προτιμήσεις cookies",
+      dialogDesc:
+        "Προσαρμόστε ποια cookies επιτρέπετε. Τα απαραίτητα cookies είναι πάντα ενεργά για τη σωστή λειτουργία του ιστότοπου.",
+      essential: "Απαραίτητα",
+      essentialDesc:
+        "Απαραίτητα για τη λειτουργία του ιστότοπου. Δεν μπορούν να απενεργοποιηθούν.",
+      analytics: "Αναλυτικά",
+      analyticsDesc:
+        "Μας βοηθούν να κατανοήσουμε πώς οι επισκέπτες αλληλεπιδρούν με τον ιστότοπό μας.",
+      marketing: "Διαφημιστικά",
+      marketingDesc:
+        "Χρησιμοποιούνται για την προβολή σχετικών διαφημίσεων και την παρακολούθηση καμπανιών.",
+      save: "Αποθήκευση προτιμήσεων",
     },
     features: {
       heading: "Προτεινόμενο κρασί",

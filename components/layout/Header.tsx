@@ -19,6 +19,7 @@ const NAV_SECTIONS = [
   "experience",
   "testimonials",
   "wine-club",
+  "gift-packages",
   "contact",
 ];
 
@@ -140,6 +141,7 @@ const Header = () => {
             <NavLink sectionId="experience">{t.nav.experience}</NavLink>
             <NavLink sectionId="testimonials">{t.nav.testimonials}</NavLink>
             <NavLink sectionId="wine-club">{t.nav.wineClub}</NavLink>
+            <NavLink sectionId="gift-packages">{t.nav.giftPackages}</NavLink>
             <NavLink sectionId="contact">{t.nav.contact}</NavLink>
           </motion.nav>
         )}
@@ -212,6 +214,7 @@ const Header = () => {
               "experience",
               "testimonials",
               "wine-club",
+              "gift-packages",
               "contact",
             ] as const
           ).map((id) => {
@@ -222,6 +225,7 @@ const Header = () => {
               experience: t.nav.experience,
               testimonials: t.nav.testimonials,
               "wine-club": t.nav.wineClub,
+              "gift-packages": t.nav.giftPackages,
               contact: t.nav.contact,
             };
             return (

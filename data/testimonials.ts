@@ -20,15 +20,15 @@ export const testimonials: Testimonial[] = [
     translations: {
       en: {
         name: "Elena Kovacheva",
-        text: "The Reserve Mavrud is simply outstanding. It perfectly captures the essence of Macedonia winemaking tradition with a modern touch.",
+        text: "The Vranec Barrique is simply outstanding. It perfectly captures the essence of Macedonia winemaking tradition with a modern touch.",
       },
       mk: {
         name: "Елена Ковачева",
-        text: "Резерва Мавруд е едноставно извонредно. Совршено ја доловува суштината на македонската винска традиција со модерен допир.",
+        text: "Вранец Бариќуе е едноставно извонредно. Совршено ја доловува суштината на македонската винска традиција со модерен допир.",
       },
       gr: {
         name: "Έλενα Κοβάτσεβα",
-        text: "Το Reserve Mavrud είναι απλά εξαιρετικό. Αποτυπώνει τέλεια την ουσία της μακεδονικής οινοποιητικής παράδοσης με μια σύγχρονη πινελιά.",
+        text: "Το Vranec Barrique είναι απλά εξαιρετικό. Αποτυπώνει τέλεια την ουσία της μακεδονικής οινοποιητικής παράδοσης με μια σύγχρονη πινελιά.",
       },
     },
   },

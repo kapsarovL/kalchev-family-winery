@@ -114,6 +114,7 @@ const Footer = () => {
               <FooterLink sectionId="experience">{t.footer.wineryExperience}</FooterLink>
               <FooterLink sectionId="testimonials">{t.footer.testimonials}</FooterLink>
               <FooterLink sectionId="wine-club">{t.footer.wineClub}</FooterLink>
+              <FooterLink sectionId="gift-packages">{t.footer.giftPackages}</FooterLink>
               <FooterLink sectionId="contact">{t.footer.contact}</FooterLink>
             </nav>
           </div>
