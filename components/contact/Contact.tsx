@@ -24,8 +24,8 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="flex justify-center items-center w-full flex-col lg:flex-row gap-12 lg:gap-24">
-          <div className="w-full lg:w-2/3">
+        <div className="flex justify-center items-center w-full flex-col md:flex-row gap-8 sm:gap-12 lg:gap-24">
+          <div className="w-full md:w-3/5 lg:w-2/3">
             <h3 className="text-2xl font-playfair font-bold text-wineRed-200 mb-6">
               {t.contact.contactInfo}
             </h3>
@@ -81,7 +81,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="max-w-7xl w-full lg:w-2/5">
+          <div className="max-w-7xl w-full md:w-2/5 lg:w-2/5">
             <div className=" flex flex-col items-start justify-between w-full mx-auto p-6 gap-5 lg:w-auto">
               <h3 className="text-2xl font-playfair font-bold text-wineRed-200 text-start items-start flex flex-col mb-6">
                 {t.contact.sendMessage}

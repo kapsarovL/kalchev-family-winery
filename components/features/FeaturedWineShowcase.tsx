@@ -86,26 +86,26 @@ const FeaturedWineShowcase = () => {
             />
           )}
 
-          <div className="flex items-center justify-center mt-8 gap-4">
+          <div className="flex items-center justify-center mt-6 sm:mt-8 gap-3 sm:gap-4">
             <Button
               variant="outline"
               size="icon"
               onClick={prevWine}
-              className="group relative rounded-full border-white/20 bg-white/10 text-cream-100 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 hover:border-white/40 hover:shadow-gold-100/20 focus-visible:ring-2 focus-visible:ring-gold-100 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent size-12"
+              className="group relative rounded-full border-white/20 bg-white/10 text-cream-100 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 hover:border-white/40 hover:shadow-gold-100/20 focus-visible:ring-2 focus-visible:ring-gold-100 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent size-10 sm:size-12"
               aria-label={t.features.prev}
             >
-              <ChevronLeft className="size-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+              <ChevronLeft className="size-4 sm:size-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
             </Button>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-1.5 sm:gap-2.5">
               {wines.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentWineIndex(index)}
                   className={`relative transition-all duration-300 rounded-full ${
                     currentWineIndex === index
-                      ? "w-8 h-2.5 bg-gold-100"
-                      : "w-2.5 h-2.5 bg-cream-100/40 hover:bg-cream-100/70"
+                      ? "w-6 sm:w-8 h-2 sm:h-2.5 bg-gold-100"
+                      : "w-2 sm:w-2.5 h-2 sm:h-2.5 bg-cream-100/40 hover:bg-cream-100/70"
                   }`}
                   aria-label={`View wine ${index + 1}`}
                 />
@@ -116,10 +116,10 @@ const FeaturedWineShowcase = () => {
               variant="outline"
               size="icon"
               onClick={nextWine}
-              className="group relative rounded-full border-white/20 bg-white/10 text-cream-100 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 hover:border-white/40 hover:shadow-gold-100/20 focus-visible:ring-2 focus-visible:ring-gold-100 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent size-12"
+              className="group relative rounded-full border-white/20 bg-white/10 text-cream-100 shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-white/25 hover:border-white/40 hover:shadow-gold-100/20 focus-visible:ring-2 focus-visible:ring-gold-100 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent size-10 sm:size-12"
               aria-label={t.features.next}
             >
-              <ChevronRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              <ChevronRight className="size-4 sm:size-5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Button>
           </div>
         </div>

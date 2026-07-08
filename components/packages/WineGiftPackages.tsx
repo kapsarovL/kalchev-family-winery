@@ -13,11 +13,11 @@ const WineGiftPackages = () => {
   return (
     <section
       id="gift-packages"
-      className="relative overflow-hidden bg-gradient-to-b from-cream-100/40 to-cream-200/20 py-12 md:py-32"
+      className="relative overflow-hidden bg-gradient-to-b from-cream-100/40 to-cream-200/20 py-12 md:py-24 lg:py-32"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-14 md:mb-20">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-2">
+        <div className="text-center mb-10 sm:mb-14 md:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-wineRed-100 mb-2">
             {p.heading}
           </h2>
           <div className="section-underline mx-auto" />
@@ -26,7 +26,7 @@ const WineGiftPackages = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start">
           <div className="relative aspect-square max-w-lg w-full mt-6 md:mt-12">
             <div className="absolute inset-0 bg-gradient-to-br from-wineRed-100/10 to-gold-100/10 rounded-3xl" />
             <Image
