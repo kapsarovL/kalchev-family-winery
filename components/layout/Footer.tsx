@@ -5,7 +5,6 @@ import Image from "next/image";
 import logo from "@/public/images/logo.webp";
 import { useToast } from "@/hooks/use-toast";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
-import { metaData } from "@/config/site";
 import { useLocale } from "@/lib/i18n/locale-context";
 
 const Footer = () => {
