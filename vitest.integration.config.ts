@@ -9,7 +9,11 @@ export default defineConfig({
   test: {
     environment: "node",
     globals: true,
-    include: ["app/**/*.integration.{test,spec}.ts", "components/**/*.integration.{test,spec}.ts", "lib/**/*.integration.{test,spec}.ts"],
+    include: [
+      "app/**/*.integration.{test,spec}.ts",
+      "components/**/*.integration.{test,spec}.ts",
+      "lib/**/*.integration.{test,spec}.ts",
+    ],
     setupFiles: ["./vitest.integration.setup.ts"],
 
     // tests share one DB container — run sequentially unless your fixture

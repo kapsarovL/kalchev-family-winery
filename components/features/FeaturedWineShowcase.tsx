@@ -12,7 +12,6 @@ const FeaturedWineShowcase = () => {
   const { t } = useLocale();
   const [currentWineIndex, setCurrentWineIndex] = useState(0);
 
-
   const [stockStatuses, setStockStatuses] = useState<Record<number, WineStockStatus>>({});
 
   useEffect(() => {
@@ -29,15 +28,11 @@ const FeaturedWineShowcase = () => {
   }, []);
 
   const prevWine = () => {
-    setCurrentWineIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : wines.length - 1
-    );
+    setCurrentWineIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : wines.length - 1));
   };
 
   const nextWine = () => {
-    setCurrentWineIndex((prevIndex) =>
-      prevIndex < wines.length - 1 ? prevIndex + 1 : 0
-    );
+    setCurrentWineIndex((prevIndex) => (prevIndex < wines.length - 1 ? prevIndex + 1 : 0));
   };
 
   const getWineStatus = (index: number): WineStockStatus => {
@@ -72,9 +67,7 @@ const FeaturedWineShowcase = () => {
             {t.features.heading}
           </h2>
           <div className="section-underline mx-auto"></div>
-          <p className="text-cream-200 max-w-2xl mx-auto font-inter">
-            {t.features.subtitle}
-          </p>
+          <p className="text-cream-200 max-w-2xl mx-auto font-inter">{t.features.subtitle}</p>
         </div>
 
         <div className="relative max-w-5xl mx-auto">

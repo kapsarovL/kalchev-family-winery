@@ -253,11 +253,7 @@
   .section-underline {
     height: 2px;
     width: 60px;
-    background: linear-gradient(
-      to right,
-      rgb(var(--gold)),
-      rgb(var(--wine-red))
-    );
+    background: linear-gradient(to right, rgb(var(--gold)), rgb(var(--wine-red)));
     margin-bottom: 16px;
   }
 

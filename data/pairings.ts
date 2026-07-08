@@ -40,7 +40,7 @@ export const pairings: Record<string, PairingData> = {
     temperature: "8–10°C",
     glassType: "Rosé",
   },
-  "alsar": {
+  alsar: {
     foods: ["Grilled lamb chops", "Aged kashkaval cheese", "Herb-crusted beef"],
     temperature: "16–18°C",
     glassType: "Bordeaux",

@@ -25,9 +25,7 @@ const WinePhilosophy = () => {
             <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#2C1810] mb-2">
               {t.philosophy.pillar1Title}
             </h3>
-            <p className="text-sm sm:text-base text-slate-700">
-              {t.philosophy.pillar1Desc}
-            </p>
+            <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar1Desc}</p>
           </div>
 
           <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
@@ -37,9 +35,7 @@ const WinePhilosophy = () => {
             <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#2C1810] mb-2">
               {t.philosophy.pillar2Title}
             </h3>
-            <p className="text-sm sm:text-base text-slate-700">
-              {t.philosophy.pillar2Desc}
-            </p>
+            <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar2Desc}</p>
           </div>
 
           <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
@@ -49,9 +45,7 @@ const WinePhilosophy = () => {
             <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#2C1810] mb-2">
               {t.philosophy.pillar3Title}
             </h3>
-            <p className="text-sm sm:text-base text-slate-700">
-              {t.philosophy.pillar3Desc}
-            </p>
+            <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar3Desc}</p>
           </div>
 
           <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
@@ -61,9 +55,7 @@ const WinePhilosophy = () => {
             <h3 className="text-lg sm:text-xl font-serif font-semibold text-[#2C1810] mb-2">
               {t.philosophy.pillar4Title}
             </h3>
-            <p className="text-sm sm:text-base text-slate-700">
-              {t.philosophy.pillar4Desc}
-            </p>
+            <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar4Desc}</p>
           </div>
         </div>
       </div>

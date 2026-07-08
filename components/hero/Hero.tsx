@@ -13,14 +13,8 @@ const Hero = () => {
   return (
     <div className="relative h-screen max-h-[60vh] sm:max-h-[70vh] md:max-h-screen w-full flex items-center justify-center text-white-100 overflow-hidden">
       <picture>
-        <source
-          media="(max-width: 640px)"
-          srcSet="/images/hero-mobile.avif"
-        />
-        <source
-          media="(max-width: 1024px)"
-          srcSet="/images/hero-tablet.avif"
-        />
+        <source media="(max-width: 640px)" srcSet="/images/hero-mobile.avif" />
+        <source media="(max-width: 1024px)" srcSet="/images/hero-tablet.avif" />
         <img
           src="/images/hero-background.avif"
           alt=""

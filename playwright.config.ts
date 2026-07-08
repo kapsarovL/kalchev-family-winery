@@ -8,11 +8,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : undefined,
 
-  reporter: [
-    ["html", { open: "never" }],
-    ["list"],
-    process.env.CI ? ["github"] : ["line"],
-  ],
+  reporter: [["html", { open: "never" }], ["list"], process.env.CI ? ["github"] : ["line"]],
 
   use: {
     baseURL: process.env.E2E_BASE_URL || "http://localhost:3000",

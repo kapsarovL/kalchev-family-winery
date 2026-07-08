@@ -52,7 +52,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
           <Badge
             variant="secondary"
             className={`absolute top-3 right-3 ${getBadgeColor(
-              wine.translations[locale].type
+              wine.translations[locale].type,
             )} font-medium`}
           >
             {wine.translations[locale].type}
@@ -64,9 +64,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
             <h3 className="text-xl font-serif font-bold text-deepBrown-300">
               {wine.translations[locale].name}
             </h3>
-            <span className="text-lg font-medium text-oliveGreen-300">
-              {wine.price}
-            </span>
+            <span className="text-lg font-medium text-oliveGreen-300">{wine.price}</span>
           </div>
 
           <div className="mb-3">
@@ -102,11 +100,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
       </motion.div>
 
       {/* Wine Detail Dialog */}
-      <WineDetailDialog
-        wine={wine}
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      />
+      <WineDetailDialog wine={wine} isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
     </>
   );
 };

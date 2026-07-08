@@ -2,13 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  ShoppingCart,
-  Heart,
-  Check,
-  Clock,
-  Wine as WineIcon,
-} from "lucide-react";
+import { ShoppingCart, Heart, Check, Clock, Wine as WineIcon } from "lucide-react";
 import Image from "next/image";
 import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine";
 import { useCart } from "@/lib/cart-context";
@@ -89,8 +83,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
   };
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
-  const decrementQuantity = () =>
-    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   return (
     <div
@@ -112,7 +105,9 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
             variant="outline"
             className="bg-wineRed-100/10 text-wineRed-100 border-wineRed-100"
           >
-            {wine.translations[locale].type.charAt(0).toUpperCase() + wine.translations[locale].type.slice(1)} Wine
+            {wine.translations[locale].type.charAt(0).toUpperCase() +
+              wine.translations[locale].type.slice(1)}{" "}
+            Wine
           </Badge>
           <Badge
             variant="outline"
@@ -132,9 +127,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
 
         {/* Price and status display */}
         <div className="flex items-center justify-between mb-4">
-          <div className="price text-2xl font-medium text-gold-100">
-            {wine.price}
-          </div>
+          <div className="price text-2xl font-medium text-gold-100">{wine.price}</div>
           <div className="flex">
             {renderStockStatus()}
             {renderAwardBadge()}

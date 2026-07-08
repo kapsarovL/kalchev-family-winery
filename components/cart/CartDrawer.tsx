@@ -21,7 +21,7 @@ export default function CartDrawer() {
   const { locale } = useLocale();
   const total = state.items.reduce(
     (sum, item) => sum + parseFloat(item.wine.price.replace("€", "")) * item.quantity,
-    0
+    0,
   );
 
   useEffect(() => {
@@ -90,11 +90,15 @@ export default function CartDrawer() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-deepBrown-300 text-sm truncate">{wine.translations[locale].name}</p>
+                      <p className="font-medium text-deepBrown-300 text-sm truncate">
+                        {wine.translations[locale].name}
+                      </p>
                       <p className="text-gold-100 text-sm font-medium">{wine.price}</p>
                       <div className="flex items-center gap-2 mt-1">
                         <button
-                          onClick={() => dispatch({ type: "UPDATE_QTY", id: wine.id, quantity: quantity - 1 })}
+                          onClick={() =>
+                            dispatch({ type: "UPDATE_QTY", id: wine.id, quantity: quantity - 1 })
+                          }
                           className="w-6 h-6 rounded border border-cream-200 flex items-center justify-center text-deepBrown-100 hover:bg-cream-100 transition-colors text-sm"
                           aria-label={`Decrease quantity of ${wine.translations[locale].name}`}
                         >
@@ -102,7 +106,9 @@ export default function CartDrawer() {
                         </button>
                         <span className="text-sm w-4 text-center">{quantity}</span>
                         <button
-                          onClick={() => dispatch({ type: "UPDATE_QTY", id: wine.id, quantity: quantity + 1 })}
+                          onClick={() =>
+                            dispatch({ type: "UPDATE_QTY", id: wine.id, quantity: quantity + 1 })
+                          }
                           className="w-6 h-6 rounded border border-cream-200 flex items-center justify-center text-deepBrown-100 hover:bg-cream-100 transition-colors text-sm"
                           aria-label={`Increase quantity of ${wine.translations[locale].name}`}
                         >
@@ -141,7 +147,8 @@ export default function CartDrawer() {
                         Complete Your Order
                       </DialogTitle>
                       <DialogDescription className="text-deepBrown-100/70 font-inter">
-                        To place your order, please contact us directly. We&apos;ll help you finalize your selection and arrange delivery.
+                        To place your order, please contact us directly. We&apos;ll help you
+                        finalize your selection and arrange delivery.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 py-2">
@@ -158,13 +165,13 @@ export default function CartDrawer() {
                     </div>
                   </DialogContent>
                 </Dialog>
-              <button
-                onClick={() => dispatch({ type: "CLEAR" })}
-                className="w-full text-sm text-deepBrown-100/50 hover:text-wineRed-100 transition-colors"
-                aria-label="Clear cart"
-              >
-                Clear cart
-              </button>
+                <button
+                  onClick={() => dispatch({ type: "CLEAR" })}
+                  className="w-full text-sm text-deepBrown-100/50 hover:text-wineRed-100 transition-colors"
+                  aria-label="Clear cart"
+                >
+                  Clear cart
+                </button>
               </div>
             )}
           </motion.div>

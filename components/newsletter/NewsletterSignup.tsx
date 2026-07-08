@@ -28,7 +28,13 @@ export default function NewsletterSignup() {
           <span className="font-inter text-sm">{state.message}</span>
         </div>
       ) : (
-        <form onSubmit={(e) => { e.preventDefault(); action(new FormData(e.currentTarget)); }} className="flex flex-col sm:flex-row gap-3">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            action(new FormData(e.currentTarget));
+          }}
+          className="flex flex-col sm:flex-row gap-3"
+        >
           <input
             type="email"
             name="email"
@@ -42,10 +48,15 @@ export default function NewsletterSignup() {
             disabled={isPending}
             className="group flex items-center justify-center gap-2 px-6 py-3 bg-gold-100 hover:bg-gold-100/90 text-white-100 rounded-lg text-sm font-medium transition-colors disabled:opacity-60 whitespace-nowrap"
           >
-            {isPending ? t.newsletter.subscribing : (
+            {isPending ? (
+              t.newsletter.subscribing
+            ) : (
               <>
                 {t.newsletter.subscribe}
-                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight
+                  size={15}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
               </>
             )}
           </button>
