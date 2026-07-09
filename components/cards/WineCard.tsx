@@ -68,7 +68,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
           </div>
 
           <div className="mb-3">
-            <span className="text-sm text-deepBrown-100/60">
+            <span className="text-sm text-deepBrown-100/80">
               {t.wines.vintage} {wine.year}
             </span>
           </div>

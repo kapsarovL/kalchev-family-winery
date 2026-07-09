@@ -194,12 +194,18 @@ export default function EvidencePanel({ bookingId }: Props) {
                 </button>
               </div>
               {ev.imageUrl && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={ev.imageUrl}
-                  alt="Evidence"
-                  className="mt-1.5 rounded-md max-h-32 w-full object-cover border border-cream-200"
-                />
+                <div className="relative mt-1.5 rounded-md max-h-32 w-full border border-cream-200 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={ev.imageUrl}
+                    alt="Evidence"
+                    className="max-h-32 w-full object-cover"
+                    onError={(e) => {
+                      const img = e.target as HTMLImageElement;
+                      img.style.display = "none";
+                    }}
+                  />
+                </div>
               )}
               <p className="text-xs text-deepBrown-300 font-inter mt-1">{ev.description}</p>
               <p className="text-[10px] text-deepBrown-100/30 font-inter mt-0.5">

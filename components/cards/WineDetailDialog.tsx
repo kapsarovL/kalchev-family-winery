@@ -80,7 +80,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
               <DialogTitle className="text-2xl font-serif font-bold text-cream-100">
                 {wine.translations[locale].name}
               </DialogTitle>
-              <DialogDescription className="text-cream-100/60">
+              <DialogDescription className="text-cream-100/80">
                 {t.detail.vintage} {wine.year}
               </DialogDescription>
             </DialogHeader>
@@ -121,7 +121,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
 
             <div className="mt-auto pt-4 border-t border-cream-200">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-2xl font-bold text-cream-300">{wine.price}</span>
+                <span className="text-2xl font-bold text-cream-100">{wine.price}</span>
                 <span className="text-cream-100/60">{t.detail.inStock}</span>
               </div>
 

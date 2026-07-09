@@ -49,21 +49,22 @@ export function Form({
     }
   };
   return (
-    <Card className={cn("w-full max-w-md bg-wineRed-200", className)}>
+    <Card className={cn("w-full max-w-md bg-wineRed-200 h-full flex flex-col", className)}>
       <CardHeader>
-        <CardTitle className="text-cream-300">{t.form.heading}</CardTitle>
-        <CardDescription className="text-cream-100/80">{t.form.subtitle}</CardDescription>
+        <CardTitle className="text-cream-200">{t.form.heading}</CardTitle>
+        <CardDescription className="text-cream-200/90">{t.form.subtitle}</CardDescription>
       </CardHeader>
       <form
+        className="flex flex-col flex-1"
         onSubmit={(e) => {
           e.preventDefault();
           formAction(new FormData(e.currentTarget));
         }}
       >
-        <CardContent className="flex flex-col gap-6">
+        <CardContent className="flex flex-col gap-6 flex-1">
           {state.success ? (
             <p
-              className="text-muted-foreground flex items-center gap-2 text-sm"
+              className="text-cream-200 flex items-center gap-2 text-sm"
               role="status"
               aria-live="polite"
             >
@@ -74,7 +75,7 @@ export function Form({
           <div className="group/field grid gap-2" data-invalid={!!state.errors?.name}>
             <Label
               htmlFor="name"
-              className="group-data-[invalid=true]/field:text-cream-100/80 text-cream-300"
+              className="group-data-[invalid=true]/field:text-cream-100/80 text-cream-200"
             >
               {t.form.name} <span aria-hidden="true">*</span>
             </Label>
@@ -83,14 +84,14 @@ export function Form({
               name="name"
               autoComplete="name"
               placeholder="Lee Robinson"
-              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive"
+              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
               disabled={pending}
               aria-invalid={!!state.errors?.name}
               aria-errormessage="error-name"
               defaultValue={state.defaultValues.name}
             />
             {state.errors?.name && (
-              <p id="error-name" className="text-destructive text-sm">
+              <p id="error-name" className="text-red-300 text-sm">
                 {state.errors.name}
               </p>
             )}
@@ -98,7 +99,7 @@ export function Form({
           <div className="group/field grid gap-2" data-invalid={!!state.errors?.email}>
             <Label
               htmlFor="email"
-              className="group-data-[invalid=true]/field:text-destructive text-cream-300"
+              className="group-data-[invalid=true]/field:text-destructive text-cream-200"
             >
               {t.form.email} <span aria-hidden="true">*</span>
             </Label>
@@ -107,21 +108,21 @@ export function Form({
               name="email"
               autoComplete="email"
               placeholder="leerob@acme.com"
-              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive"
+              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
               disabled={pending}
               aria-invalid={!!state.errors?.email}
               aria-errormessage="error-email"
               defaultValue={state.defaultValues.email}
             />
             {state.errors?.email && (
-              <p id="error-email" className="text-destructive text-sm">
+              <p id="error-email" className="text-red-300 text-sm">
                 {state.errors.email}
               </p>
             )}
           </div>
           <div className="group/field grid gap-2" data-invalid={!!state.errors?.message}>
             <div className="mb-6">
-              <label htmlFor="subject" className="block text-sm font-medium mb-1 text-cream-300">
+              <label htmlFor="subject" className="block text-sm font-medium mb-1 text-cream-200">
                 {t.form.subject} *
               </label>
               <select
@@ -129,7 +130,7 @@ export function Form({
                 name="subject"
                 autoComplete="off"
                 required
-                className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50"
+                className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50 text-cream-100 bg-wineRed-100/20"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               >
@@ -143,7 +144,7 @@ export function Form({
             </div>
             <Label
               htmlFor="message"
-              className="group-data-[invalid=true]/field:text-destructive text-cream-300"
+              className="group-data-[invalid=true]/field:text-destructive text-cream-200"
             >
               {t.form.message} <span aria-hidden="true">*</span>
             </Label>
@@ -152,14 +153,14 @@ export function Form({
               name="message"
               autoComplete="off"
               placeholder="Type your message here..."
-              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100"
+              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
               disabled={pending}
               aria-invalid={!!state.errors?.message}
               aria-errormessage="error-message"
               defaultValue={state.defaultValues.message}
             />
             {state.errors?.message && (
-              <p id="error-message" className="text-destructive text-sm">
+              <p id="error-message" className="text-red-300 text-sm">
                 {state.errors.message}
               </p>
             )}
@@ -170,7 +171,7 @@ export function Form({
             type="submit"
             size="sm"
             disabled={pending}
-            className="bg-cream-200 text-wineRed-100 hover:text-cream-100 hover:border-cream-200/30 border"
+            className="bg-cream-200 text-deepBrown-100 hover:bg-cream-100 transition-colors"
           >
             {pending ? t.form.sending : t.form.send}
           </Button>

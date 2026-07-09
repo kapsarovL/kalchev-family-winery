@@ -76,11 +76,11 @@ const WineGiftPackages = () => {
             </div>
 
             <div className="flex flex-wrap gap-6 pt-6 border-t border-cream-200 justify-center lg:justify-start">
-              <span className="flex items-center gap-2 text-sm text-deepBrown-100/60 font-inter">
+              <span className="flex items-center gap-2 text-sm text-deepBrown-100/80 font-inter">
                 <Truck className="size-4 text-gold-100" />
                 {p.freeShipping}
               </span>
-              <span className="flex items-center gap-2 text-sm text-deepBrown-100/60 font-inter">
+              <span className="flex items-center gap-2 text-sm text-deepBrown-100/80 font-inter">
                 <Gift className="size-4 text-gold-100" />
                 {p.giftWrap}
               </span>

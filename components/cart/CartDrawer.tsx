@@ -56,7 +56,7 @@ export default function CartDrawer() {
               </h2>
               <button
                 onClick={() => dispatch({ type: "SET_OPEN", open: false })}
-                className="text-deepBrown-100/60 hover:text-deepBrown-100 transition-colors"
+                className="text-deepBrown-100/80 hover:text-deepBrown-100 transition-colors"
                 aria-label="Close cart"
               >
                 <X size={22} />
@@ -111,7 +111,7 @@ export default function CartDrawer() {
                     </div>
                     <button
                       onClick={() => dispatch({ type: "REMOVE", id: wine.id })}
-                      className="text-deepBrown-100/40 hover:text-wineRed-100 transition-colors flex-shrink-0"
+                      className="text-deepBrown-100/70 hover:text-wineRed-100 transition-colors flex-shrink-0"
                       aria-label={`Remove ${wine.translations[locale].name} from cart`}
                     >
                       <Trash2 size={16} />

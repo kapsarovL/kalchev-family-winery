@@ -67,7 +67,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
         );
       case "silver":
         return (
-          <div className="status-badge bg-white-300 bg-opacity-60 text-wineRed-300 border border-cream-200 ml-2">
+          <div className="status-badge bg-white/80 text-wineRed-200 border border-cream-200 ml-2">
             Silver Medal
           </div>
         );
@@ -135,7 +135,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
         </div>
 
         <div className="quantity-selector flex items-center mb-6">
-          <span className="mr-3 text-wineRed-100/70">Quantity:</span>
+          <span className="mr-3 text-deepBrown-100">Quantity:</span>
           <div className="flex items-center border border-cream-100 rounded">
             <Button
               onClick={decrementQuantity}
