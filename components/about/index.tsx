@@ -19,13 +19,14 @@ const AboutPage = () => {
         src={backgroundImage}
         alt="Background image of the Kalchev Family Winery vineyard"
         fill
+        priority
         className="absolute inset-0 object-cover w-full h-full -z-[5]"
       />
       <div className="container mx-auto px-4 relative z-10">
         {/* Main two-column row */}
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="max-w-3xl w-full md:w-2/3 flex flex-col items-start justify-start text-start left-0 py-6 sm:py-8 px-4 sm:px-6 rounded-lg shadow-md z-10 bg-deepBrown-200/60 backdrop-blur-sm">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-cream-100 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-cream-100 mb-6">
               {t.about.heading}
             </h2>
             <p className="text-lg text-cream-100/90 mb-4">{t.about.p1}</p>

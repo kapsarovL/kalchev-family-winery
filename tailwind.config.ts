@@ -27,6 +27,7 @@ const config: Config = {
           foreground: "hsl(var(--wine-red-foreground))",
         },
         cream: {
+          "50": "hsl(37, 58%, 95%)",
           "100": "hsl(37, 58%, 90%)",
           "200": "hsl(37, 58%, 80%)",
           "300": "hsl(37, 58%, 70%)",

@@ -24,13 +24,13 @@ const WineryExperience = () => {
       <div className="absolute top-0 right-0 size-48 md:size-72 lg:size-96 bg-wineRed-100/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 size-36 md:size-56 lg:size-72 bg-gold-100/10 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
-          <div className="w-full lg:w-1/2 order-2 lg:order-1 text-center lg:text-left">
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 text-center lg:text-left relative z-10">
             <div className="inline-block px-4 py-1.5 bg-wineRed-100/10 rounded-full text-wineRed-100 text-sm font-medium mb-4 mx-auto lg:mx-0">
               {t.experience.openForVisits}
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-deepBrown-100 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-deepBrown-100 mb-6">
               {t.experience.heading}
             </h2>
             <p className="text-lg text-deepBrown-100/80 mb-8 leading-relaxed">
@@ -70,7 +70,7 @@ const WineryExperience = () => {
           <div className="w-full lg:w-1/2 order-1 lg:order-2">
             <div className="relative flex flex-col items-center justify-start -mt-12 md:-mt-24">
               <div className="absolute size-48 md:size-64 lg:size-80 rounded-full bg-gradient-to-br from-wineRed-100/15 via-gold-100/10 to-transparent blur-2xl animate-pulse" />
-              <div className="relative">
+              <div className="relative lg:translate-x-40 xl:translate-x-64">
                 <Image
                   src={ExperienceImage}
                   alt="Wine tasting experience at Kalchev Family Winery"
@@ -78,6 +78,7 @@ const WineryExperience = () => {
                   width={447}
                   height={558}
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                 />
                 <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 bg-cream-200/90 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-cream-100/50 hidden md:block">
                   <p className="text-wineRed-100 font-serif text-base font-medium">

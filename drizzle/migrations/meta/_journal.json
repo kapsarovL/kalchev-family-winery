@@ -8,6 +8,27 @@
       "when": 1783313010485,
       "tag": "0000_nice_professor_monster",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1783556394877,
+      "tag": "0001_fuzzy_ben_urich",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1783566821519,
+      "tag": "0002_tense_mastermind",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1783567313300,
+      "tag": "0003_good_dark_phoenix",
+      "breakpoints": true
     }
   ]
 }

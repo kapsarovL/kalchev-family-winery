@@ -2,19 +2,12 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
-import { X, Trash2, ShoppingBag } from "lucide-react";
+import { X, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 export default function CartDrawer() {
   const { state, dispatch } = useCart();
@@ -135,36 +128,12 @@ export default function CartDrawer() {
                   <span>Total</span>
                   <span className="text-gold-100 text-lg">€{total.toFixed(2)}</span>
                 </div>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="w-full bg-wineRed-100 hover:bg-gold-100 text-white-100 transition-colors">
-                      Checkout
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="bg-white-100">
-                    <DialogHeader>
-                      <DialogTitle className="text-wineRed-100 font-playfair">
-                        Complete Your Order
-                      </DialogTitle>
-                      <DialogDescription className="text-deepBrown-100/70 font-inter">
-                        To place your order, please contact us directly. We&apos;ll help you
-                        finalize your selection and arrange delivery.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="space-y-4 py-2">
-                      <p className="text-deepBrown-100 font-inter text-sm">
-                        Reach out via the contact form and we&apos;ll get back to you promptly.
-                      </p>
-                      <a
-                        href="#contact"
-                        onClick={() => dispatch({ type: "SET_OPEN", open: false })}
-                        className="inline-block w-full text-center bg-gold-100 hover:bg-wineRed-100 text-white-100 transition-colors rounded-md px-4 py-2 font-medium"
-                      >
-                        Contact Us
-                      </a>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <Link href="/checkout" onClick={() => dispatch({ type: "SET_OPEN", open: false })}>
+                  <Button className="w-full bg-wineRed-100 hover:bg-gold-100 text-white-100 transition-colors">
+                    Proceed to Checkout
+                    <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
                 <button
                   onClick={() => dispatch({ type: "CLEAR" })}
                   className="w-full text-sm text-deepBrown-100/50 hover:text-wineRed-100 transition-colors"

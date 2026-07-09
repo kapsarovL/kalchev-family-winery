@@ -16,7 +16,7 @@ const Contact = () => {
     <section id="contact" className="py-12 md:py-24 bg-cream-200">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-wineRed-200 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-wineRed-200 mb-4">
             {t.contact.heading}
           </h2>
           <p className="text-lg text-deepBrown-100/80 max-w-2xl mx-auto font-inter">

@@ -29,7 +29,7 @@ const WineGiftPackages = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-wineRed-100/10 to-gold-100/10 rounded-3xl" />
             <Image
               src={packageImg}
-              alt="Wine gift package"
+              alt="Macedonian wine gift package by Kalchev Family Winery — premium Vranec and Temjanika in handcrafted wooden box"
               fill
               className="object-contain p-4 drop-shadow-2xl"
               sizes="(max-width: 1024px) 100vw, 50vw"
