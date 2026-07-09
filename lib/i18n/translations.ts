@@ -22,7 +22,7 @@ export const translations = {
       cta2: "Book Tasting",
     },
     about: {
-      heading: "Our Philosophy",
+      heading: "About Us",
       sub1: "Vineyard & Production",
       p1: "For us, wine is not just a drink — it is a feeling, a moment, and a story. In every bottle we aim to convey the warmth of Bogdanci, the Mediterranean climate, the scent of the vineyards, and the passion that has been nurtured in our family for generations. Our vision is to create a recognizable Macedonian wine with soul — natural, honest, and authentic.",
       p2: "The grapes come from carefully maintained vineyards, where nature and the traditional approach play the main role. Harvesting is done with great care, and production is in small batches, so each wine retains its unique character and quality. We pay special attention to the Vranec variety — a symbol of Macedonian winemaking, known for its depth, structure, and rich aromas.",

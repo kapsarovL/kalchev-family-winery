@@ -5,7 +5,7 @@ import merlot from "@/public/images/merlot.webp";
 import temjanika from "@/public/images/temjanika.webp";
 import rozewine from "@/public/images/rozewine.webp";
 import rozejpg from "@/public/images/roze.webp";
-import alsar from "@/public/images/alsar.png";
+import alsar from "@/public/images/alsar.webp";
 
 export type WineTranslation = {
   name: string;

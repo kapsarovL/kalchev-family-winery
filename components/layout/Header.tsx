@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Menu, X, Calendar, ShoppingCart } from "lucide-react";
+import { Menu, X, Calendar, ShoppingCart, Lock } from "lucide-react";
 import Image from "next/image";
 import logo from "@/public/images/logo.webp";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -138,6 +138,13 @@ const Header = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
+          <a
+            href="/admin"
+            className="text-deepBrown-100/90 hover:text-wineRed-100 transition-colors"
+            aria-label="Admin"
+          >
+            <Lock size={18} />
+          </a>
           <button
             onClick={() => setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")}
             className="text-xs font-medium border border-deepBrown-100/90 rounded px-2 py-1 text-deepBrown-100/90 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"
@@ -227,6 +234,13 @@ const Header = () => {
               );
             })}
             <div className="flex items-center gap-3 mt-1">
+              <a
+                href="/admin"
+                className="text-deepBrown-100/70 hover:text-wineRed-100 transition-colors"
+                aria-label="Admin"
+              >
+                <Lock size={18} />
+              </a>
               <button
                 onClick={() => setLocale(locale === "en" ? "mk" : locale === "mk" ? "gr" : "en")}
                 className="text-xs font-medium border border-deepBrown-100/30 rounded px-2 py-1 text-deepBrown-100/70 hover:border-wineRed-100 hover:text-wineRed-100 transition-colors"

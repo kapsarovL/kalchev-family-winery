@@ -5,6 +5,7 @@ import { checkRateLimit } from "@/lib/rate-limit";
 import { contactSubmissions } from "@/lib/db/schema";
 import { headers } from "next/headers";
 import { z } from "zod";
+import { createEmailSender, getNotificationEmail, contactNotificationHtml } from "@/lib/email";
 
 export async function contactFormAction(_prevState: unknown, formData: FormData) {
   const rawHeaders = await headers();
@@ -37,6 +38,30 @@ export async function contactFormAction(_prevState: unknown, formData: FormData)
         } catch {
           // Log silently — form success doesn't depend on DB
         }
+      }
+    }
+
+    const resend = createEmailSender();
+    const notifyEmail = getNotificationEmail();
+    if (resend && notifyEmail) {
+      try {
+        await resend.emails.send({
+          from: "Kalchev Family Winery <notifications@kalchevwinery.com>",
+          to: notifyEmail,
+          subject: `New contact form message from ${data.name}`,
+          html: contactNotificationHtml({
+            name: data.name,
+            email: data.email,
+            subject: data.subject ?? null,
+            message: data.message,
+            date: new Date().toLocaleString("en-US", {
+              dateStyle: "full",
+              timeStyle: "short",
+            }),
+          }),
+        });
+      } catch {
+        // Email failure doesn't block form success
       }
     }
 

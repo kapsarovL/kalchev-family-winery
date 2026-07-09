@@ -11,19 +11,20 @@ type LocaleContextType = {
 
 const LocaleContext = createContext<LocaleContextType | null>(null);
 
-export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    try {
-      const saved = typeof window !== "undefined" ? localStorage.getItem("kalchev-locale") : null;
-      if (saved === "en" || saved === "mk" || saved === "gr") return saved;
-    } catch {}
-    return "en";
-  });
+export function LocaleProvider({
+  children,
+  initialLocale = "en",
+}: {
+  children: React.ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   const setLocale = (l: Locale) => {
     setLocaleState(l);
     try {
       localStorage.setItem("kalchev-locale", l);
+      document.cookie = `kalchev-locale=${l}; path=/; max-age=31536000; SameSite=Lax`;
     } catch {}
   };
 

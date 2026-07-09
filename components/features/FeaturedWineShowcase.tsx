@@ -63,7 +63,7 @@ const FeaturedWineShowcase = () => {
       <div className="absolute inset-0 bg-black/50" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-5xl font-playfair font-bold text-gold-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-gold-100">
             {t.features.heading}
           </h2>
           <div className="section-underline mx-auto"></div>
