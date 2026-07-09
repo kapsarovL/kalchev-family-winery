@@ -67,7 +67,7 @@ const FeaturedWineShowcase = () => {
             {t.features.heading}
           </h2>
           <div className="section-underline mx-auto"></div>
-          <p className="text-cream-200 max-w-2xl mx-auto font-inter">{t.features.subtitle}</p>
+          <p className="text-white max-w-2xl mx-auto font-inter">{t.features.subtitle}</p>
         </div>
 
         <div className="relative max-w-5xl mx-auto">

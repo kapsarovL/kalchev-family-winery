@@ -51,7 +51,7 @@ const Testimonials = () => {
                     />
                   ))}
                 </div>
-                <span className="text-sm text-deepBrown-100/60">{testimonial.rating}.0</span>
+                <span className="text-sm text-deepBrown-100/80">{testimonial.rating}.0</span>
               </div>
 
               <p className="text-deepBrown-100/80 mb-4 italic">

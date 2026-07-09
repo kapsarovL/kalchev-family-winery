@@ -50,7 +50,7 @@ const WineryExperience = () => {
                     <h3 className="text-base font-semibold text-deepBrown-100 mb-1">
                       {t.experience[`${key}Title`]}
                     </h3>
-                    <p className="text-sm text-deepBrown-100/60 leading-relaxed">
+                    <p className="text-sm text-deepBrown-100/80 leading-relaxed">
                       {t.experience[`${key}Desc`]}
                     </p>
                   </div>
@@ -84,7 +84,7 @@ const WineryExperience = () => {
                   <p className="text-wineRed-100 font-serif text-base font-medium">
                     {t.experience.openForVisits}
                   </p>
-                  <p className="text-deepBrown-100/60 text-sm mt-0.5">{t.experience.hours}</p>
+                  <p className="text-deepBrown-100/80 text-sm mt-0.5">{t.experience.hours}</p>
                 </div>
               </div>
             </div>
