@@ -7,7 +7,7 @@ import Hero from "@/components/hero/Hero";
 import SectionTransition from "@/components/shared/SectionTransition";
 import PageTransition from "@/components/shared/PageTransition";
 
-const About = dynamic(() => import("@/components/about"));
+import About from "@/components/about";
 const WinePhilosophy = dynamic(() => import("@/components/wine-philosophy"));
 const WineGallery = dynamic(() => import("@/components/products"));
 const FeaturedWineShowcase = dynamic(() => import("@/components/features/FeaturedWineShowcase"));

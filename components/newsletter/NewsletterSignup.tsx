@@ -46,7 +46,7 @@ export default function NewsletterSignup() {
           <button
             type="submit"
             disabled={isPending}
-            className="group flex items-center justify-center gap-2 px-6 py-3 bg-gold-100 hover:bg-gold-100/90 text-white-100 rounded-lg text-sm font-medium transition-colors disabled:opacity-60 whitespace-nowrap"
+            className="group flex items-center justify-center gap-2 px-6 py-3 bg-gold-100 hover:bg-gold-100/90 text-white-100 rounded-lg text-sm font-medium transition-colors cursor-pointer disabled:opacity-60 whitespace-nowrap"
           >
             {isPending ? (
               t.newsletter.subscribing

@@ -78,7 +78,7 @@ const WineryExperience = () => {
                   width={447}
                   height={558}
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
+                  loading="lazy"
                 />
                 <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 bg-cream-200/90 backdrop-blur-xs p-4 rounded-xl shadow-xl border border-cream-100/50 hidden md:block">
                   <p className="text-wineRed-100 font-serif text-base font-medium">
