@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n/translations";
 
 const playfairDisplay = localFont({
   src: "./fonts/PlayfairDisplayVF.ttf",
-  variable: "--font-playfair-display",
+  variable: "--font-playfair",
   weight: "100, 200, 300, 400, 500, 600, 700, 800, 900",
 });
 
