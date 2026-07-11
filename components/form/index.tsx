@@ -84,7 +84,7 @@ export function Form({
               name="name"
               autoComplete="name"
               placeholder="Lee Robinson"
-              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
+              className="group-data-[invalid=true]/field:border-cream-200 group-data-[invalid=true]/field:focus-visible:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
               disabled={pending}
               aria-invalid={!!state.errors?.name}
               aria-errormessage="error-name"
@@ -108,7 +108,7 @@ export function Form({
               name="email"
               autoComplete="email"
               placeholder="leerob@acme.com"
-              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
+              className="group-data-[invalid=true]/field:border-cream-200 group-data-[invalid=true]/field:focus-visible:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
               disabled={pending}
               aria-invalid={!!state.errors?.email}
               aria-errormessage="error-email"
@@ -130,7 +130,7 @@ export function Form({
                 name="subject"
                 autoComplete="off"
                 required
-                className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50 text-cream-100 bg-wineRed-100/20"
+                className="w-full px-4 py-2 border border-cream-200 rounded-md focus:outline-hidden focus:ring-2 focus:ring-gold/50 text-cream-100 bg-wineRed-100/20"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
               >
@@ -153,7 +153,7 @@ export function Form({
               name="message"
               autoComplete="off"
               placeholder="Type your message here..."
-              className="group-data-[invalid=true]/field:border-cream-200 focus-visible:group-data-[invalid=true]/field:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
+              className="group-data-[invalid=true]/field:border-cream-200 group-data-[invalid=true]/field:focus-visible:ring-destructive text-cream-100 placeholder:text-cream-100/60 bg-wineRed-100/20"
               disabled={pending}
               aria-invalid={!!state.errors?.message}
               aria-errormessage="error-message"

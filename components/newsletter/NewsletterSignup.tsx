@@ -24,7 +24,7 @@ export default function NewsletterSignup() {
     <div className="w-full">
       {state?.success ? (
         <div className="flex items-center gap-3 text-cream-100 py-3">
-          <CheckCircle size={20} className="text-gold-100 flex-shrink-0" />
+          <CheckCircle size={20} className="text-gold-100 shrink-0" />
           <span className="font-inter text-sm">{state.message}</span>
         </div>
       ) : (
@@ -40,7 +40,7 @@ export default function NewsletterSignup() {
             name="email"
             placeholder={t.newsletter.placeholder}
             required
-            className="flex-1 px-4 py-3 text-sm bg-white-100/10 border border-cream-100/20 rounded-lg text-cream-100 placeholder:text-cream-100/40 focus:outline-none focus:border-gold-100/60 focus:bg-white-100/15 transition-colors"
+            className="flex-1 px-4 py-3 text-sm bg-white-100/10 border border-cream-100/20 rounded-lg text-cream-100 placeholder:text-cream-100/40 focus:outline-hidden focus:border-gold-100/60 focus:bg-white-100/15 transition-colors"
             aria-label="Email address for newsletter"
           />
           <button

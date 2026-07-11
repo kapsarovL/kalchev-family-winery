@@ -85,7 +85,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
               </DialogDescription>
             </DialogHeader>
 
-            <div className="flex-grow">
+            <div className="grow">
               <div className="mb-6">
                 <h4 className="text-lg font-medium text-gold-100 mb-2">{t.detail.tastingNotes}</h4>
                 <p className="text-cream-100/80">{wine.translations[locale].description}</p>
@@ -97,17 +97,17 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
                 </h4>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2 text-cream-100/80">
-                    <UtensilsCrossed size={15} className="mt-0.5 flex-shrink-0 text-gold-100" />
+                    <UtensilsCrossed size={15} className="mt-0.5 shrink-0 text-gold-100" />
                     <span>{pairing.foods.join(" · ")}</span>
                   </div>
                   <div className="flex items-center gap-2 text-cream-100/80">
-                    <Thermometer size={15} className="flex-shrink-0 text-gold-100" />
+                    <Thermometer size={15} className="shrink-0 text-gold-100" />
                     <span>
                       {t.detail.serveAt} {pairing.temperature}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-cream-100/80">
-                    <WineGlass size={15} className="flex-shrink-0 text-gold-100" />
+                    <WineGlass size={15} className="shrink-0 text-gold-100" />
                     <span>{pairing.glassType} glass</span>
                   </div>
                 </div>

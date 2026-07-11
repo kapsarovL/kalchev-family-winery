@@ -87,9 +87,9 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-1 md:grid-cols-2 gap-8 bg-cream-100/30 rounded-xl p-6 shadow-sm border border-cream-200/80 ${className}`}
+      className={`grid grid-cols-1 md:grid-cols-2 gap-8 bg-cream-100/30 rounded-xl p-6 shadow-xs border border-cream-200/80 ${className}`}
     >
-      <div className="product-viewer-container bg-cream-100 rounded-lg shadow-sm h-[400px] relative">
+      <div className="product-viewer-container bg-cream-100 rounded-lg shadow-xs h-[400px] relative">
         <Image
           src={wine.bottleImage || "/images/default-wine.jpg"}
           alt={wine.translations[locale].name}
