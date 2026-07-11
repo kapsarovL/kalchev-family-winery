@@ -434,7 +434,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                     name="name"
                     value={form.name}
                     onChange={handleFormChange}
-                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                     placeholder="Guest name"
                   />
                   {formErrors.name && (
@@ -450,7 +450,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                     type="email"
                     value={form.email}
                     onChange={handleFormChange}
-                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                     placeholder="guest@email.com"
                   />
                   {formErrors.email && (
@@ -467,7 +467,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                     name="phone"
                     value={form.phone}
                     onChange={handleFormChange}
-                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                     placeholder="+389"
                   />
                   {formErrors.phone && (
@@ -484,7 +484,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                     min="1"
                     value={form.partySize}
                     onChange={handleFormChange}
-                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                   />
                   {formErrors.partySize && (
                     <p className="mt-0.5 text-[11px] text-red-500 font-inter">
@@ -503,7 +503,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                     type="date"
                     value={form.date}
                     onChange={handleFormChange}
-                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                   />
                   {formErrors.date && (
                     <p className="mt-0.5 text-[11px] text-red-500 font-inter">{formErrors.date}</p>
@@ -518,7 +518,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                     type="time"
                     value={form.time}
                     onChange={handleFormChange}
-                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                    className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                   />
                   {formErrors.time && (
                     <p className="mt-0.5 text-[11px] text-red-500 font-inter">{formErrors.time}</p>
@@ -533,7 +533,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                   name="type"
                   value={form.type}
                   onChange={handleFormChange}
-                  className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
+                  className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30"
                 >
                   {bookingTypes.map((t) => (
                     <option key={t} value={t}>
@@ -551,7 +551,7 @@ export default function CalendarClient({ bookings, embedded }: Props) {
                   value={form.notes}
                   onChange={handleFormChange}
                   rows={2}
-                  className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30 resize-none"
+                  className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30 resize-none"
                   placeholder="Optional notes..."
                 />
               </div>

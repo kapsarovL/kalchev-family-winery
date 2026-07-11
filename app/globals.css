@@ -1,6 +1,304 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-playfair: var(--font-playfair-display);
+  --font-inter: var(--font-inter);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-wineRed-100: hsl(353, 42%, 32%);
+  --color-wineRed-200: hsl(353, 42%, 22%);
+  --color-wineRed-300: hsl(353, 42%, 12%);
+  --color-wineRed: hsl(var(--wine-red));
+  --color-wineRed-foreground: hsl(var(--wine-red-foreground));
+
+  --color-cream-50: hsl(37, 58%, 95%);
+  --color-cream-100: hsl(37, 58%, 90%);
+  --color-cream-200: hsl(37, 58%, 80%);
+  --color-cream-300: hsl(37, 58%, 70%);
+  --color-cream: hsl(var(--cream));
+  --color-cream-foreground: hsl(var(--cream-foreground));
+
+  --color-gold-100: hsl(34, 45%, 50%);
+  --color-gold-200: hsl(34, 45%, 40%);
+  --color-gold: hsl(var(--gold));
+  --color-gold-foreground: hsl(var(--gold-foreground));
+
+  --color-deepBrown-100: hsl(30, 20%, 10%);
+  --color-deepBrown-200: hsl(30, 20%, 20%);
+  --color-deepBrown-300: hsl(30, 20%, 30%);
+  --color-deepBrown: hsl(var(--deep-brown));
+  --color-deepBrown-foreground: hsl(var(--deep-brown-foreground));
+
+  --color-oliveGreen-100: hsl(120, 30%, 20%);
+  --color-oliveGreen-200: hsl(120, 30%, 30%);
+  --color-oliveGreen-300: hsl(120, 30%, 40%);
+  --color-oliveGreen: hsl(var(--olive-green));
+  --color-oliveGreen-foreground: hsl(var(--olive-green-foreground));
+
+  --color-white-100: hsl(0, 0%, 100%);
+  --color-white-200: hsl(0, 0%, 95%);
+  --color-white-300: hsl(0, 0%, 90%);
+  --color-white: hsl(var(--white));
+  --color-white-foreground: hsl(var(--white-foreground));
+
+  --color-black-100: hsl(0, 0%, 0%);
+  --color-black-200: hsl(0, 0%, 5%);
+  --color-black-300: hsl(0, 0%, 10%);
+  --color-black: hsl(var(--black));
+  --color-black-foreground: hsl(var(--black-foreground));
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility bg-fixed {
+  background-attachment: fixed;
+}
+
+@utility section-centered {
+  @apply text-center max-w-3xl mx-auto mb-16;
+}
+
+@utility product-360-viewer {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+@utility auto-rotating {
+  animation: rotateBottle 15s infinite linear;
+  transform-style: preserve-3d;
+}
+
+@utility wine-indicator-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+@utility wine-indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 4px;
+  transition: background-color 0.3s ease;
+
+  &.active {
+    background-color: var(--wine-red);
+  }
+
+  &.inactive {
+    background-color: rgba(var(--wine-red), 0.3);
+  }
+}
+
+@utility active {
+  &.wine-indicator-dot {
+    background-color: var(--wine-red);
+  }
+}
+
+@utility inactive {
+  &.wine-indicator-dot {
+    background-color: rgba(var(--wine-red), 0.3);
+  }
+}
+
+@utility bg-wine-red {
+  background-color: rgb(var(--wine-red));
+}
+
+@utility bg-wine-red-15 {
+  background-color: rgba(var(--wine-red), 0.15);
+}
+
+@utility text-wine-red {
+  color: rgb(var(--wine-red));
+}
+
+@utility border-wine-red {
+  border-color: rgb(var(--wine-red));
+}
+
+@utility bg-cream {
+  background-color: rgb(var(--cream));
+}
+
+@utility bg-cream-15 {
+  background-color: rgba(var(--cream), 0.15);
+}
+
+@utility text-cream {
+  color: rgb(var(--cream));
+}
+
+@utility border-cream {
+  border-color: rgb(var(--cream));
+}
+
+@utility bg-gold {
+  background-color: rgb(var(--gold));
+}
+
+@utility bg-gold-15 {
+  background-color: rgba(var(--gold), 0.15);
+}
+
+@utility text-gold {
+  color: rgb(var(--gold));
+}
+
+@utility border-gold {
+  border-color: rgb(var(--gold));
+}
+
+@utility bg-deep-brown {
+  background-color: rgb(var(--deep-brown));
+}
+
+@utility bg-deep-brown-15 {
+  background-color: rgba(var(--deep-brown), 0.15);
+}
+
+@utility text-deep-brown {
+  color: rgb(var(--deep-brown));
+}
+
+@utility border-deep-brown {
+  border-color: rgb(var(--deep-brown));
+}
+
+@utility status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@utility status-badge-success {
+  background-color: rgba(var(--wine-red), 0.15);
+  color: rgb(var(--wine-red));
+}
+
+@utility status-badge-warning {
+  background-color: rgba(var(--gold), 0.15);
+  color: rgb(var(--gold));
+}
+
+@utility status-badge-info {
+  background-color: rgba(var(--deep-brown), 0.15);
+  color: rgb(var(--deep-brown));
+}
+
+@utility section-underline {
+  height: 2px;
+  width: 60px;
+  background: linear-gradient(to right, rgb(var(--gold)), rgb(var(--wine-red)));
+  margin-bottom: 16px;
+}
+
+@utility skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 1em;
+  background-color: var(--color-deepBrown-200);
+  color: var(--color-cream-100);
+  text-decoration: none;
+  font-size: 0.875rem;
+
+  &:focus {
+    left: 0.5rem;
+    top: 0.5rem;
+  }
+}
 
 @layer base {
   :root {
@@ -67,31 +365,8 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
   html {
     scroll-behavior: smooth;
-  }
-
-  .bg-fixed {
-    background-attachment: fixed;
-  }
-
-  .section-centered {
-    @apply text-center max-w-3xl mx-auto mb-16;
-  }
-
-  .product-360-viewer {
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-radius: 0.5rem;
-    cursor: grab;
-  }
-
-  .product-360-viewer:active {
-    cursor: grabbing;
   }
 
   @keyframes rotateBottle {
@@ -101,144 +376,5 @@
     to {
       transform: rotateY(360deg);
     }
-  }
-
-  .auto-rotating {
-    animation: rotateBottle 15s infinite linear;
-    transform-style: preserve-3d;
-  }
-
-  .wine-indicator-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-
-  .wine-indicator-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 0 4px;
-    transition: background-color 0.3s ease;
-  }
-
-  .wine-indicator-dot.active {
-    background-color: var(--wine-red);
-  }
-
-  .wine-indicator-dot.inactive {
-    background-color: rgba(var(--wine-red), 0.3);
-  }
-
-  .bg-wine-red {
-    background-color: rgb(var(--wine-red));
-  }
-
-  .bg-wine-red-15 {
-    background-color: rgba(var(--wine-red), 0.15);
-  }
-
-  .text-wine-red {
-    color: rgb(var(--wine-red));
-  }
-
-  .border-wine-red {
-    border-color: rgb(var(--wine-red));
-  }
-
-  .bg-cream {
-    background-color: rgb(var(--cream));
-  }
-
-  .bg-cream-15 {
-    background-color: rgba(var(--cream), 0.15);
-  }
-
-  .text-cream {
-    color: rgb(var(--cream));
-  }
-
-  .border-cream {
-    border-color: rgb(var(--cream));
-  }
-
-  .bg-gold {
-    background-color: rgb(var(--gold));
-  }
-
-  .bg-gold-15 {
-    background-color: rgba(var(--gold), 0.15);
-  }
-
-  .text-gold {
-    color: rgb(var(--gold));
-  }
-
-  .border-gold {
-    border-color: rgb(var(--gold));
-  }
-
-  .bg-deep-brown {
-    background-color: rgb(var(--deep-brown));
-  }
-
-  .bg-deep-brown-15 {
-    background-color: rgba(var(--deep-brown), 0.15);
-  }
-
-  .text-deep-brown {
-    color: rgb(var(--deep-brown));
-  }
-
-  .border-deep-brown {
-    border-color: rgb(var(--deep-brown));
-  }
-
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    line-height: 1;
-  }
-
-  .status-badge-success {
-    background-color: rgba(var(--wine-red), 0.15);
-    color: rgb(var(--wine-red));
-  }
-
-  .status-badge-warning {
-    background-color: rgba(var(--gold), 0.15);
-    color: rgb(var(--gold));
-  }
-
-  .status-badge-info {
-    background-color: rgba(var(--deep-brown), 0.15);
-    color: rgb(var(--deep-brown));
-  }
-
-  .section-underline {
-    height: 2px;
-    width: 60px;
-    background: linear-gradient(to right, rgb(var(--gold)), rgb(var(--wine-red)));
-    margin-bottom: 16px;
-  }
-
-  .skip-link {
-    position: absolute;
-    left: -9999px;
-    z-index: 9999;
-    padding: 1em;
-    background-color: var(--color-deepBrown-200);
-    color: var(--color-cream-100);
-    text-decoration: none;
-    font-size: 0.875rem;
-  }
-
-  .skip-link:focus {
-    left: 0.5rem;
-    top: 0.5rem;
   }
 }

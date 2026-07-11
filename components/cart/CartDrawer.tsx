@@ -73,7 +73,7 @@ export default function CartDrawer() {
               ) : (
                 state.items.map(({ wine, quantity }) => (
                   <div key={wine.id} className="flex gap-3 items-center">
-                    <div className="relative w-14 h-20 flex-shrink-0 bg-cream-100/60 rounded">
+                    <div className="relative w-14 h-20 shrink-0 bg-cream-100/60 rounded">
                       <Image
                         src={wine.image}
                         alt={wine.translations[locale].name}
@@ -111,7 +111,7 @@ export default function CartDrawer() {
                     </div>
                     <button
                       onClick={() => dispatch({ type: "REMOVE", id: wine.id })}
-                      className="text-deepBrown-100/70 hover:text-wineRed-100 transition-colors flex-shrink-0"
+                      className="text-deepBrown-100/70 hover:text-wineRed-100 transition-colors shrink-0"
                       aria-label={`Remove ${wine.translations[locale].name} from cart`}
                     >
                       <Trash2 size={16} />
