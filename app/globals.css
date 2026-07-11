@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-playfair: var(--font-playfair-display);
-  --font-inter: var(--font-inter);
+  --font-playfair: "playfairDisplay", "playfairDisplay Fallback";
+  --font-inter: "inter", "inter Fallback";
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
