@@ -80,7 +80,7 @@ export default function CheckoutPage() {
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
-            <div className="bg-white-100 rounded-lg p-6 shadow-sm border border-cream-200">
+            <div className="bg-white-100 rounded-lg p-6 shadow-xs border border-cream-200">
               <h2 className="text-lg font-playfair font-bold text-deepBrown-300 mb-4">
                 Contact Information
               </h2>
@@ -96,7 +96,7 @@ export default function CheckoutPage() {
                     id="customerName"
                     name="customerName"
                     required
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.customerName && (
                     <p className="text-red-500 text-xs mt-1 font-inter">{errors.customerName}</p>
@@ -114,7 +114,7 @@ export default function CheckoutPage() {
                     name="customerEmail"
                     type="email"
                     required
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.customerEmail && (
                     <p className="text-red-500 text-xs mt-1 font-inter">{errors.customerEmail}</p>
@@ -132,7 +132,7 @@ export default function CheckoutPage() {
                     name="phone"
                     type="tel"
                     required
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.phone && (
                     <p className="text-red-500 text-xs mt-1 font-inter">{errors.phone}</p>
@@ -141,7 +141,7 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div className="bg-white-100 rounded-lg p-6 shadow-sm border border-cream-200">
+            <div className="bg-white-100 rounded-lg p-6 shadow-xs border border-cream-200">
               <h2 className="text-lg font-playfair font-bold text-deepBrown-300 mb-4">
                 Delivery Address
               </h2>
@@ -157,7 +157,7 @@ export default function CheckoutPage() {
                     id="addressLine1"
                     name="addressLine1"
                     required
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.addressLine1 && (
                     <p className="text-red-500 text-xs mt-1 font-inter">{errors.addressLine1}</p>
@@ -173,7 +173,7 @@ export default function CheckoutPage() {
                   <input
                     id="addressLine2"
                     name="addressLine2"
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
                       id="city"
                       name="city"
                       required
-                      className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                      className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                     />
                     {errors?.city && (
                       <p className="text-red-500 text-xs mt-1 font-inter">{errors.city}</p>
@@ -205,7 +205,7 @@ export default function CheckoutPage() {
                       id="postalCode"
                       name="postalCode"
                       required
-                      className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                      className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                     />
                     {errors?.postalCode && (
                       <p className="text-red-500 text-xs mt-1 font-inter">{errors.postalCode}</p>
@@ -224,7 +224,7 @@ export default function CheckoutPage() {
                     name="country"
                     defaultValue="North Macedonia"
                     required
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.country && (
                     <p className="text-red-500 text-xs mt-1 font-inter">{errors.country}</p>
@@ -241,7 +241,7 @@ export default function CheckoutPage() {
                     id="deliveryNotes"
                     name="deliveryNotes"
                     rows={3}
-                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-none focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100 resize-none"
+                    className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100 resize-none"
                     placeholder="Any special instructions for delivery..."
                   />
                 </div>
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="bg-white-100 rounded-lg p-6 shadow-sm border border-cream-200 sticky top-4">
+            <div className="bg-white-100 rounded-lg p-6 shadow-xs border border-cream-200 sticky top-4">
               <h2 className="text-lg font-playfair font-bold text-deepBrown-300 mb-4">
                 Order Summary
               </h2>
@@ -258,7 +258,7 @@ export default function CheckoutPage() {
               <div className="space-y-3 mb-4 max-h-80 overflow-y-auto">
                 {state.items.map(({ wine, quantity }) => (
                   <div key={wine.id} className="flex gap-3 items-start">
-                    <div className="relative w-10 h-14 flex-shrink-0 bg-cream-100/60 rounded">
+                    <div className="relative w-10 h-14 shrink-0 bg-cream-100/60 rounded">
                       <Image
                         src={wine.image}
                         alt={wine.translations[locale].name}

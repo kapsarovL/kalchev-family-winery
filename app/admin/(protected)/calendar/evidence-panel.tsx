@@ -291,7 +291,7 @@ export default function EvidencePanel({ bookingId }: Props) {
                   value={evDesc}
                   onChange={(e) => setEvDesc(e.target.value)}
                   rows={2}
-                  className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-none focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30 resize-none"
+                  className="w-full px-3 py-2 rounded-lg border border-cream-200 text-sm font-inter text-deepBrown-300 bg-cream-50/50 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/20 focus:border-wineRed-100/30 resize-none"
                   placeholder="Describe the evidence..."
                   required
                 />

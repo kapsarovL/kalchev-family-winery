@@ -56,7 +56,7 @@ const Footer = () => {
       <div className="border-b border-cream-100/10">
         <div className="container mx-auto px-4 py-8 md:py-10">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 lg:gap-16">
-            <div className="flex-shrink-0 max-w-sm">
+            <div className="shrink-0 max-w-sm">
               <p className="text-xs font-inter uppercase tracking-widest text-gold-100 mb-1">
                 {t.newsletter.stayInLoop}
               </p>
@@ -150,11 +150,11 @@ const Footer = () => {
             <SectionHeading>{t.footer.findUs}</SectionHeading>
             <address className="not-italic space-y-3">
               <div className="flex gap-2.5 items-start text-sm text-cream-100/60 font-inter">
-                <MapPin size={14} className="mt-0.5 flex-shrink-0 text-gold-100/60" />
+                <MapPin size={14} className="mt-0.5 shrink-0 text-gold-100/60" />
                 <span>15 Grape Road, Bogdanci Valley, Macedonia</span>
               </div>
               <div className="flex gap-2.5 items-center text-sm font-inter">
-                <Phone size={14} className="flex-shrink-0 text-gold-100/60" />
+                <Phone size={14} className="shrink-0 text-gold-100/60" />
                 <a
                   href="tel:+38975123456"
                   className="text-cream-100/60 hover:text-gold-100 transition-colors"
@@ -163,7 +163,7 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex gap-2.5 items-center text-sm font-inter">
-                <Mail size={14} className="flex-shrink-0 text-gold-100/60" />
+                <Mail size={14} className="shrink-0 text-gold-100/60" />
                 <a
                   href="mailto:info@kalchevwinery.com"
                   className="text-cream-100/60 hover:text-gold-100 transition-colors"

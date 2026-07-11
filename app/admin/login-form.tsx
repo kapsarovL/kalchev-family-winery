@@ -27,7 +27,7 @@ export function LoginForm() {
           type="password"
           required
           autoFocus
-          className="w-full px-3 py-2 border border-deepBrown-100/20 rounded-md bg-white-100 text-deepBrown-100 placeholder:text-deepBrown-100/40 focus:outline-none focus:ring-2 focus:ring-wineRed-100"
+          className="w-full px-3 py-2 border border-deepBrown-100/20 rounded-md bg-white-100 text-deepBrown-100 placeholder:text-deepBrown-100/40 focus:outline-hidden focus:ring-2 focus:ring-wineRed-100"
         />
       </div>
       {error && (

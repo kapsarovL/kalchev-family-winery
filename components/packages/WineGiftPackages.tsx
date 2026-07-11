@@ -13,7 +13,7 @@ const WineGiftPackages = () => {
   return (
     <section
       id="gift-packages"
-      className="relative overflow-hidden bg-gradient-to-b from-cream-100/40 to-cream-200/20 py-12 md:py-24 lg:py-32"
+      className="relative overflow-hidden bg-linear-to-b from-cream-100/40 to-cream-200/20 py-12 md:py-24 lg:py-32"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-10 sm:mb-14 md:mb-20">
@@ -26,7 +26,7 @@ const WineGiftPackages = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start">
           <div className="relative aspect-square max-w-lg w-full mt-6 md:mt-12">
-            <div className="absolute inset-0 bg-gradient-to-br from-wineRed-100/10 to-gold-100/10 rounded-3xl" />
+            <div className="absolute inset-0 bg-linear-to-br from-wineRed-100/10 to-gold-100/10 rounded-3xl" />
             <Image
               src={packageImg}
               alt="Macedonian wine gift package by Kalchev Family Winery — premium Vranec and Temjanika in handcrafted wooden box"
@@ -52,7 +52,7 @@ const WineGiftPackages = () => {
                     key={i}
                     className="flex items-start gap-3 text-deepBrown-100/80 font-inter justify-center lg:justify-start"
                   >
-                    <span className="mt-1.5 size-2 rounded-full bg-gold-100 flex-shrink-0" />
+                    <span className="mt-1.5 size-2 rounded-full bg-gold-100 shrink-0" />
                     {item}
                   </li>
                 ))}

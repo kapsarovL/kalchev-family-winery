@@ -202,7 +202,7 @@ const CookieConsent = () => {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2.5 flex-shrink-0">
+                <div className="flex items-center gap-2.5 shrink-0">
                   <Button
                     variant="ghost"
                     onClick={reject}
@@ -215,7 +215,7 @@ const CookieConsent = () => {
                     onClick={() => {
                       setDialogOpen(true);
                     }}
-                    className="border-cream-100/20 bg-cream-100/8 text-cream-100 shadow-sm backdrop-blur-sm hover:bg-cream-100/20 hover:border-cream-100/40 active:bg-cream-100/25 text-xs h-9 px-4"
+                    className="border-cream-100/20 bg-cream-100/8 text-cream-100 shadow-xs backdrop-blur-xs hover:bg-cream-100/20 hover:border-cream-100/40 active:bg-cream-100/25 text-xs h-9 px-4"
                   >
                     {t.cookieConsent.settings}
                   </Button>

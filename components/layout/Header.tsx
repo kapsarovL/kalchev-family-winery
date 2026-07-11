@@ -86,7 +86,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white-100/10 backdrop-blur-sm shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white-100/10 backdrop-blur-xs shadow-xs">
       <div className="container mx-auto flex justify-between items-center py-4 px-4 md:px-6">
         <motion.div
           className="flex items-center"
