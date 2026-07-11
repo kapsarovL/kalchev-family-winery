@@ -66,7 +66,7 @@ const WineGallery = () => {
             {filterButtons.map(({ label, value }) => (
               <Button
                 key={value}
-                variant={activeFilter === value ? "default" : "outline-solid"}
+                variant={activeFilter === value ? "default" : "outline"}
                 className={
                   activeFilter === value
                     ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
