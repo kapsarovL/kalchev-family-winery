@@ -35,7 +35,7 @@ const Footer = () => {
   }) => (
     <button
       onClick={() => scrollTo(sectionId)}
-      className="text-cream-100/60 hover:text-gold-100 transition-colors text-left text-sm font-inter leading-relaxed"
+      className="text-cream-100/60 hover:text-gold-100 transition-colors text-left text-sm font-inter leading-relaxed cursor-pointer"
     >
       {children}
     </button>
@@ -123,7 +123,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-8 h-8 rounded-full border border-cream-100/20 flex items-center justify-center text-cream-100/50 hover:text-gold-100 hover:border-gold-100/50 transition-colors"
+                  className="w-8 h-8 rounded-full border border-cream-100/20 flex items-center justify-center text-cream-100/50 hover:text-gold-100 hover:border-gold-100/50 transition-colors cursor-pointer"
                 >
                   {icon}
                 </a>
@@ -157,7 +157,7 @@ const Footer = () => {
                 <Phone size={14} className="shrink-0 text-gold-100/60" />
                 <a
                   href="tel:+38975123456"
-                  className="text-cream-100/60 hover:text-gold-100 transition-colors"
+                  className="text-cream-100/60 hover:text-gold-100 transition-colors cursor-pointer"
                 >
                   +389 75 123 456
                 </a>
@@ -166,7 +166,7 @@ const Footer = () => {
                 <Mail size={14} className="shrink-0 text-gold-100/60" />
                 <a
                   href="mailto:info@kalchevwinery.com"
-                  className="text-cream-100/60 hover:text-gold-100 transition-colors"
+                  className="text-cream-100/60 hover:text-gold-100 transition-colors cursor-pointer"
                 >
                   info@kalchevwinery.com
                 </a>
@@ -209,7 +209,7 @@ const Footer = () => {
                     description: `Our ${label.toLowerCase()} outlines your rights and our responsibilities.`,
                   })
                 }
-                className="text-cream-100/60 hover:text-cream-100/80 text-xs font-inter transition-colors"
+                className="text-cream-100/60 hover:text-cream-100/80 text-xs font-inter transition-colors cursor-pointer"
                 aria-label={`View ${label}`}
               >
                 {label}

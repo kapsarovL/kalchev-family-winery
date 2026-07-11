@@ -55,6 +55,7 @@ export function Form({
         <CardDescription className="text-cream-200/90">{t.form.subtitle}</CardDescription>
       </CardHeader>
       <form
+        noValidate
         className="flex flex-col flex-1"
         onSubmit={(e) => {
           e.preventDefault();

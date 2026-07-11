@@ -56,7 +56,7 @@ const FeaturedWineShowcase = () => {
         loop
         playsInline
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover scale-100 md:scale-125"
+        className="absolute inset-0 w-full h-full object-cover scale-150 object-right-top md:scale-125 md:object-center"
       >
         <source src="/videos/red_wine_waves.mp4" type="video/mp4" />
       </video>
