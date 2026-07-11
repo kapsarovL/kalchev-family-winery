@@ -48,7 +48,7 @@ const WineGallery = () => {
   return (
     <section
       id="wines"
-      className="py-16 md:py-24 bg-gradient-to-b from-white-200/80 to-wineRed-100/20"
+      className="py-16 md:py-24 bg-linear-to-b from-white-200/80 to-wineRed-100/20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
@@ -66,7 +66,7 @@ const WineGallery = () => {
             {filterButtons.map(({ label, value }) => (
               <Button
                 key={value}
-                variant={activeFilter === value ? "default" : "outline"}
+                variant={activeFilter === value ? "default" : "outline-solid"}
                 className={
                   activeFilter === value
                     ? "bg-wineRed-100 text-white-100 hover:bg-gold-100 transition-colors"
@@ -89,7 +89,7 @@ const WineGallery = () => {
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortType)}
-                className="pl-9 pr-4 py-2 border border-cream rounded-md bg-white-100 text-deepBrown-100 focus:outline-none focus:ring-2 focus:ring-gold/50 text-sm"
+                className="pl-9 pr-4 py-2 border border-cream rounded-md bg-white-100 text-deepBrown-100 focus:outline-hidden focus:ring-2 focus:ring-gold/50 text-sm"
                 aria-label="Sort wines"
               >
                 {sortOptions.map(({ label, value }) => (
@@ -109,7 +109,7 @@ const WineGallery = () => {
               <input
                 type="text"
                 placeholder={t.wines.search}
-                className="w-full pl-10 pr-4 py-2 border border-cream rounded-md focus:outline-none focus:ring-2 focus:ring-gold/50 text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-cream rounded-md focus:outline-hidden focus:ring-2 focus:ring-gold/50 text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 aria-label="Search wines"
