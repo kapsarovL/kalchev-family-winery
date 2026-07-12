@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { X, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -8,12 +8,13 @@ import { useLocale } from "@/lib/i18n/locale-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { Button } from "@/components/ui/button";
+import { parsePrice } from "@/lib/price";
 
 export default function CartDrawer() {
   const { state, dispatch } = useCart();
-  const { locale } = useLocale();
+  const { locale, t } = useLocale();
   const total = state.items.reduce(
-    (sum, item) => sum + parseFloat(item.wine.price.replace("€", "")) * item.quantity,
+    (sum, item) => sum + parsePrice(item.wine.price) * item.quantity,
     0,
   );
 
@@ -43,6 +44,9 @@ export default function CartDrawer() {
           {/* Drawer */}
           <motion.div
             key="drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cart-heading"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -51,13 +55,13 @@ export default function CartDrawer() {
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-cream-200">
-              <h2 className="text-xl font-playfair font-bold text-wineRed-100">
-                Your Cart ({state.items.reduce((s, i) => s + i.quantity, 0)})
+              <h2 id="cart-heading" className="text-xl font-playfair font-bold text-wineRed-100">
+                {t.cart.heading} ({state.items.reduce((s, i) => s + i.quantity, 0)})
               </h2>
               <button
                 onClick={() => dispatch({ type: "SET_OPEN", open: false })}
                 className="text-deepBrown-100/80 hover:text-deepBrown-100 transition-colors"
-                aria-label="Close cart"
+                aria-label={t.cart.close}
               >
                 <X size={22} />
               </button>
@@ -68,7 +72,7 @@ export default function CartDrawer() {
               {state.items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center gap-3 text-deepBrown-100/50">
                   <ShoppingBag size={48} strokeWidth={1} />
-                  <p className="font-inter">Your cart is empty</p>
+                  <p className="font-inter">{t.cart.empty}</p>
                 </div>
               ) : (
                 state.items.map(({ wine, quantity }) => (
@@ -125,21 +129,21 @@ export default function CartDrawer() {
             {state.items.length > 0 && (
               <div className="px-5 py-4 border-t border-cream-200 space-y-3">
                 <div className="flex justify-between items-center font-medium text-deepBrown-300">
-                  <span>Total</span>
+                  <span>{t.cart.total}</span>
                   <span className="text-gold-100 text-lg">€{total.toFixed(2)}</span>
                 </div>
                 <Link href="/checkout" onClick={() => dispatch({ type: "SET_OPEN", open: false })}>
                   <Button className="w-full bg-wineRed-100 hover:bg-gold-100 text-white-100 transition-colors">
-                    Proceed to Checkout
+                    {t.cart.checkout}
                     <ArrowRight size={16} className="ml-2" />
                   </Button>
                 </Link>
                 <button
                   onClick={() => dispatch({ type: "CLEAR" })}
                   className="w-full text-sm text-deepBrown-100/50 hover:text-wineRed-100 transition-colors"
-                  aria-label="Clear cart"
+                  aria-label={t.cart.clear}
                 >
-                  Clear cart
+                  {t.cart.clear}
                 </button>
               </div>
             )}

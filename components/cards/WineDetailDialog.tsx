@@ -17,6 +17,8 @@ import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { useCart } from "@/lib/cart-context";
+import { ExternalLink } from "lucide-react";
+import { getBadgeColor } from "@/lib/utils";
 
 interface WineDetailDialogProps {
   wine: Wine;
@@ -25,20 +27,6 @@ interface WineDetailDialogProps {
 }
 
 const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClose }) => {
-  // Get the appropriate badge color based on wine type
-  const _getBadgeColor = (type: string) => {
-    switch (type) {
-      case "red":
-        return "bg-wineRed-100 text-white-100";
-      case "white":
-        return "bg-gold-100 text-white-100";
-      case "rosé":
-        return "bg-wineRed-100/70 text-white-100";
-      default:
-        return "bg-deepBrown-100 text-white-100";
-    }
-  };
-
   const { locale, t } = useLocale();
   const { dispatch } = useCart();
   const pairing = getPairings(wine.key);
@@ -68,7 +56,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
             />
             <Badge
               variant="secondary"
-              className={`absolute top-4 left-4 ${_getBadgeColor(
+              className={`absolute top-4 left-4 ${getBadgeColor(
                 wine.translations[locale].type,
               )} font-medium`}
             >
@@ -136,6 +124,16 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
                   }}
                 >
                   {t.detail.addToCart}
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="text-cream-100/70 hover:text-cream-100 hover:bg-cream-300/20"
+                  onClick={() => {
+                    window.location.href = `/wines/${wine.key}`;
+                  }}
+                >
+                  <ExternalLink size={14} className="mr-2" />
+                  View Full Page
                 </Button>
               </div>
             </div>

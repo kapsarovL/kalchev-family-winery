@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import { Camera, FileText, Star, X } from "lucide-react";
 
 type Evidence = {
   id: number;
@@ -17,10 +18,10 @@ type Props = {
 
 const evidenceTypes = ["photo", "note", "feedback"] as const;
 
-const typeIcons: Record<string, string> = {
-  photo: "📷",
-  note: "📝",
-  feedback: "⭐",
+const typeIcons: Record<string, React.ReactNode> = {
+  photo: <Camera className="size-3" />,
+  note: <FileText className="size-3" />,
+  feedback: <Star className="size-3" />,
 };
 
 const typeLabels: Record<string, string> = {
@@ -34,13 +35,10 @@ export default function EvidencePanel({ bookingId }: Props) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [uploading, setUploading] = useState(false);
 
   // Form state
   const [evType, setEvType] = useState<string>("note");
   const [evDesc, setEvDesc] = useState("");
-  const [evFile, setEvFile] = useState<File | null>(null);
-  const [evPreview, setEvPreview] = useState<string | null>(null);
 
   const fetchEvidence = useCallback(async () => {
     setLoading(true);
@@ -62,46 +60,15 @@ export default function EvidencePanel({ bookingId }: Props) {
     }
   }, [open, evidence.length, fetchEvidence]);
 
-  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0] ?? null;
-    setEvFile(file);
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => setEvPreview(reader.result as string);
-      reader.readAsDataURL(file);
-    } else {
-      setEvPreview(null);
-    }
-  }
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!evDesc.trim()) return;
-
-    let imageUrl: string | null = null;
-
-    if (evFile) {
-      setUploading(true);
-      try {
-        const formData = new FormData();
-        formData.append("file", evFile);
-        const uploadRes = await fetch("/api/upload", { method: "POST", body: formData });
-        if (uploadRes.ok) {
-          const data = await uploadRes.json();
-          imageUrl = data.url;
-        }
-      } catch {
-        // silent
-      } finally {
-        setUploading(false);
-      }
-    }
 
     try {
       const res = await fetch("/api/evidence", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookingId, type: evType, description: evDesc, imageUrl }),
+        body: JSON.stringify({ bookingId, type: evType, description: evDesc }),
       });
       if (res.ok) {
         const created = await res.json();
@@ -128,8 +95,6 @@ export default function EvidencePanel({ bookingId }: Props) {
   function resetForm() {
     setEvType("note");
     setEvDesc("");
-    setEvFile(null);
-    setEvPreview(null);
   }
 
   return (
@@ -172,7 +137,9 @@ export default function EvidencePanel({ bookingId }: Props) {
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="text-xs">{typeIcons[ev.type] ?? "📄"}</span>
+                  <span className="text-deepBrown-100/50">
+                    {typeIcons[ev.type] ?? <FileText className="size-3" />}
+                  </span>
                   <span className="text-[10px] font-semibold uppercase text-deepBrown-100/50 font-inter">
                     {typeLabels[ev.type] ?? ev.type}
                   </span>
@@ -180,17 +147,9 @@ export default function EvidencePanel({ bookingId }: Props) {
                 <button
                   onClick={() => handleDelete(ev.id)}
                   className="text-deepBrown-100/30 hover:text-red-500 transition-colors shrink-0"
-                  title="Delete"
+                  aria-label="Delete evidence"
                 >
-                  <svg
-                    className="size-3"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  <X className="size-3" />
                 </button>
               </div>
               {ev.imageUrl && (
@@ -248,16 +207,9 @@ export default function EvidencePanel({ bookingId }: Props) {
               <button
                 onClick={() => setShowForm(false)}
                 className="p-1 hover:bg-cream-50 rounded transition-colors text-deepBrown-100/60"
+                aria-label="Close"
               >
-                <svg
-                  className="size-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <X className="size-4" />
               </button>
             </div>
             <form onSubmit={handleSubmit} className="px-5 py-4 space-y-3">
@@ -297,26 +249,6 @@ export default function EvidencePanel({ bookingId }: Props) {
                 />
               </div>
 
-              <div>
-                <label className="block text-[10px] font-semibold text-deepBrown-100/60 uppercase tracking-wider font-inter mb-1">
-                  Photo (optional)
-                </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileSelect}
-                  className="w-full text-sm font-inter text-deepBrown-100/60 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-inter file:font-medium file:bg-cream-100 file:text-deepBrown-300 hover:file:bg-cream-200 transition-colors"
-                />
-                {evPreview && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={evPreview}
-                    alt="Preview"
-                    className="mt-2 rounded-lg max-h-24 object-cover border border-cream-200"
-                  />
-                )}
-              </div>
-
               <div className="flex justify-end gap-2 pt-1">
                 <button
                   type="button"
@@ -327,10 +259,10 @@ export default function EvidencePanel({ bookingId }: Props) {
                 </button>
                 <button
                   type="submit"
-                  disabled={uploading || !evDesc.trim()}
+                  disabled={!evDesc.trim()}
                   className="px-3 py-1.5 bg-wineRed-100 text-cream-50 rounded-lg text-xs font-inter font-medium hover:bg-wineRed-100/90 transition-colors disabled:opacity-50"
                 >
-                  {uploading ? "Uploading..." : "Save"}
+                  Save
                 </button>
               </div>
             </form>

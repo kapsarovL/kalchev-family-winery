@@ -103,8 +103,12 @@ const WineClubMembership = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12 mb-16">
-          {membershipTiers.map((tier) => (
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12 mb-16"
+          role="radiogroup"
+          aria-label={t.club.heading}
+        >
+          {membershipTiers.map((tier, index) => (
             <Card
               key={tier.id}
               className={cn(
@@ -116,9 +120,20 @@ const WineClubMembership = () => {
               )}
               role="radio"
               aria-checked={selectedTier === tier.id}
-              tabIndex={0}
+              tabIndex={selectedTier === tier.id ? 0 : -1}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setSelectedTier(tier.id);
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedTier(tier.id);
+                } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                  e.preventDefault();
+                  const nextIndex = (index + 1) % membershipTiers.length;
+                  setSelectedTier(membershipTiers[nextIndex].id);
+                } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                  e.preventDefault();
+                  const prevIndex = (index - 1 + membershipTiers.length) % membershipTiers.length;
+                  setSelectedTier(membershipTiers[prevIndex].id);
+                }
               }}
               onClick={() => setSelectedTier(tier.id)}
             >

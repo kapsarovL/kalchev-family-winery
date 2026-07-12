@@ -6,15 +6,17 @@ import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { checkoutAction } from "@/lib/checkout";
+import { parsePrice } from "@/lib/price";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowLeft, Trash2 } from "lucide-react";
 
 export default function CheckoutPage() {
   const { state, dispatch } = useCart();
-  const { locale } = useLocale();
+  const { locale, t } = useLocale();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [errors, setErrors] = useState<Record<string, string> | null>(null);
+  const c = t.checkout;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -37,16 +39,14 @@ export default function CheckoutPage() {
         <div className="text-center max-w-md">
           <ShoppingBag size={64} className="mx-auto text-deepBrown-100/30 mb-4" strokeWidth={1} />
           <h1 className="text-2xl font-playfair font-bold text-wineRed-100 mb-2">
-            Your cart is empty
+            {c.emptyCartTitle}
           </h1>
-          <p className="text-deepBrown-100/60 font-inter mb-6">
-            Add some wines to your cart before checking out.
-          </p>
+          <p className="text-deepBrown-100/60 font-inter mb-6">{c.emptyCartDesc}</p>
           <Button
             onClick={() => router.push("/#wines")}
             className="bg-wineRed-100 hover:bg-gold-100 text-white-100"
           >
-            Browse Wines
+            {c.browseWines}
           </Button>
         </div>
       </div>
@@ -54,8 +54,7 @@ export default function CheckoutPage() {
   }
 
   const total = state.items.reduce(
-    (sum, item) =>
-      sum + parseFloat(item.wine.price.replace("€", "").replace(",", ".").trim()) * item.quantity,
+    (sum, item) => sum + parsePrice(item.wine.price) * item.quantity,
     0,
   );
 
@@ -67,10 +66,10 @@ export default function CheckoutPage() {
           className="flex items-center gap-2 text-deepBrown-100/60 hover:text-deepBrown-100 transition-colors mb-6"
         >
           <ArrowLeft size={20} />
-          <span className="font-inter text-sm">Back</span>
+          <span className="font-inter text-sm">{c.back}</span>
         </button>
 
-        <h1 className="text-3xl font-playfair font-bold text-wineRed-100 mb-8">Checkout</h1>
+        <h1 className="text-3xl font-playfair font-bold text-wineRed-100 mb-8">{c.orderSummary}</h1>
 
         {errors?._form && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-6 text-sm font-inter">
@@ -82,7 +81,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-3 space-y-6">
             <div className="bg-white-100 rounded-lg p-6 shadow-xs border border-cream-200">
               <h2 className="text-lg font-playfair font-bold text-deepBrown-300 mb-4">
-                Contact Information
+                {c.contactInfo}
               </h2>
               <div className="space-y-4">
                 <div>
@@ -90,16 +89,20 @@ export default function CheckoutPage() {
                     htmlFor="customerName"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Name *
+                    {c.name} *
                   </label>
                   <input
                     id="customerName"
                     name="customerName"
                     required
+                    aria-invalid={!!errors?.customerName}
+                    aria-describedby={errors?.customerName ? "customerName-error" : undefined}
                     className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.customerName && (
-                    <p className="text-red-500 text-xs mt-1 font-inter">{errors.customerName}</p>
+                    <p id="customerName-error" className="text-red-500 text-xs mt-1 font-inter">
+                      {errors.customerName}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -107,17 +110,21 @@ export default function CheckoutPage() {
                     htmlFor="customerEmail"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Email *
+                    {c.email} *
                   </label>
                   <input
                     id="customerEmail"
                     name="customerEmail"
                     type="email"
                     required
+                    aria-invalid={!!errors?.customerEmail}
+                    aria-describedby={errors?.customerEmail ? "customerEmail-error" : undefined}
                     className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.customerEmail && (
-                    <p className="text-red-500 text-xs mt-1 font-inter">{errors.customerEmail}</p>
+                    <p id="customerEmail-error" className="text-red-500 text-xs mt-1 font-inter">
+                      {errors.customerEmail}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -125,17 +132,21 @@ export default function CheckoutPage() {
                     htmlFor="phone"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Phone *
+                    {c.phone} *
                   </label>
                   <input
                     id="phone"
                     name="phone"
                     type="tel"
                     required
+                    aria-invalid={!!errors?.phone}
+                    aria-describedby={errors?.phone ? "phone-error" : undefined}
                     className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.phone && (
-                    <p className="text-red-500 text-xs mt-1 font-inter">{errors.phone}</p>
+                    <p id="phone-error" className="text-red-500 text-xs mt-1 font-inter">
+                      {errors.phone}
+                    </p>
                   )}
                 </div>
               </div>
@@ -143,7 +154,7 @@ export default function CheckoutPage() {
 
             <div className="bg-white-100 rounded-lg p-6 shadow-xs border border-cream-200">
               <h2 className="text-lg font-playfair font-bold text-deepBrown-300 mb-4">
-                Delivery Address
+                {c.deliveryAddress}
               </h2>
               <div className="space-y-4">
                 <div>
@@ -151,16 +162,20 @@ export default function CheckoutPage() {
                     htmlFor="addressLine1"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Address Line 1 *
+                    {c.address1} *
                   </label>
                   <input
                     id="addressLine1"
                     name="addressLine1"
                     required
+                    aria-invalid={!!errors?.addressLine1}
+                    aria-describedby={errors?.addressLine1 ? "addressLine1-error" : undefined}
                     className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.addressLine1 && (
-                    <p className="text-red-500 text-xs mt-1 font-inter">{errors.addressLine1}</p>
+                    <p id="addressLine1-error" className="text-red-500 text-xs mt-1 font-inter">
+                      {errors.addressLine1}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -168,7 +183,7 @@ export default function CheckoutPage() {
                     htmlFor="addressLine2"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Address Line 2
+                    {c.address2}
                   </label>
                   <input
                     id="addressLine2"
@@ -182,16 +197,20 @@ export default function CheckoutPage() {
                       htmlFor="city"
                       className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                     >
-                      City *
+                      {c.city} *
                     </label>
                     <input
                       id="city"
                       name="city"
                       required
+                      aria-invalid={!!errors?.city}
+                      aria-describedby={errors?.city ? "city-error" : undefined}
                       className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                     />
                     {errors?.city && (
-                      <p className="text-red-500 text-xs mt-1 font-inter">{errors.city}</p>
+                      <p id="city-error" className="text-red-500 text-xs mt-1 font-inter">
+                        {errors.city}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -199,16 +218,20 @@ export default function CheckoutPage() {
                       htmlFor="postalCode"
                       className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                     >
-                      Postal Code *
+                      {c.postalCode} *
                     </label>
                     <input
                       id="postalCode"
                       name="postalCode"
                       required
+                      aria-invalid={!!errors?.postalCode}
+                      aria-describedby={errors?.postalCode ? "postalCode-error" : undefined}
                       className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                     />
                     {errors?.postalCode && (
-                      <p className="text-red-500 text-xs mt-1 font-inter">{errors.postalCode}</p>
+                      <p id="postalCode-error" className="text-red-500 text-xs mt-1 font-inter">
+                        {errors.postalCode}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -217,17 +240,21 @@ export default function CheckoutPage() {
                     htmlFor="country"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Country *
+                    {c.country} *
                   </label>
                   <input
                     id="country"
                     name="country"
                     defaultValue="North Macedonia"
                     required
+                    aria-invalid={!!errors?.country}
+                    aria-describedby={errors?.country ? "country-error" : undefined}
                     className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100"
                   />
                   {errors?.country && (
-                    <p className="text-red-500 text-xs mt-1 font-inter">{errors.country}</p>
+                    <p id="country-error" className="text-red-500 text-xs mt-1 font-inter">
+                      {errors.country}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -235,14 +262,14 @@ export default function CheckoutPage() {
                     htmlFor="deliveryNotes"
                     className="block text-sm font-inter font-medium text-deepBrown-100 mb-1"
                   >
-                    Delivery Notes
+                    {c.deliveryNotes}
                   </label>
                   <textarea
                     id="deliveryNotes"
                     name="deliveryNotes"
                     rows={3}
                     className="w-full px-3 py-2 border border-cream-200 rounded-md font-inter text-sm focus:outline-hidden focus:ring-2 focus:ring-wineRed-100/30 focus:border-wineRed-100 bg-white-100 resize-none"
-                    placeholder="Any special instructions for delivery..."
+                    placeholder={c.deliveryPlaceholder}
                   />
                 </div>
               </div>
@@ -252,7 +279,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-2">
             <div className="bg-white-100 rounded-lg p-6 shadow-xs border border-cream-200 sticky top-4">
               <h2 className="text-lg font-playfair font-bold text-deepBrown-300 mb-4">
-                Order Summary
+                {c.orderSummary}
               </h2>
 
               <div className="space-y-3 mb-4 max-h-80 overflow-y-auto">
@@ -278,6 +305,7 @@ export default function CheckoutPage() {
                       type="button"
                       onClick={() => dispatch({ type: "REMOVE", id: wine.id })}
                       className="text-deepBrown-100/40 hover:text-wineRed-100 transition-colors"
+                      aria-label={`Remove ${wine.translations[locale].name} from order`}
                     >
                       <Trash2 size={14} />
                     </button>
@@ -300,21 +328,21 @@ export default function CheckoutPage() {
 
               <div className="border-t border-cream-200 pt-4 space-y-2">
                 <div className="flex justify-between text-sm text-deepBrown-100/70">
-                  <span>Subtotal</span>
+                  <span>{c.subtotal}</span>
                   <span>€{total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm text-deepBrown-100/70">
-                  <span>Delivery</span>
-                  <span>To be arranged</span>
+                  <span>{c.delivery}</span>
+                  <span>{c.deliveryToArranged}</span>
                 </div>
                 <div className="flex justify-between font-bold text-deepBrown-300 text-lg border-t border-cream-200 pt-2">
-                  <span>Total</span>
+                  <span>{c.totalLabel}</span>
                   <span className="text-gold-100">€{total.toFixed(2)}</span>
                 </div>
               </div>
 
               <p className="text-xs text-deepBrown-100/50 font-inter mt-3 text-center">
-                Payment will be collected upon delivery.
+                {c.paymentNote}
               </p>
 
               <Button
@@ -322,7 +350,7 @@ export default function CheckoutPage() {
                 disabled={isPending}
                 className="w-full bg-wineRed-100 hover:bg-gold-100 text-white-100 mt-4 transition-colors"
               >
-                {isPending ? "Placing Order..." : "Place Order"}
+                {isPending ? c.placingOrder : c.placeOrder}
               </Button>
             </div>
           </div>

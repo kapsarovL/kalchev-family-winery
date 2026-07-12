@@ -1,30 +1,20 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { SignJWT, jwtVerify } from "jose";
 import { NextRequest } from "next/server";
+import { getJwtSecret } from "@/lib/jwt";
 
 const COOKIE_NAME = "admin_session";
 
-function getJwtSecret(): Uint8Array {
-  const secret = process.env.ADMIN_SESSION_SECRET;
-  if (!secret) {
-    if (process.env.NODE_ENV === "production") {
-      throw new Error("ADMIN_SESSION_SECRET must be set in production");
-    }
-    console.warn("[admin-auth] ADMIN_SESSION_SECRET not set — using development fallback");
-    return new TextEncoder().encode("dev-only-fallback-do-not-deploy");
-  }
-  return new TextEncoder().encode(secret);
-}
-
-export async function login(formData: FormData) {
+export async function login(
+  formData: FormData,
+): Promise<{ ok: true } | { ok: false; error: string }> {
   const password = formData.get("password") as string;
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (!adminPassword || password !== adminPassword) {
-    return "Invalid password";
+    return { ok: false, error: "Invalid password" };
   }
 
   const token = await new SignJWT({ role: "admin", timestamp: Date.now() })
@@ -42,13 +32,13 @@ export async function login(formData: FormData) {
     maxAge: 60 * 60 * 24,
   });
 
-  redirect("/admin/dashboard");
+  return { ok: true };
 }
 
-export async function logout() {
+export async function logout(): Promise<{ ok: true }> {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAME);
-  redirect("/admin");
+  return { ok: true };
 }
 
 export async function verifyAdminSession(request: NextRequest): Promise<boolean> {

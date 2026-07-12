@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Check } from "lucide-react";
 import { Form } from "@/components/form";

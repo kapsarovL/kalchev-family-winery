@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Gift, Heart, Truck } from "lucide-react";
@@ -31,6 +31,7 @@ const WineGiftPackages = () => {
               src={packageImg}
               alt="Macedonian wine gift package by Kalchev Family Winery — premium Vranec and Temjanika in handcrafted wooden box"
               fill
+              priority
               className="object-contain p-4 drop-shadow-2xl"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />

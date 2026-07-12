@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { Button } from "@/components/ui/button";
 import { Calendar, GlassWater, Utensils, Users, ArrowRight } from "lucide-react";
 import ExperienceImage from "@/public/images/glass-wine.webp";

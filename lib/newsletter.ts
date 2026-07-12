@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { newsletterSubscribers } from "@/lib/db/schema";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { z } from "zod";
-import { createEmailSender, getNotificationEmail, newsletterNotificationHtml } from "@/lib/email";
+import { sendAdminNotification, newsletterNotificationHtml, formatDate } from "@/lib/email";
 
 const emailSchema = z.string().email();
 
@@ -42,26 +42,13 @@ export async function subscribeToNewsletter(
   try {
     await db.insert(newsletterSubscribers).values({ email: parsed.data }).onConflictDoNothing();
 
-    const resend = createEmailSender();
-    const notifyEmail = getNotificationEmail();
-    if (resend && notifyEmail) {
-      try {
-        await resend.emails.send({
-          from: "Kalchev Family Winery <notifications@kalchevwinery.com>",
-          to: notifyEmail,
-          subject: "New newsletter subscriber",
-          html: newsletterNotificationHtml({
-            email: parsed.data,
-            date: new Date().toLocaleString("en-US", {
-              dateStyle: "full",
-              timeStyle: "short",
-            }),
-          }),
-        });
-      } catch {
-        // Email failure doesn't block signup success
-      }
-    }
+    await sendAdminNotification(
+      "New newsletter subscriber",
+      newsletterNotificationHtml({
+        email: parsed.data,
+        date: formatDate(),
+      }),
+    );
 
     return { success: true, message: "You're subscribed! Welcome to the Kalchev family." };
   } catch {

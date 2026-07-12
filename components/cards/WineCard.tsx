@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { ShoppingCart } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
+import { getBadgeColor } from "@/lib/utils";
 
 interface WineCardProps {
   wine: Wine;
@@ -19,20 +20,6 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { dispatch } = useCart();
   const { locale, t } = useLocale();
-
-  // Get the appropriate badge color based on wine type
-  const getBadgeColor = (type: string) => {
-    switch (type) {
-      case "red":
-        return "bg-wineRed-100 text-white-100";
-      case "white":
-        return "bg-gold-100 text-white-100";
-      case "rosé":
-        return "bg-wineRed-100/70 text-white-100";
-      default:
-        return "bg-deepBrown-100 text-white-100";
-    }
-  };
 
   return (
     <>

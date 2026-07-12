@@ -25,18 +25,5 @@ export const metaData = {
   links: {
     facebook: "https://facebook.com/kalchevwinery",
     instagram: "https://instagram.com/kalchevwinery",
-    linkedin: "https://linkedin.com/company/kalchevwinery",
-    twitter: "https://twitter.com/kalchevwinery",
   },
-  icons: [
-    {
-      url: "/favicon.ico",
-      sizes: "any",
-    },
-    {
-      url: "/icon.png",
-      type: "image/png",
-      sizes: "32x32",
-    },
-  ],
 };

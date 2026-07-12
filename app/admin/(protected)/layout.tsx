@@ -2,9 +2,9 @@ import { type ReactNode } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { jwtVerify } from "jose";
+import { getJwtSecret } from "@/lib/jwt";
 
 const COOKIE_NAME = "admin_session";
-const JWT_SECRET = new TextEncoder().encode(process.env.ADMIN_SESSION_SECRET || "default-secret-change-me");
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();
@@ -16,7 +16,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   }
 
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET);
+    const { payload } = await jwtVerify(token, getJwtSecret());
     if (payload.role !== "admin") {
       redirect("/admin");
       return null;

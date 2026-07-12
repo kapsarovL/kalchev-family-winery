@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { subscribeToNewsletter } from "@/lib/newsletter";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
