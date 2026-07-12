@@ -14,13 +14,25 @@ const Hero = () => {
   return (
     <div className="relative h-screen max-h-[60vh] sm:max-h-[70vh] md:max-h-screen w-full flex items-center justify-center text-white-100 overflow-hidden">
       <picture className="absolute inset-0 size-full">
-        <source media="(max-width: 640px)" srcSet="/images/hero-mobile.avif" />
-        <source media="(max-width: 1024px)" srcSet="/images/hero-tablet.avif" />
+        <source
+          media="(max-width: 640px)"
+          srcSet="/images/hero-mobile-sm.avif 500w, /images/hero-mobile.avif 750w"
+          sizes="100vw"
+          type="image/avif"
+        />
+        <source
+          media="(max-width: 1024px)"
+          srcSet="/images/hero-tablet-sm.avif 900w, /images/hero-tablet.avif 1200w"
+          sizes="100vw"
+          type="image/avif"
+        />
         <img
           src="/images/hero-background.avif"
           alt="Kalchev Family Winery — Macedonian winery in Bogdanci valley"
           className="absolute inset-0 size-full object-cover"
           fetchPriority="high"
+          width="1672"
+          height="941"
         />
       </picture>
       <div className="absolute inset-0 bg-black/40" />

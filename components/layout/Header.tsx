@@ -103,6 +103,7 @@ const Header = () => {
               alt="Kalchev Family Winery"
               width={418}
               height={596}
+              sizes="(max-width: 640px) 40px, (max-width: 768px) 48px, 56px"
               className="h-10 sm:h-12 md:h-14 w-auto object-contain"
               priority
             />

@@ -86,6 +86,7 @@ const Footer = () => {
                 alt="Kalchev Family Winery"
                 width={418}
                 height={596}
+                sizes="36px"
                 className="h-9 w-auto object-contain brightness-0 invert"
               />
               <span className="font-playfair text-lg font-bold text-cream-100 group-hover:text-gold-100 transition-colors">
