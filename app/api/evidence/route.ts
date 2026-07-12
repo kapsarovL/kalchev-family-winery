@@ -2,20 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { bookingEvidence } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
-
-async function requireAdmin(request: NextRequest): Promise<boolean> {
-  const adminCookie = request.cookies.get("admin_authenticated")?.value;
-  return adminCookie === "true";
-}
+import { verifyAdminSession } from "@/lib/admin-auth";
 
 export async function GET(request: NextRequest) {
+  if (!(await verifyAdminSession(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const database = db;
   if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
-  }
-
-  if (!(await requireAdmin(request))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
@@ -39,13 +35,13 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  if (!(await verifyAdminSession(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const database = db;
   if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
-  }
-
-  if (!(await requireAdmin(request))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
@@ -71,13 +67,13 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  if (!(await verifyAdminSession(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const database = db;
   if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
-  }
-
-  if (!(await requireAdmin(request))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {

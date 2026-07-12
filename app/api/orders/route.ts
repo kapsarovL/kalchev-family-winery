@@ -2,29 +2,21 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { orders, orderItems } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
-
-async function requireAdmin(request: NextRequest): Promise<boolean> {
-  const adminCookie = request.cookies.get("admin_authenticated")?.value;
-  return adminCookie === "true";
-}
-
-function errorResponse(message: string, status: number) {
-  return NextResponse.json({ error: message }, { status });
-}
+import { verifyAdminSession } from "@/lib/admin-auth";
 
 export async function GET(request: NextRequest) {
+  if (!(await verifyAdminSession(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const database = db;
   if (!database) {
-    return errorResponse("Database not available", 503);
+    return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
   }
-
-  if (!(await requireAdmin(request))) {
-    return errorResponse("Unauthorized", 401);
-  }
-
-  const email = request.nextUrl.searchParams.get("email");
 
   try {
+    const email = request.nextUrl.searchParams.get("email");
+
     if (email) {
       const rows = await database
         .select()
@@ -53,18 +45,18 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ orders: result });
   } catch {
-    return errorResponse("Failed to fetch orders", 500);
+    return NextResponse.json({ error: "Failed to fetch orders" }, { status: 500 });
   }
 }
 
 export async function PATCH(request: NextRequest) {
-  const database = db;
-  if (!database) {
-    return errorResponse("Database not available", 503);
+  if (!(await verifyAdminSession(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!(await requireAdmin(request))) {
-    return errorResponse("Unauthorized", 401);
+  const database = db;
+  if (!database) {
+    return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
   }
 
   try {
@@ -72,12 +64,12 @@ export async function PATCH(request: NextRequest) {
     const { id, status } = body;
 
     if (!id || !status) {
-      return errorResponse("Missing id or status", 400);
+      return NextResponse.json({ error: "Missing id or status" }, { status: 400 });
     }
 
     const validStatuses = ["pending", "confirmed", "shipped", "delivered", "cancelled"];
     if (!validStatuses.includes(status)) {
-      return errorResponse("Invalid status", 400);
+      return NextResponse.json({ error: "Invalid status" }, { status: 400 });
     }
 
     const [updated] = await database
@@ -87,11 +79,11 @@ export async function PATCH(request: NextRequest) {
       .returning();
 
     if (!updated) {
-      return errorResponse("Order not found", 404);
+      return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
     return NextResponse.json({ order: updated });
   } catch {
-    return errorResponse("Failed to update order", 500);
+    return NextResponse.json({ error: "Failed to update order" }, { status: 500 });
   }
 }

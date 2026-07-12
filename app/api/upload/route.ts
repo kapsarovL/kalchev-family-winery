@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
-
-async function requireAdmin(request: NextRequest): Promise<boolean> {
-  const adminCookie = request.cookies.get("admin_authenticated")?.value;
-  return adminCookie === "true";
-}
+import { verifyAdminSession } from "@/lib/admin-auth";
 
 export async function POST(request: NextRequest) {
-  if (!(await requireAdmin(request))) {
+  if (!(await verifyAdminSession(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
