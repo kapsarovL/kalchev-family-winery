@@ -95,7 +95,7 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
           alt={wine.translations[locale].name}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-contain p-6 drop-shadow-xl"
+          className="object-contain p-6 drop-shadow-xl pointer-events-none"
         />
       </div>
 

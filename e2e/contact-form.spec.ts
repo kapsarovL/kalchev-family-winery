@@ -4,10 +4,7 @@ test.describe("Contact Form", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
-    await page.waitForFunction(() => {
-      const form = document.querySelector("form");
-      return form && Object.keys(form).some((k) => k.startsWith("__reactFiber$"));
-    });
+    await expect(page.locator("#name")).toBeVisible();
   });
 
   test("form fields are visible", async ({ page }) => {

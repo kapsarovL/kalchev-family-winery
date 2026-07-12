@@ -77,6 +77,7 @@ const Contact = () => {
                 src="/images/contact-info.webp"
                 alt="Kalchev Family Winery"
                 fill
+                priority
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

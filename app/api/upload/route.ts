@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 
+async function requireAdmin(request: NextRequest): Promise<boolean> {
+  const adminCookie = request.cookies.get("admin_authenticated")?.value;
+  return adminCookie === "true";
+}
+
 export async function POST(request: NextRequest) {
+  if (!(await requireAdmin(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;

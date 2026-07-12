@@ -47,7 +47,7 @@ const WineCard: React.FC<WineCardProps> = ({ wine }) => {
             alt={wine.translations[locale].name}
             fill={true}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-contain transition-transform duration-500 group-hover:scale-105 py-3"
+            className="object-contain transition-transform duration-500 group-hover:scale-105 py-3 pointer-events-none"
           />
           <Badge
             variant="secondary"
