@@ -44,7 +44,7 @@ beforeEach(() => {
   mockedHeaders.mockResolvedValue({
     get: (name: string) => (name === "x-forwarded-for" ? "192.168.1.1, 10.0.0.1" : null),
   } as Awaited<ReturnType<typeof headers>>);
-  mockedCheckRateLimit.mockReturnValue({ allowed: true, retryAfterSecs: 0 });
+  mockedCheckRateLimit.mockResolvedValue({ allowed: true, retryAfterSecs: 0 });
   mockedCreateEmailSender.mockReturnValue(null);
   mockedGetNotificationEmail.mockReturnValue(null);
 });
@@ -61,7 +61,7 @@ describe("contactFormAction", () => {
   });
 
   it("returns rate-limit error when rate limited", async () => {
-    mockedCheckRateLimit.mockReturnValue({ allowed: false, retryAfterSecs: 45 });
+    mockedCheckRateLimit.mockResolvedValue({ allowed: false, retryAfterSecs: 45 });
 
     const fd = makeFormData({
       name: "John",

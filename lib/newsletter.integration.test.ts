@@ -43,7 +43,7 @@ beforeEach(() => {
   mockedHeaders.mockResolvedValue({
     get: (name: string) => (name === "x-forwarded-for" ? "10.0.0.1" : null),
   } as never);
-  mockedCheckRateLimit.mockReturnValue({ allowed: true, retryAfterSecs: 0 });
+  mockedCheckRateLimit.mockResolvedValue({ allowed: true, retryAfterSecs: 0 });
   mockedCreateEmailSender.mockReturnValue(null);
   mockedGetNotificationEmail.mockReturnValue(null);
 });
@@ -66,7 +66,7 @@ describe("subscribeToNewsletter", () => {
   });
 
   it("returns rate-limit error when rate limited", async () => {
-    mockedCheckRateLimit.mockReturnValue({ allowed: false, retryAfterSecs: 30 });
+    mockedCheckRateLimit.mockResolvedValue({ allowed: false, retryAfterSecs: 30 });
 
     const fd = makeFormData("test@example.com");
     const result = await subscribeToNewsletter(null, fd);

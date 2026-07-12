@@ -3,7 +3,6 @@ import { metaData } from "@/config/site";
 import HomePage from "./home-page";
 
 export const metadata = createMetadata({
-  title: metaData.title,
   description: metaData.description,
   path: "/",
 });

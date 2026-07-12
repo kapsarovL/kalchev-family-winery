@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Locale, translations, Translations } from "./translations";
 
 type LocaleContextType = {
@@ -19,6 +19,15 @@ export function LocaleProvider({
   initialLocale?: Locale;
 }) {
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("kalchev-locale") as Locale | null;
+      if (saved && saved !== initialLocale && translations[saved]) {
+        setLocaleState(saved);
+      }
+    } catch {}
+  }, [initialLocale]);
 
   const setLocale = (l: Locale) => {
     setLocaleState(l);

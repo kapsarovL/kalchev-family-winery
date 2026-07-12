@@ -1,3 +1,4 @@
+"use client";
 import backgroundImage from "@/public/images/about-background.avif";
 
 import Image from "next/image";

@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <PageTransition>
       <motion.div
-        id="home"
+        id="main-content"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
