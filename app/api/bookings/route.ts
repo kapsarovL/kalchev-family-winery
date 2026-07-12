@@ -3,9 +3,19 @@ import { db } from "@/lib/db";
 import { bookings } from "@/lib/db/schema";
 import { eq, desc, and } from "drizzle-orm";
 
+async function requireAdmin(request: NextRequest): Promise<boolean> {
+  const adminCookie = request.cookies.get("admin_authenticated")?.value;
+  return adminCookie === "true";
+}
+
 export async function GET(request: NextRequest) {
-  if (!db) {
+  const database = db;
+  if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
+  }
+
+  if (!(await requireAdmin(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
@@ -19,12 +29,12 @@ export async function GET(request: NextRequest) {
 
     const result =
       conditions.length > 0
-        ? await db
+        ? await database
             .select()
             .from(bookings)
             .where(and(...conditions))
             .orderBy(desc(bookings.date), bookings.time)
-        : await db.select().from(bookings).orderBy(desc(bookings.date), bookings.time);
+        : await database.select().from(bookings).orderBy(desc(bookings.date), bookings.time);
 
     return NextResponse.json(result);
   } catch {
@@ -33,7 +43,8 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  if (!db) {
+  const database = db;
+  if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
   }
 
@@ -45,7 +56,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const result = await db
+    const result = await database
       .insert(bookings)
       .values({ name, email, phone, date, time, partySize, type: type ?? "tasting", notes })
       .returning();
@@ -57,8 +68,13 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-  if (!db) {
+  const database = db;
+  if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });
+  }
+
+  if (!(await requireAdmin(request))) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
@@ -91,7 +107,7 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: "No valid fields to update" }, { status: 400 });
     }
 
-    const result = await db
+    const result = await database
       .update(bookings)
       .set(safeUpdates)
       .where(eq(bookings.id, id))

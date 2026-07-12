@@ -1,35 +1,18 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useReducer } from "react";
-import { z } from "zod";
-import { Wine } from "@/data/wines";
+import { Wine, wines } from "@/data/wines";
 
-export type CartItem = { wine: Wine; quantity: number };
+type StoredCartItem = { wineId: number; quantity: number };
 
-const cartItemSchema = z.object({
-  wine: z.object({
-    id: z.number(),
-    price: z.string(),
-    image: z.string(),
-    translations: z.record(
-      z.object({
-        name: z.string(),
-        description: z.string(),
-        type: z.string(),
-      }),
-    ),
-  }),
-  quantity: z.number(),
-});
-
-type CartState = { items: CartItem[]; isOpen: boolean };
+type CartState = { items: { wine: Wine; quantity: number }[]; isOpen: boolean };
 type CartAction =
   | { type: "ADD"; wine: Wine; quantity: number }
   | { type: "REMOVE"; id: number }
   | { type: "UPDATE_QTY"; id: number; quantity: number }
   | { type: "CLEAR" }
   | { type: "SET_OPEN"; open: boolean }
-  | { type: "HYDRATE"; items: CartItem[] };
+  | { type: "HYDRATE"; items: { wine: Wine; quantity: number }[] };
 
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
@@ -75,27 +58,37 @@ const CartContext = createContext<{
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [], isOpen: false });
+  const [hydrated, setHydrated] = React.useState(false);
 
-  // Hydrate from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem("kalchev-cart");
       if (saved) {
-        const parsed = JSON.parse(saved);
+        const parsed: StoredCartItem[] = JSON.parse(saved);
         if (Array.isArray(parsed)) {
-          const valid = parsed.filter((item: unknown) => cartItemSchema.safeParse(item).success);
-          dispatch({ type: "HYDRATE", items: valid as CartItem[] });
+          const restored = parsed
+            .map((item) => {
+              const wine = wines.find((w) => w.id === item.wineId);
+              return wine ? { wine, quantity: item.quantity } : null;
+            })
+            .filter((i): i is { wine: Wine; quantity: number } => i !== null);
+          dispatch({ type: "HYDRATE", items: restored });
         }
       }
     } catch {}
+    setHydrated(true);
   }, []);
 
-  // Persist to localStorage on change
   useEffect(() => {
+    if (!hydrated) return;
     try {
-      localStorage.setItem("kalchev-cart", JSON.stringify(state.items));
+      const stored: StoredCartItem[] = state.items.map((item) => ({
+        wineId: item.wine.id,
+        quantity: item.quantity,
+      }));
+      localStorage.setItem("kalchev-cart", JSON.stringify(stored));
     } catch {}
-  }, [state.items]);
+  }, [state.items, hydrated]);
 
   return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
 }
