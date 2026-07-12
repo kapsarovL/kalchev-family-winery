@@ -11,7 +11,7 @@ export async function contactFormAction(_prevState: unknown, formData: FormData)
   const rawHeaders = await headers();
   const rawIp = rawHeaders.get("x-forwarded-for");
   const ip = rawIp?.split(",")[0]?.trim() ?? "anonymous";
-  const { allowed, retryAfterSecs } = checkRateLimit(ip);
+  const { allowed, retryAfterSecs } = await checkRateLimit(ip);
   if (!allowed) {
     return {
       defaultValues: { name: "", email: "", message: "" },

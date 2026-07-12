@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { metaData } from "@/config/site";
 
 export interface PageSeo {
-  title: string;
+  title?: string;
   description: string;
   path: string;
   keywords?: string[];
@@ -15,13 +15,13 @@ export function createMetadata(config: PageSeo): Metadata {
   const image = config.ogImage || `${metaData.url}/opengraph-image`;
 
   return {
-    title: config.title,
+    ...(config.title ? { title: config.title } : {}),
     description: config.description,
     ...(config.keywords?.length && { keywords: config.keywords }),
     ...(config.noIndex && { robots: { index: false, follow: true } as const }),
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: config.title,
+      ...(config.title ? { title: config.title } : {}),
       description: config.description,
       url: canonicalUrl,
       images: [
@@ -29,13 +29,13 @@ export function createMetadata(config: PageSeo): Metadata {
           url: image,
           width: 1200,
           height: 630,
-          alt: config.title,
+          alt: config.title ?? "Kalchev Family Winery",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: config.title,
+      ...(config.title ? { title: config.title } : {}),
       description: config.description,
       images: [image],
     },

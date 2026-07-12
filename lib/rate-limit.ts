@@ -1,33 +1,36 @@
-const store = new Map<string, { count: number; resetAt: number }>();
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
-const WINDOW_MS = 60_000;
-const MAX_REQUESTS = 3;
-let lastCleanup = Date.now();
+let ratelimit: Ratelimit | null = null;
 
-function maybeCleanup(): void {
-  const now = Date.now();
-  if (now - lastCleanup < 300_000) return;
-  lastCleanup = now;
-  for (const [key, entry] of store) {
-    if (now > entry.resetAt) store.delete(key);
-  }
+if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  const redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
+
+  ratelimit = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(3, "60 s"),
+    analytics: true,
+    prefix: "kalchev:ratelimit",
+  });
 }
 
-export function checkRateLimit(ip: string | null): { allowed: boolean; retryAfterSecs: number } {
-  maybeCleanup();
-  const now = Date.now();
-  const clientIp = ip ?? "unknown";
-  const entry = store.get(clientIp);
-
-  if (!entry || now > entry.resetAt) {
-    store.set(clientIp, { count: 1, resetAt: now + WINDOW_MS });
+export async function checkRateLimit(
+  ip: string | null,
+): Promise<{ allowed: boolean; retryAfterSecs: number }> {
+  if (!ratelimit) {
     return { allowed: true, retryAfterSecs: 0 };
   }
 
-  if (entry.count >= MAX_REQUESTS) {
-    return { allowed: false, retryAfterSecs: Math.ceil((entry.resetAt - now) / 1000) };
-  }
+  const clientIp = ip ?? "anonymous";
 
-  entry.count++;
-  return { allowed: true, retryAfterSecs: 0 };
+  return ratelimit
+    .limit(clientIp)
+    .then((result) => ({
+      allowed: result.success,
+      retryAfterSecs: result.success ? 0 : Math.ceil((result.reset - Date.now()) / 1000) || 60,
+    }))
+    .catch(() => ({ allowed: true, retryAfterSecs: 0 }));
 }

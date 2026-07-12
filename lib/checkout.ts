@@ -1,10 +1,11 @@
 "use server";
 
 import { z } from "zod";
-import { orders, orderItems } from "@/lib/db/schema";
+import { orders, orderItems, wineInventory } from "@/lib/db/schema";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { createEmailSender, getNotificationEmail, orderNotificationHtml } from "@/lib/email";
 import { headers } from "next/headers";
+import { eq, sql } from "drizzle-orm";
 
 const checkoutItemSchema = z.object({
   wineId: z.number(),
@@ -34,7 +35,7 @@ export async function checkoutAction(_prevState: unknown, formData: FormData) {
   const rawHeaders = await headers();
   const rawIp = rawHeaders.get("x-forwarded-for");
   const ip = rawIp?.split(",")[0]?.trim() ?? "anonymous";
-  const { allowed, retryAfterSecs } = checkRateLimit(ip);
+  const { allowed, retryAfterSecs } = await checkRateLimit(ip);
   if (!allowed) {
     return {
       success: false,
@@ -64,34 +65,44 @@ export async function checkoutAction(_prevState: unknown, formData: FormData) {
       const { db } = await import("@/lib/db");
       if (db) {
         try {
-          const [order] = await db
-            .insert(orders)
-            .values({
-              customerName: data.customerName,
-              customerEmail: data.customerEmail,
-              phone: data.phone,
-              addressLine1: data.addressLine1,
-              addressLine2: data.addressLine2 ?? null,
-              city: data.city,
-              postalCode: data.postalCode,
-              country: data.country,
-              deliveryNotes: data.deliveryNotes ?? null,
-              total: `€${total}`,
-            })
-            .returning({ id: orders.id });
+          await db.transaction(async (tx) => {
+            const [order] = await tx
+              .insert(orders)
+              .values({
+                customerName: data.customerName,
+                customerEmail: data.customerEmail,
+                phone: data.phone,
+                addressLine1: data.addressLine1,
+                addressLine2: data.addressLine2 ?? null,
+                city: data.city,
+                postalCode: data.postalCode,
+                country: data.country,
+                deliveryNotes: data.deliveryNotes ?? null,
+                total: `€${total}`,
+              })
+              .returning({ id: orders.id });
 
-          if (order) {
-            orderId = order.id;
-            await db.insert(orderItems).values(
-              data.items.map((item) => ({
-                orderId: order.id,
-                wineId: item.wineId,
-                wineName: item.wineName,
-                winePrice: item.winePrice,
-                quantity: item.quantity,
-              })),
-            );
-          }
+            if (order) {
+              orderId = order.id;
+
+              await tx.insert(orderItems).values(
+                data.items.map((item) => ({
+                  orderId: order.id,
+                  wineId: item.wineId,
+                  wineName: item.wineName,
+                  winePrice: item.winePrice,
+                  quantity: item.quantity,
+                })),
+              );
+
+              for (const item of data.items) {
+                await tx
+                  .update(wineInventory)
+                  .set({ stock: sql`GREATEST(${wineInventory.stock} - ${item.quantity}, 0)` })
+                  .where(eq(wineInventory.wineId, item.wineId));
+              }
+            }
+          });
         } catch {
           return {
             success: false,

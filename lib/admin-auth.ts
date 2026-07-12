@@ -6,7 +6,18 @@ import { SignJWT, jwtVerify } from "jose";
 import { NextRequest } from "next/server";
 
 const COOKIE_NAME = "admin_session";
-const JWT_SECRET = new TextEncoder().encode(process.env.ADMIN_SESSION_SECRET || "default-secret-change-me");
+
+function getJwtSecret(): Uint8Array {
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("ADMIN_SESSION_SECRET must be set in production");
+    }
+    console.warn("[admin-auth] ADMIN_SESSION_SECRET not set — using development fallback");
+    return new TextEncoder().encode("dev-only-fallback-do-not-deploy");
+  }
+  return new TextEncoder().encode(secret);
+}
 
 export async function login(formData: FormData) {
   const password = formData.get("password") as string;
@@ -20,7 +31,7 @@ export async function login(formData: FormData) {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("24h")
-    .sign(JWT_SECRET);
+    .sign(getJwtSecret());
 
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, token, {
@@ -45,7 +56,7 @@ export async function verifyAdminSession(request: NextRequest): Promise<boolean>
   if (!token) return false;
 
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET);
+    const { payload } = await jwtVerify(token, getJwtSecret());
     return payload.role === "admin";
   } catch {
     return false;

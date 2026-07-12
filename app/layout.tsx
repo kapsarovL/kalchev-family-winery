@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { metaData } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -89,17 +90,18 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           type="image/avif"
           media="(max-width: 640px)"
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YNM4EZF10R"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-YNM4EZF10R');
-            `,
-          }}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YNM4EZF10R"
+          strategy="afterInteractive"
         />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-YNM4EZF10R');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -112,7 +114,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                   name: metaData.name,
                   url: metaData.url,
                   description: metaData.description,
-                  image: `${metaData.url}/og-image.jpg`,
+                  image: `${metaData.url}/opengraph-image`,
                   address: {
                     "@type": "PostalAddress",
                     addressLocality: "Bogdanci",
@@ -129,7 +131,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                   url: metaData.url,
                   parentOrganization: { "@id": `${metaData.url}/#winery` },
                   description: metaData.description,
-                  image: `${metaData.url}/og-image.jpg`,
+                  image: `${metaData.url}/opengraph-image`,
                 },
                 {
                   "@type": "Organization",

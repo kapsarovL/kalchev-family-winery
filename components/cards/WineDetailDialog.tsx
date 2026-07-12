@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
+import { useCart } from "@/lib/cart-context";
 
 interface WineDetailDialogProps {
   wine: Wine;
@@ -39,6 +40,7 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
   };
 
   const { locale, t } = useLocale();
+  const { dispatch } = useCart();
   const pairing = getPairings(wine.key);
 
   return (
@@ -125,15 +127,15 @@ const WineDetailDialog: React.FC<WineDetailDialogProps> = ({ wine, isOpen, onClo
                 <span className="text-cream-100/60">{t.detail.inStock}</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <Button className="bg-wineRed-100 text-white-200 hover:text-wineRed-100 border-cream-300 border hover:bg-gold-100 transition-colors">
-                  {t.detail.addToCart}
-                </Button>
+              <div className="grid grid-cols-1 gap-3">
                 <Button
-                  variant="outline"
-                  className="border-wineRed-100 text-wineRed-100 hover:bg-gold-100 hover:text-wineRed-100 transition-colors"
+                  className="bg-wineRed-100 text-white-200 hover:text-wineRed-100 border-cream-300 border hover:bg-gold-100 transition-colors"
+                  onClick={() => {
+                    dispatch({ type: "ADD", wine, quantity: 1 });
+                    onClose();
+                  }}
                 >
-                  {t.detail.addToWishlist}
+                  {t.detail.addToCart}
                 </Button>
               </div>
             </div>

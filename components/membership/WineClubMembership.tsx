@@ -142,7 +142,7 @@ const WineClubMembership = () => {
               </CardHeader>
               <CardContent className="text-center pb-8">
                 <div className="mb-8">
-                  <span className="text-4xl font-bold text-deepBrown-100">${tier.price}</span>
+                  <span className="text-4xl font-bold text-deepBrown-100">{tier.price}</span>
                   <span className="text-deepBrown-100/70 ml-1">/{tier.billingPeriod}</span>
                 </div>
                 <ul className="space-y-4 text-left">

@@ -15,7 +15,7 @@ export async function subscribeToNewsletter(
   const headerStore = await headers();
   const rawIp = headerStore.get("x-forwarded-for");
   const ip = rawIp?.split(",")[0]?.trim() ?? headerStore.get("x-real-ip") ?? "unknown";
-  const { allowed, retryAfterSecs } = checkRateLimit(ip);
+  const { allowed, retryAfterSecs } = await checkRateLimit(ip);
   if (!allowed) {
     return {
       success: false,
