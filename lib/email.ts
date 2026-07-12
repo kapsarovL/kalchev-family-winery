@@ -11,6 +11,29 @@ export function getNotificationEmail(): string | null {
   return process.env.NOTIFICATION_EMAIL || null;
 }
 
+const FROM_ADDRESS = "Kalchev Family Winery <notifications@kalchevwinery.com>";
+
+export function formatDate(): string {
+  return new Date().toLocaleString("en-US", { dateStyle: "full", timeStyle: "short" });
+}
+
+export async function sendEmail(to: string, subject: string, html: string): Promise<boolean> {
+  const resend = createEmailSender();
+  if (!resend) return false;
+  try {
+    await resend.emails.send({ from: FROM_ADDRESS, to, subject, html });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function sendAdminNotification(subject: string, html: string): Promise<boolean> {
+  const email = getNotificationEmail();
+  if (!email) return false;
+  return sendEmail(email, subject, html);
+}
+
 export function contactNotificationHtml(data: {
   name: string;
   email: string;
@@ -203,6 +226,76 @@ export function orderNotificationHtml(data: {
                   </td>
                 </tr>
               </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+export function orderConfirmationHtml(data: {
+  orderId: number;
+  customerName: string;
+  items: { wineName: string; winePrice: string; quantity: number }[];
+  total: string;
+  date: string;
+}): string {
+  const itemsRows = data.items
+    .map(
+      (item) => `
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; color: #333;">${escapeHtml(item.wineName)}</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; color: #333; text-align: center;">${item.quantity}</td>
+                <td style="padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; color: #333; text-align: right;">${escapeHtml(item.winePrice)}</td>
+              </tr>`,
+    )
+    .join("");
+
+  return `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f2ed; padding: 40px 20px;">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="center">
+        <table width="560" cellpadding="0" cellspacing="0" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+          <tr>
+            <td style="background: #6b2737; padding: 24px 32px;">
+              <h1 style="margin: 0; color: #f5f2ed; font-size: 20px; font-weight: 600;">✅ Order Confirmed — #${data.orderId}</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px;">
+              <p style="margin: 0 0 16px; font-size: 16px; color: #333; line-height: 1.5;">
+                Hi ${escapeHtml(data.customerName)},<br/><br/>
+                Thank you for your order with Kalchev Family Winery. We have received your order and will review it shortly. We&apos;ll contact you to confirm delivery details and arrange payment.
+              </p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 8px;">
+                <thead>
+                  <tr>
+                    <th style="text-align: left; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 4px; border-bottom: 2px solid #eee;">Wine</th>
+                    <th style="text-align: center; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 4px; border-bottom: 2px solid #eee;">Qty</th>
+                    <th style="text-align: right; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 4px; border-bottom: 2px solid #eee;">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${itemsRows}
+                </tbody>
+              </table>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 12px;">
+                <tr>
+                  <td style="padding-top: 8px; border-top: 2px solid #eee; text-align: right;">
+                    <strong style="font-size: 18px; color: #6b2737;">Total: ${data.total}</strong>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin: 24px 0 0; font-size: 13px; color: #999; line-height: 1.5;">
+                Order reference: <strong>#${data.orderId}</strong><br/>
+                Placed on ${data.date}
+              </p>
             </td>
           </tr>
         </table>

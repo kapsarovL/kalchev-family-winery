@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { bookings } from "@/lib/db/schema";
 import { eq, desc, and } from "drizzle-orm";
 import { verifyAdminSession } from "@/lib/admin-auth";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export async function GET(request: NextRequest) {
   if (!(await verifyAdminSession(request))) {
@@ -39,6 +40,16 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const rawIp = request.headers.get("x-forwarded-for");
+  const ip = rawIp?.split(",")[0]?.trim() ?? "anonymous";
+  const { allowed, retryAfterSecs } = await checkRateLimit(ip);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: `Too many requests. Please try again in ${retryAfterSecs}s.` },
+      { status: 429 },
+    );
+  }
+
   const database = db;
   if (!database) {
     return NextResponse.json({ error: "Database unavailable" }, { status: 503 });

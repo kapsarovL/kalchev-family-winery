@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import OrderClient from "../orders/order-client";
+import OrderLookupClient from "../orders/order-lookup-client";
 import CalendarClient from "../calendar/calendar-client";
 
 type OrderItem = {
@@ -45,6 +47,7 @@ type Booking = {
 
 const tabs = [
   { id: "orders", label: "Orders" },
+  { id: "lookup", label: "Order Lookup" },
   { id: "calendar", label: "Calendar" },
 ];
 
@@ -61,6 +64,12 @@ export default function DashboardClient({ orders, bookings }: Props) {
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-playfair font-bold text-wineRed-100">Admin Dashboard</h1>
+          <Link
+            href="/"
+            className="px-4 py-2 text-sm font-inter font-medium text-deepBrown-100/70 border border-cream-200 rounded-lg hover:text-wineRed-100 hover:border-wineRed-100/30 transition-colors"
+          >
+            ← Back to site
+          </Link>
         </div>
 
         <div className="flex gap-1 mb-6 border-b border-cream-200">
@@ -80,6 +89,11 @@ export default function DashboardClient({ orders, bookings }: Props) {
         </div>
 
         {activeTab === "orders" && <OrderClient orders={orders} embedded />}
+        {activeTab === "lookup" && (
+          <div className="bg-white-100 rounded-xl border border-cream-200 p-6">
+            <OrderLookupClient />
+          </div>
+        )}
         {activeTab === "calendar" && <CalendarClient bookings={bookings} embedded />}
       </div>
     </div>

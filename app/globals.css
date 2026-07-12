@@ -365,10 +365,6 @@
 }
 
 @layer utilities {
-  html {
-    scroll-behavior: smooth;
-  }
-
   @keyframes rotateBottle {
     from {
       transform: rotateY(0deg);

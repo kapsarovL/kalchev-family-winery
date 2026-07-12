@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import WineShowcase from "@/components/products/WineShowcase";
@@ -11,6 +11,8 @@ import { useLocale } from "@/lib/i18n/locale-context";
 const FeaturedWineShowcase = () => {
   const { t } = useLocale();
   const [currentWineIndex, setCurrentWineIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isHoveredRef = useRef(false);
 
   const [stockStatuses, setStockStatuses] = useState<Record<number, WineStockStatus>>({});
 
@@ -18,14 +20,20 @@ const FeaturedWineShowcase = () => {
     getAllStockStatuses().then(setStockStatuses).catch(console.error);
   }, []);
 
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (!isHoveredRef.current) return;
+    if (e.key === "ArrowLeft") {
+      setCurrentWineIndex((prev) => (prev > 0 ? prev - 1 : wines.length - 1));
+    }
+    if (e.key === "ArrowRight") {
+      setCurrentWineIndex((prev) => (prev < wines.length - 1 ? prev + 1 : 0));
+    }
+  }, []);
+
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prevWine();
-      if (e.key === "ArrowRight") nextWine();
-    };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [handleKeyDown]);
 
   const prevWine = () => {
     setCurrentWineIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : wines.length - 1));
@@ -49,7 +57,16 @@ const FeaturedWineShowcase = () => {
   };
 
   return (
-    <section className="min-h-screen py-12 md:py-16 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      onMouseEnter={() => {
+        isHoveredRef.current = true;
+      }}
+      onMouseLeave={() => {
+        isHoveredRef.current = false;
+      }}
+      className="min-h-screen py-12 md:py-16 relative overflow-hidden"
+    >
       <video
         autoPlay
         muted

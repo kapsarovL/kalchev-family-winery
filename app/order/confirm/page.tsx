@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
@@ -29,14 +28,6 @@ export default function OrderConfirmPage() {
           <Link href="/">
             <Button className="bg-wineRed-100 hover:bg-gold-100 text-white-100 transition-colors">
               Back to Home
-            </Button>
-          </Link>
-          <Link href="/orders?email=">
-            <Button
-              variant="outline"
-              className="border-wineRed-100 text-wineRed-100 hover:bg-wineRed-100 hover:text-white-100 transition-colors"
-            >
-              View My Orders
             </Button>
           </Link>
         </div>

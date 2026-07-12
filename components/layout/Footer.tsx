@@ -2,14 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "@/public/images/logo.webp";
-import { useToast } from "@/hooks/use-toast";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import { useLocale } from "@/lib/i18n/locale-context";
 
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const { toast } = useToast();
   const { t } = useLocale();
 
   useEffect(() => {
@@ -141,6 +140,7 @@ const Footer = () => {
               <FooterLink sectionId="testimonials">{t.footer.testimonials}</FooterLink>
               <FooterLink sectionId="wine-club">{t.footer.wineClub}</FooterLink>
               <FooterLink sectionId="gift-packages">{t.footer.giftPackages}</FooterLink>
+
               <FooterLink sectionId="contact">{t.footer.contact}</FooterLink>
             </nav>
           </div>
@@ -200,20 +200,19 @@ const Footer = () => {
             © {currentYear} Kalchev Family Winery. {t.footer.rights}
           </p>
           <div className="flex gap-5">
-            {[t.footer.privacy, t.footer.terms, t.footer.cookie].map((label) => (
-              <button
-                key={label}
-                onClick={() =>
-                  toast({
-                    title: label,
-                    description: `Our ${label.toLowerCase()} outlines your rights and our responsibilities.`,
-                  })
-                }
-                className="text-cream-100/60 hover:text-cream-100/80 text-xs font-inter transition-colors cursor-pointer"
+            {[
+              { label: t.footer.privacy, href: "/privacy" },
+              { label: t.footer.terms, href: "/terms" },
+              { label: t.footer.cookie, href: "/cookies" },
+            ].map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="text-cream-100/60 hover:text-cream-100/80 text-xs font-inter transition-colors"
                 aria-label={`View ${label}`}
               >
                 {label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

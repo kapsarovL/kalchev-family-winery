@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import localFont from "next/font/local";
-import Script from "next/script";
+
 import { metaData } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -61,47 +61,15 @@ export const metadata: Metadata = {
 };
 
 import { ClientLayout } from "./client-layout";
+import { GoogleAnalytics } from "./analytics";
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const cookieStore = await cookies();
   const initialLocale = (cookieStore.get("kalchev-locale")?.value ?? "en") as Locale;
 
   return (
-    <html lang={initialLocale} suppressHydrationWarning>
+    <html lang={initialLocale} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
-        <link
-          rel="preload"
-          href="/images/hero-background.avif"
-          as="image"
-          type="image/avif"
-          media="(min-width: 1025px)"
-        />
-        <link
-          rel="preload"
-          href="/images/hero-tablet.avif"
-          as="image"
-          type="image/avif"
-          media="(min-width: 641px) and (max-width: 1024px)"
-        />
-        <link
-          rel="preload"
-          href="/images/hero-mobile.avif"
-          as="image"
-          type="image/avif"
-          media="(max-width: 640px)"
-        />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-YNM4EZF10R"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-YNM4EZF10R');
-          `}
-        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -158,6 +126,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           Skip to content
         </a>
         <ClientLayout initialLocale={initialLocale}>{children}</ClientLayout>
+        <GoogleAnalytics />
         <Analytics />
       </body>
     </html>

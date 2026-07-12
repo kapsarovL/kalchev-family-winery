@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Heart, Check, Clock, Wine as WineIcon } from "lucide-react";
+import { ShoppingCart, Check, Clock, Wine as WineIcon } from "lucide-react";
 import Image from "next/image";
-import { Wine, WineStockStatus, WineAwardLevel } from "@/types/wine";
+import type { Wine } from "@/data/wines";
+import type { WineStockStatus, WineAwardLevel } from "@/types/wine";
 import { useCart } from "@/lib/cart-context";
 import { useLocale } from "@/lib/i18n/locale-context";
 
@@ -155,21 +156,14 @@ const WineShowcase: React.FC<WineShowcaseProps> = ({
           </div>
         </div>
 
-        <div className="actions flex space-x-3">
+        <div className="actions">
           <Button
-            className="flex-1 bg-wineRed-100 hover:bg-gold-100 transition-colors duration-300 text-white-200"
+            className="w-full bg-wineRed-100 hover:bg-gold-100 transition-colors duration-300 text-white-200"
             aria-label={`${t.detail.addToCart}: ${wine.translations[locale].name}`}
             onClick={() => dispatch({ type: "ADD", wine, quantity })}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
             Add to Cart ({quantity})
-          </Button>
-          <Button
-            variant="outline"
-            className="border-cream-300/70 text-deepBrown-100 hover:bg-cream-100/40 transition-colors"
-            aria-label={`${t.detail.addToWishlist}: ${wine.translations[locale].name}`}
-          >
-            <Heart className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>
       </div>

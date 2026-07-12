@@ -3,9 +3,16 @@
 import { z } from "zod";
 import { orders, orderItems, wineInventory } from "@/lib/db/schema";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { createEmailSender, getNotificationEmail, orderNotificationHtml } from "@/lib/email";
+import {
+  sendEmail,
+  sendAdminNotification,
+  orderNotificationHtml,
+  orderConfirmationHtml,
+  formatDate,
+} from "@/lib/email";
 import { headers } from "next/headers";
 import { eq, sql } from "drizzle-orm";
+import { parsePrice } from "@/lib/price";
 
 const checkoutItemSchema = z.object({
   wineId: z.number(),
@@ -26,10 +33,6 @@ const checkoutSchema = z.object({
   deliveryNotes: z.string().max(500).optional(),
   items: z.array(checkoutItemSchema).min(1, "Cart is empty"),
 });
-
-function parsePrice(price: string): number {
-  return parseFloat(price.replace("€", "").replace(",", ".").trim());
-}
 
 export async function checkoutAction(_prevState: unknown, formData: FormData) {
   const rawHeaders = await headers();
@@ -58,6 +61,28 @@ export async function checkoutAction(_prevState: unknown, formData: FormData) {
     const total = data.items
       .reduce((sum, item) => sum + parsePrice(item.winePrice) * item.quantity, 0)
       .toFixed(2);
+
+    if (process.env.DATABASE_URL) {
+      const { db: stockDb } = await import("@/lib/db");
+      if (stockDb) {
+        for (const item of data.items) {
+          const rows = await stockDb
+            .select({ stock: wineInventory.stock })
+            .from(wineInventory)
+            .where(eq(wineInventory.wineId, item.wineId));
+          const currentStock = rows[0]?.stock ?? 0;
+          if (currentStock < item.quantity) {
+            return {
+              success: false,
+              orderId: null,
+              errors: {
+                items: `"${item.wineName}" is out of stock or has insufficient quantity (available: ${currentStock}).`,
+              },
+            };
+          }
+        }
+      }
+    }
 
     let orderId: number | null = null;
 
@@ -113,9 +138,7 @@ export async function checkoutAction(_prevState: unknown, formData: FormData) {
       }
     }
 
-    const resend = createEmailSender();
-    const notifyEmail = getNotificationEmail();
-    if (resend && notifyEmail && orderId) {
+    if (orderId) {
       const addressParts = [
         data.addressLine1,
         data.addressLine2,
@@ -124,29 +147,32 @@ export async function checkoutAction(_prevState: unknown, formData: FormData) {
         data.country,
       ].filter(Boolean);
 
-      try {
-        await resend.emails.send({
-          from: "Kalchev Family Winery <notifications@kalchevwinery.com>",
-          to: notifyEmail,
-          subject: `New Order #${orderId} from ${data.customerName}`,
-          html: orderNotificationHtml({
-            orderId,
-            customerName: data.customerName,
-            customerEmail: data.customerEmail,
-            phone: data.phone,
-            address: addressParts.join("\n"),
-            deliveryNotes: data.deliveryNotes ?? null,
-            items: data.items,
-            total: `€${total}`,
-            date: new Date().toLocaleString("en-US", {
-              dateStyle: "full",
-              timeStyle: "short",
-            }),
-          }),
-        });
-      } catch {
-        // Email failure doesn't block order success
-      }
+      await sendAdminNotification(
+        `New Order #${orderId} from ${data.customerName}`,
+        orderNotificationHtml({
+          orderId,
+          customerName: data.customerName,
+          customerEmail: data.customerEmail,
+          phone: data.phone,
+          address: addressParts.join("\n"),
+          deliveryNotes: data.deliveryNotes ?? null,
+          items: data.items,
+          total: `€${total}`,
+          date: formatDate(),
+        }),
+      );
+
+      await sendEmail(
+        data.customerEmail,
+        `Order Confirmed — #${orderId}`,
+        orderConfirmationHtml({
+          orderId,
+          customerName: data.customerName,
+          items: data.items,
+          total: `€${total}`,
+          date: formatDate(),
+        }),
+      );
     }
 
     return { success: true, orderId, errors: null };

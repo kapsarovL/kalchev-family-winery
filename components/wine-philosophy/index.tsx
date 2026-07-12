@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { Leaf, Droplets, Sun, Sparkles } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
 
@@ -18,41 +18,41 @@ const WinePhilosophy = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
+          <div className="bg-cream-200 p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-3 sm:mb-4">
               <Leaf className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[#2C1810] mb-3">
+            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-deepBrown-300 mb-3">
               {t.philosophy.pillar1Title}
             </h3>
             <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar1Desc}</p>
           </div>
 
-          <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
+          <div className="bg-cream-200 p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-3 sm:mb-4">
               <Droplets className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[#2C1810] mb-3">
+            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-deepBrown-300 mb-3">
               {t.philosophy.pillar2Title}
             </h3>
             <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar2Desc}</p>
           </div>
 
-          <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
+          <div className="bg-cream-200 p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-3 sm:mb-4">
               <Sun className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[#2C1810] mb-3">
+            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-deepBrown-300 mb-3">
               {t.philosophy.pillar3Title}
             </h3>
             <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar3Desc}</p>
           </div>
 
-          <div className="bg-[#F4E8D5] p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
+          <div className="bg-cream-200 p-5 sm:p-6 rounded-lg text-center transition-transform hover:scale-105">
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-oliveGreen-100 text-white-200 mb-3 sm:mb-4">
               <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[#2C1810] mb-3">
+            <h3 className="text-xl sm:text-2xl font-serif font-semibold text-deepBrown-300 mb-3">
               {t.philosophy.pillar4Title}
             </h3>
             <p className="text-sm sm:text-base text-slate-700">{t.philosophy.pillar4Desc}</p>

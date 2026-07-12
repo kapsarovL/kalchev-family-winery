@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { wines } from "../../data/wines";
 import WineCard from "@/components/cards/WineCard";
 import { Button } from "@/components/ui/button";

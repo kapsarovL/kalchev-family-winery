@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { jwtVerify } from "jose";
+import { getJwtSecret } from "@/lib/jwt";
 import { LoginForm } from "./login-form";
 
 export const metadata = {
@@ -8,10 +10,17 @@ export const metadata = {
 
 export default async function AdminLoginPage() {
   const cookieStore = await cookies();
-  const authed = cookieStore.get("admin_authenticated")?.value === "true";
+  const token = cookieStore.get("admin_session")?.value;
 
-  if (authed) {
-    redirect("/admin/dashboard");
+  if (token) {
+    try {
+      const { payload } = await jwtVerify(token, getJwtSecret());
+      if (payload.role === "admin") {
+        redirect("/admin/dashboard");
+      }
+    } catch {
+      // invalid token — show login form
+    }
   }
 
   return (
