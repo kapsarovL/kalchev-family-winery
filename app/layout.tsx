@@ -89,6 +89,17 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
           type="image/avif"
           media="(max-width: 640px)"
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YNM4EZF10R"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YNM4EZF10R');
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
