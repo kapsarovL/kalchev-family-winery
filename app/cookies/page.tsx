@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Cookie Policy | Kalchev Family Winery",
@@ -47,6 +49,15 @@ export default function CookiesPage() {
             </a>
             .
           </p>
+        </div>
+        <div className="mt-12 pt-8 border-t border-deepBrown-100/10">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-wineRed-100 hover:text-wineRed-100/80 font-medium transition-colors"
+          >
+            <ArrowLeft className="size-4" />
+            Back to site
+          </Link>
         </div>
       </div>
     </div>
