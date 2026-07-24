@@ -33,7 +33,7 @@ export default async function OGImage() {
             color: "#c9a84c",
           }}
         >
-          Since 1932 · Bogdanci Valley, Macedonia
+          Since 2008 · Bogdanci Valley, Macedonia
         </p>
         <h1
           style={{

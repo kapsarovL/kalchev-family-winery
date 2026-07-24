@@ -200,7 +200,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Premium wines crafted with passion and tradition in Macedonia's Bogdanci Valley since 1932.",
+        "Premium wines crafted with passion and tradition in Macedonia's Bogdanci Valley since 2008.",
       explore: "Explore",
       aboutUs: "About Us",
       ourWines: "Our Wines",
@@ -487,7 +487,7 @@ export const translations = {
       disclaimer: "Без спам. Откажете се во секое време.",
     },
     footer: {
-      tagline: "Премиум вина создадени со страст и традиција во Богданци од 1932 година.",
+      tagline: "Премиум вина создадени со страст и традиција во Богданци од 2008 година.",
       explore: "Истражи",
       aboutUs: "За нас",
       ourWines: "Нашите вина",
@@ -776,7 +776,7 @@ export const translations = {
     },
     footer: {
       tagline:
-        "Premium κρασιά φτιαγμένα με πάθος και παράδοση στην κοιλάδα Μπόγκντανσι της Μακεδονίας από το 1932.",
+        "Premium κρασιά φτιαγμένα με πάθος και παράδοση στην κοιλάδα Μπόγκντανσι της Μακεδονίας από το 2008.",
       explore: "Εξερεύνηση",
       aboutUs: "Σχετικά",
       ourWines: "Τα κρασιά μας",

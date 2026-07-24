@@ -1,7 +1,7 @@
 export const metaData = {
   name: "Kalchev Family Winery",
   description:
-    "Discover Kalchev Family Winery in Bogdanci, Macedonia. Since 1932, we craft award-winning Vranec, Merlot, and Temjanika wines using traditional methods passed down through generations.",
+    "Discover Kalchev Family Winery in Bogdanci, Macedonia. Since 2008, we craft award-winning Vranec, Merlot, and Temjanika wines using traditional methods passed down through generations.",
   title: "Kalchev Family Winery | Premium Macedonian Wines",
   url: "https://kalchevwinery.com",
   ogImage: "https://kalchevwinery.com/opengraph-image",
@@ -17,7 +17,7 @@ export const metaData = {
     "Temjanika wine",
     "wine tasting Macedonia",
     "Bogdanci Valley wine",
-    "Macedonian wine since 1932",
+    "Macedonian wine since 2008",
     "Kalchev Wine Vision",
     "Macedonian Merlot",
     "winery Bogdanci Macedonia",

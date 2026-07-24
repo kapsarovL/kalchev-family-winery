@@ -88,7 +88,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                     addressLocality: "Bogdanci",
                     addressCountry: "MK",
                   },
-                  foundingDate: "1932",
+                  foundingDate: "2008",
                   servesCuisine: "Macedonian wine",
                   priceRange: "€€€",
                 },
@@ -108,7 +108,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                   url: metaData.url,
                   logo: `${metaData.url}/icon.png`,
                   description: metaData.description,
-                  foundingDate: "1932",
+                  foundingDate: "2008",
                   areaServed: [
                     { "@type": "Country", name: "Macedonia" },
                     { "@type": "Country", name: "Greece" },
