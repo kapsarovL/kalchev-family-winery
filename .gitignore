@@ -45,5 +45,4 @@ next-env.d.ts
 .vercel
 CLAUDE.md
 AGENTS.md
-.kilo/
 context/
