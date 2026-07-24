@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { orders, orderItems } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export async function GET(request: NextRequest) {
+  const rawIp = request.headers.get("x-forwarded-for");
+  const ip = rawIp?.split(",")[0]?.trim() ?? "anonymous";
+  const { allowed, retryAfterSecs } = await checkRateLimit(ip);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: `Too many requests. Please try again in ${retryAfterSecs}s.` },
+      { status: 429 },
+    );
+  }
+
   const email = request.nextUrl.searchParams.get("email");
   if (!email || !email.includes("@")) {
     return NextResponse.json({ error: "Valid email is required" }, { status: 400 });

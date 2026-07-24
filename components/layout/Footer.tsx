@@ -105,7 +105,7 @@ const Footer = () => {
                     </svg>
                   ),
                   label: "Facebook",
-                  href: "https://www.facebook.com/logosplusgvg",
+                  href: "https://www.facebook.com/kalchevwinery",
                 },
                 {
                   icon: (
@@ -114,7 +114,7 @@ const Footer = () => {
                     </svg>
                   ),
                   label: "Instagram",
-                  href: "https://www.instagram.com/ristokalcevk/",
+                  href: "https://www.instagram.com/kalchevwinery/",
                 },
               ].map(({ icon, label, href }) => (
                 <a

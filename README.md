@@ -97,4 +97,4 @@ Issues are tracked in [Linear](https://linear.app) under the **Kalchev Family Wi
 
 ## License
 
-Private — all rights reserved.
+MIT — see [LICENSE](./LICENSE) for details.
